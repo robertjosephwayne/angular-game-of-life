@@ -1,0 +1,62 @@
+<!-- <div *ngFor="let row of currentGeneration">{{ row }}</div> -->
+
+<div id="game-container">
+  <table>
+    <tr *ngFor="let row of currentGeneration; let rowIndex = index">
+      <td
+        *ngFor="let column of row; let columnIndex = index"
+        [ngClass]="{ alive: column }"
+        (click)="handleCellClick(rowIndex, columnIndex)"
+      ></td>
+    </tr>
+  </table>
+
+  <div id="game-config-patterns">
+    Preset Patterns:
+    <select
+      name="patterns"
+      id="patterns"
+      (change)="handlePatternSelect($event)"
+    >
+      <option value="empty">Empty</option>
+      <option value="glider">Glider</option>
+      <option value="small-exploder">Small Exploder</option>
+      <option value="exploder">Exploder</option>
+      <option value="ten-cell-row">Ten Cell Row</option>
+      <option value="lightweight-spaceship">Lightweight Spaceship</option>
+      <option value="block">Block</option>
+      <option value="tub">Tub</option>
+      <option value="boat">Boat</option>
+    </select>
+  </div>
+
+  <button (click)="tick()">Tick</button>
+  <button (click)="startTicking()">Start</button>
+  <button (click)="stopTicking()">Stop</button>
+  <button (click)="reset()">Reset</button>
+  <br />
+
+  <div>
+    <label for="grid-size">Grid Size: </label>
+    <input
+      type="range"
+      id="grid-size"
+      value="30"
+      min="5"
+      max="30"
+      (change)="handleGridResize($event)"
+    />
+  </div>
+
+  <div>
+    <label for="tick-speed">Tick Speed: </label>
+    <input
+      type="range"
+      id="tick-speed"
+      min="0"
+      max="1000"
+      value="500"
+      (change)="handleSpeedChange($event)"
+    />
+  </div>
+</div>
