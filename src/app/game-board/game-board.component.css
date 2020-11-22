@@ -1,0 +1,15 @@
+table {
+  background-color: lightgray;
+  border: 5px solid white;
+  border-spacing: 0;
+  min-width: 450px;
+  min-height: 400px;
+}
+
+td {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.alive {
+  background-color: aqua;
+}
