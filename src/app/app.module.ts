@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import * as fromGameBoard from './game-board/store/game-board.reducer';
 import { ConfigSliderComponent } from './config-slider/config-slider.component';
+import { PatternsComponent } from './patterns/patterns.component';
+import { GameConfigComponent } from './game-config/game-config.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameBoardComponent,
-    ConfigSliderComponent
+    ConfigSliderComponent,
+    PatternsComponent,
+    GameConfigComponent
   ],
   imports: [
     BrowserModule,
