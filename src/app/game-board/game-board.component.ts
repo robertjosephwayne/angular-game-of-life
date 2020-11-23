@@ -16,6 +16,11 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   ticker: any;
   autoTicking: boolean;
+  tickSpeed: number;
+  gridSize: number;
+  minGridSize: number;
+  maxGridSize: number;
+  maxTickInterval: number;
   tickInterval: number;
 
   constructor(private store: Store<fromApp.AppState>) { }
@@ -26,6 +31,10 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       this.ticker = state.ticker;
       this.autoTicking = state.autoTicking;
       this.tickInterval = state.tickInterval;
+      this.gridSize = state.gridSize;
+      this.minGridSize = state.minGridSize;
+      this.maxGridSize = state.maxGridSize;
+      this.maxTickInterval = state.maxTickInterval;
     });
   }
 
@@ -60,9 +69,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   handleSpeedChange(event) {
-    const rangeValue = event.target.value;
-    const rangeMax = event.target.getAttribute('max');
-    const newTickInterval = rangeMax - rangeValue;
+    const tickSpeed = event.target.value;
+    const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
     if (this.autoTicking) this.startTicking();
   }
@@ -74,5 +82,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  getTickInterval(tickSpeed) {
+    return this.maxTickInterval - tickSpeed * 10;
   }
 }

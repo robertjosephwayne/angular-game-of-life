@@ -36,27 +36,22 @@
   <button (click)="reset()">Reset</button>
   <br />
 
-  <div>
-    <label for="grid-size">Grid Size: </label>
-    <input
-      type="range"
-      id="grid-size"
-      value="30"
-      min="5"
-      max="30"
-      (change)="handleGridResize($event)"
-    />
-  </div>
+  <app-config-slider
+    [label]="'Grid Size'"
+    [id]="'grid-size'"
+    [value]="gridSize"
+    [min]="minGridSize"
+    [max]="maxGridSize"
+    (change)="handleGridResize($event)"
+  ></app-config-slider>
 
-  <div>
-    <label for="tick-speed">Tick Speed: </label>
-    <input
-      type="range"
-      id="tick-speed"
-      min="0"
-      max="1000"
-      value="500"
-      (change)="handleSpeedChange($event)"
-    />
-  </div>
+  <app-config-slider
+    [label]="'Tick Speed'"
+    [id]="'tick-speed'"
+    [value]="tickSpeed / 10"
+    [min]="0"
+    [max]="maxTickInterval / 10"
+    (change)="handleSpeedChange($event)"
+  ></app-config-slider>
+  {{ tickSpeed }}
 </div>

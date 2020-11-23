@@ -6,11 +6,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import * as fromGameBoard from './game-board/store/game-board.reducer';
+import { ConfigSliderComponent } from './config-slider/config-slider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameBoardComponent
+    GameBoardComponent,
+    ConfigSliderComponent
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,13 @@ import * as GameBoardActions from './game-board.actions';
 
 export interface State {
   currentGeneration: number[][];
+  minGridSize: number;
+  maxGridSize: number;
   gridSize: number;
   selectedPattern: string;
   autoTicking: boolean;
   tickInterval: number;
+  maxTickInterval: number;
   ticker: any
 }
 
@@ -23,10 +26,13 @@ export const initialState: State = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ],
+  minGridSize: 10,
+  maxGridSize: 25,
   gridSize: 10,
   selectedPattern: 'empty',
   autoTicking: false,
   tickInterval: 500,
+  maxTickInterval: 1000,
   ticker: null
 };
 
