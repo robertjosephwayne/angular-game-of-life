@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
@@ -10,8 +10,8 @@ import * as fromApp from '../store/app.reducer';
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.css']
 })
-export class GameConfigComponent implements OnInit {
-  subscription: Subscription;
+export class GameConfigComponent implements OnInit, OnDestroy {
+  gameBoardSub: Subscription;
   autoTicking: boolean;
   tickInterval: number;
   maxTickInterval: number;
@@ -24,7 +24,11 @@ export class GameConfigComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.subscription = this.store.select('gameBoard').subscribe(state => {
+    this.setGameBoardData();
+  }
+
+  setGameBoardData() {
+    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.autoTicking = state.autoTicking;
       this.tickInterval = state.tickInterval;
       this.maxTickInterval = state.maxTickInterval;
@@ -70,5 +74,9 @@ export class GameConfigComponent implements OnInit {
 
   getTickInterval(tickSpeed) {
     return this.maxTickInterval - tickSpeed * 10;
+  }
+
+  ngOnDestroy() {
+    this.gameBoardSub.unsubscribe();
   }
 }
