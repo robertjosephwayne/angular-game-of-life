@@ -14,77 +14,20 @@ import * as fromApp from '../store/app.reducer';
 export class GameBoardComponent implements OnInit, OnDestroy {
   currentGeneration: number[][];
   subscription: Subscription;
-  ticker: any;
-  autoTicking: boolean;
-  tickSpeed: number;
-  gridSize: number;
-  minGridSize: number;
-  maxGridSize: number;
-  maxTickInterval: number;
-  tickInterval: number;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
-      this.ticker = state.ticker;
-      this.autoTicking = state.autoTicking;
-      this.tickInterval = state.tickInterval;
-      this.gridSize = state.gridSize;
-      this.minGridSize = state.minGridSize;
-      this.maxGridSize = state.maxGridSize;
-      this.maxTickInterval = state.maxTickInterval;
     });
-  }
-
-  tick() {
-    this.store.dispatch(GameBoardActions.tick());
-  }
-
-  reset() {
-    this.store.dispatch(GameBoardActions.reset());
-  }
-
-  startTicking() {
-    if (this.autoTicking) this.stopTicking();
-    const ticker = setInterval(() => {
-      this.store.dispatch(GameBoardActions.tick());
-    }, this.tickInterval);
-    this.store.dispatch(GameBoardActions.startTicking({ newTicker: ticker }));
-  }
-
-  stopTicking() {
-    clearInterval(this.ticker);
-    this.store.dispatch(GameBoardActions.stopTicking());
   }
 
   handleCellClick(rowIndex, columnIndex) {
     this.store.dispatch(GameBoardActions.toggleCellLife({ rowIndex, columnIndex }));
   }
 
-  handleGridResize(event) {
-    const gridSize = event.target.value;
-    this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
-  }
-
-  handleSpeedChange(event) {
-    const tickSpeed = event.target.value;
-    const newTickInterval = this.getTickInterval(tickSpeed);
-    this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
-    if (this.autoTicking) this.startTicking();
-  }
-
-  handlePatternSelect(event) {
-    const patternName = event.target.value;
-    this.store.dispatch(GameBoardActions.selectPattern({ patternName }));
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  getTickInterval(tickSpeed) {
-    return this.maxTickInterval - tickSpeed * 10;
   }
 }

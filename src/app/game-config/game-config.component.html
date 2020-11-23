@@ -1,0 +1,24 @@
+<app-patterns></app-patterns>
+
+<app-config-slider
+  [label]="'Grid Size'"
+  [id]="'grid-size'"
+  [value]="gridSize"
+  [min]="minGridSize"
+  [max]="maxGridSize"
+  (change)="handleGridResize($event)"
+></app-config-slider>
+
+<app-config-slider
+  [label]="'Tick Speed'"
+  [id]="'tick-speed'"
+  [value]="tickSpeed / 10"
+  [min]="0"
+  [max]="maxTickInterval / 10"
+  (change)="handleSpeedChange($event)"
+></app-config-slider>
+
+<button (click)="tick()">Tick</button>
+<button (click)="startTicking()">Start</button>
+<button (click)="stopTicking()">Stop</button>
+<button (click)="reset()">Reset</button>

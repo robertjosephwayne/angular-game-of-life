@@ -1,5 +1,3 @@
-<!-- <div *ngFor="let row of currentGeneration">{{ row }}</div> -->
-
 <div id="game-container">
   <table>
     <tr *ngFor="let row of currentGeneration; let rowIndex = index">
@@ -11,47 +9,5 @@
     </tr>
   </table>
 
-  <div id="game-config-patterns">
-    Preset Patterns:
-    <select
-      name="patterns"
-      id="patterns"
-      (change)="handlePatternSelect($event)"
-    >
-      <option value="empty">Empty</option>
-      <option value="glider">Glider</option>
-      <option value="small-exploder">Small Exploder</option>
-      <option value="exploder">Exploder</option>
-      <option value="ten-cell-row">Ten Cell Row</option>
-      <option value="lightweight-spaceship">Lightweight Spaceship</option>
-      <option value="block">Block</option>
-      <option value="tub">Tub</option>
-      <option value="boat">Boat</option>
-    </select>
-  </div>
-
-  <button (click)="tick()">Tick</button>
-  <button (click)="startTicking()">Start</button>
-  <button (click)="stopTicking()">Stop</button>
-  <button (click)="reset()">Reset</button>
-  <br />
-
-  <app-config-slider
-    [label]="'Grid Size'"
-    [id]="'grid-size'"
-    [value]="gridSize"
-    [min]="minGridSize"
-    [max]="maxGridSize"
-    (change)="handleGridResize($event)"
-  ></app-config-slider>
-
-  <app-config-slider
-    [label]="'Tick Speed'"
-    [id]="'tick-speed'"
-    [value]="tickSpeed / 10"
-    [min]="0"
-    [max]="maxTickInterval / 10"
-    (change)="handleSpeedChange($event)"
-  ></app-config-slider>
-  {{ tickSpeed }}
+  <app-game-config></app-game-config>
 </div>
