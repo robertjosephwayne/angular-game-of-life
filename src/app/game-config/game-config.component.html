@@ -19,6 +19,6 @@
 ></app-config-slider>
 
 <button (click)="tick()">Tick</button>
-<button (click)="startTicking()">Start</button>
-<button (click)="stopTicking()">Stop</button>
+<button (click)="startTicking()" *ngIf="!autoTicking">Start</button>
+<button (click)="stopTicking()" *ngIf="autoTicking">Stop</button>
 <button (click)="reset()">Reset</button>
