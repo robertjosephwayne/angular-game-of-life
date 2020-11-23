@@ -14,15 +14,18 @@ import * as fromApp from '../store/app.reducer';
 export class GameBoardComponent implements OnInit, OnDestroy {
   currentGeneration: number[][];
   subscription: Subscription;
-  ticker = null;
-  currentlyTicking = false;
-  tickInterval = 500;
+  ticker: any;
+  autoTicking: boolean;
+  tickInterval: number;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
+      this.ticker = state.ticker;
+      this.autoTicking = state.autoTicking;
+      this.tickInterval = state.tickInterval;
     });
   }
 
@@ -34,38 +37,34 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.store.dispatch(GameBoardActions.reset());
   }
 
+  startTicking() {
+    if (this.autoTicking) this.stopTicking();
+    const ticker = setInterval(() => {
+      this.store.dispatch(GameBoardActions.tick());
+    }, this.tickInterval);
+    this.store.dispatch(GameBoardActions.startTicking({ newTicker: ticker }));
+  }
+
+  stopTicking() {
+    clearInterval(this.ticker);
+    this.store.dispatch(GameBoardActions.stopTicking());
+  }
+
   handleCellClick(rowIndex, columnIndex) {
     this.store.dispatch(GameBoardActions.toggleCellLife({ rowIndex, columnIndex }));
   }
 
   handleGridResize(event) {
-    this.setGridSize(event.target.value);
-  }
-
-  setGridSize(gridSize) {
+    const gridSize = event.target.value;
     this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
-  }
-
-  startTicking() {
-    if (this.currentlyTicking) this.stopTicking();
-    this.ticker = setInterval(() => {
-      this.store.dispatch(GameBoardActions.tick());
-    }, this.tickInterval);
-    this.currentlyTicking = true;
-  }
-
-  stopTicking() {
-    clearInterval(this.ticker);
-    this.ticker = null;
-    this.currentlyTicking = false;
   }
 
   handleSpeedChange(event) {
     const rangeValue = event.target.value;
     const rangeMax = event.target.getAttribute('max');
     const newTickInterval = rangeMax - rangeValue;
-    this.tickInterval = newTickInterval;
-    if (this.currentlyTicking) this.startTicking();
+    this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
+    if (this.autoTicking) this.startTicking();
   }
 
   handlePatternSelect(event) {
