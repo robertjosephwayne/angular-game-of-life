@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+
 import * as GameBoardActions from './store/game-board.actions';
-import * as fromGameBoard from './store/game-board.reducer';
+import * as fromApp from '../store/app.reducer';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   currentlyTicking = false;
   tickInterval = 500;
 
-  constructor(private store: Store<{ gameBoard: fromGameBoard.State }>) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
     this.subscription = this.store.select('gameBoard').subscribe(state => {
