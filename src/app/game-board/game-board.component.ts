@@ -13,12 +13,16 @@ import * as fromApp from '../store/app.reducer';
 })
 export class GameBoardComponent implements OnInit, OnDestroy {
   currentGeneration: number[][];
-  subscription: Subscription;
+  gameBoardSub: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-    this.subscription = this.store.select('gameBoard').subscribe(state => {
+    this.setGameBoardData();
+  }
+
+  setGameBoardData() {
+    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
     });
   }
@@ -28,6 +32,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.gameBoardSub.unsubscribe();
   }
 }
