@@ -86,7 +86,7 @@ const _gameBoardReducer = createReducer(
       ...state,
       autoTicking: true,
       ticker: newTicker
-    }
+    };
   }),
 
   on(GameBoardActions.stopTicking, (state) => {
@@ -94,14 +94,14 @@ const _gameBoardReducer = createReducer(
       ...state,
       autoTicking: false,
       ticker: null
-    }
+    };
   }),
 
   on(GameBoardActions.setTickInterval, (state, { newTickInterval }) => {
     return {
       ...state,
       tickInterval: newTickInterval
-    }
+    };
   })
 );
 
