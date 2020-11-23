@@ -19,3 +19,15 @@ export const selectPattern = createAction(
   props<{ patternName: string }>()
 );
 
+export const startTicking = createAction(
+  '[Game Board Component] Start Ticking',
+  props<{ newTicker: any }>()
+);
+
+export const stopTicking = createAction('[Game Board Component] Stop Ticking');
+
+export const setTickInterval = createAction(
+  '[Game Board Component] Set Tick Interval',
+  props<{ newTickInterval: number }>()
+);
+

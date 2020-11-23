@@ -5,6 +5,9 @@ export interface State {
   currentGeneration: number[][];
   gridSize: number;
   selectedPattern: string;
+  autoTicking: boolean;
+  tickInterval: number;
+  ticker: any
 }
 
 export const initialState: State = {
@@ -21,7 +24,10 @@ export const initialState: State = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ],
   gridSize: 10,
-  selectedPattern: 'empty'
+  selectedPattern: 'empty',
+  autoTicking: false,
+  tickInterval: 500,
+  ticker: null
 };
 
 const _gameBoardReducer = createReducer(
@@ -67,6 +73,29 @@ const _gameBoardReducer = createReducer(
       currentGeneration: pattern,
       selectedPattern: patternName
     };
+  }),
+
+  on(GameBoardActions.startTicking, (state, { newTicker }) => {
+    return {
+      ...state,
+      autoTicking: true,
+      ticker: newTicker
+    }
+  }),
+
+  on(GameBoardActions.stopTicking, (state) => {
+    return {
+      ...state,
+      autoTicking: false,
+      ticker: null
+    }
+  }),
+
+  on(GameBoardActions.setTickInterval, (state, { newTickInterval }) => {
+    return {
+      ...state,
+      tickInterval: newTickInterval
+    }
   })
 );
 
