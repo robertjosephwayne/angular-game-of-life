@@ -1,14 +1,12 @@
 <div id="game-config-patterns">
   Preset Patterns:
-  <select name="patterns" id="patterns" (change)="handlePatternSelect($event)">
-    <option value="empty">Empty</option>
-    <option value="glider">Glider</option>
-    <option value="small-exploder">Small Exploder</option>
-    <option value="exploder">Exploder</option>
-    <option value="ten-cell-row">Ten Cell Row</option>
-    <option value="lightweight-spaceship">Lightweight Spaceship</option>
-    <option value="block">Block</option>
-    <option value="tub">Tub</option>
-    <option value="boat">Boat</option>
+  <select
+    name="patterns"
+    id="patterns"
+    (change)="handlePatternSelect($event.target.value)"
+  >
+    <option *ngFor="let patternName of presetPatterns">
+      {{ patternName }}
+    </option>
   </select>
 </div>

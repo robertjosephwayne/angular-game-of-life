@@ -13,6 +13,7 @@ import * as fromApp from '../store/app.reducer';
 export class PatternsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
   gridSize: number;
+  presetPatterns: string[];
   selectedPattern: string;
 
   constructor(private store: Store<fromApp.AppState>) { }
@@ -25,11 +26,11 @@ export class PatternsComponent implements OnInit, OnDestroy {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.gridSize = state.gridSize;
       this.selectedPattern = state.selectedPattern;
+      this.presetPatterns = state.presetPatterns;
     });
   }
 
-  handlePatternSelect(event) {
-    const patternName = event.target.value;
+  handlePatternSelect(patternName) {
     this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
 
     const selectedPattern = this.getSelectedPattern();
@@ -40,28 +41,28 @@ export class PatternsComponent implements OnInit, OnDestroy {
     let pattern = this.getEmptyGeneration();
 
     switch (this.selectedPattern) {
-      case 'glider':
+      case 'Glider':
         pattern = this.getGliderPattern();
         break;
-      case 'small-exploder':
+      case 'Small Exploder':
         pattern = this.getSmallExploderPattern();
         break;
-      case 'exploder':
+      case 'Exploder':
         pattern = this.getExploderPattern();
         break;
-      case 'ten-cell-row':
+      case 'Ten Cell Row':
         pattern = this.getTenCellRowPattern();
         break;
-      case 'lightweight-spaceship':
+      case 'Lightweight Spaceship':
         pattern = this.getLightweightSpaceshipPattern();
         break;
-      case 'block':
+      case 'Block':
         pattern = this.getBlockPattern();
         break;
-      case 'tub':
+      case 'Tub':
         pattern = this.getTubPattern();
         break;
-      case 'boat':
+      case 'Boat':
         pattern = this.getBoatPattern();
         break;
       default:
