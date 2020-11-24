@@ -22,6 +22,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   maxGridSize: number;
   generationCount: number;
   liveCells: number;
+  randomLifeActive: boolean;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -40,6 +41,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
       this.maxGridSize = state.maxGridSize;
       this.generationCount = state.generationCount;
       this.liveCells = state.liveCells;
+      this.randomLifeActive = state.randomLifeActive;
     });
   }
 
@@ -78,6 +80,15 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
     if (this.autoTicking) this.startTicking();
+  }
+
+  handleRandomLifeToggle(event) {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      this.store.dispatch(GameBoardActions.activateRandomLife());
+    } else {
+      this.store.dispatch(GameBoardActions.disableRandomLife());
+    }
   }
 
   getTickInterval(tickSpeed) {
