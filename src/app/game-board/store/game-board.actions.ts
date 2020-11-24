@@ -14,8 +14,8 @@ export const setGridSize = createAction(
   props<{ gridSize: number }>()
 );
 
-export const selectPattern = createAction(
-  '[Game Board Component] Select Pattern',
+export const setSelectedPattern = createAction(
+  '[Game Board Component] Set Selected Pattern',
   props<{ patternName: string }>()
 );
 
@@ -37,5 +37,10 @@ export const activateRandomLife = createAction(
 
 export const disableRandomLife = createAction(
   '[Game Board Component] Disable Random Life'
+);
+
+export const setCurrentGeneration = createAction(
+  '[Game Board Component] Set Current Generation',
+  props<{ newGeneration: number[][] }>()
 );
 
