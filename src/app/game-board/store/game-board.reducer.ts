@@ -14,6 +14,7 @@ export interface State {
   generationCount: number;
   liveCells: number;
   randomLifeActive: boolean;
+  presetPatterns: string[];
 }
 
 export const initialState: State = {
@@ -32,21 +33,35 @@ export const initialState: State = {
   minGridSize: 10,
   maxGridSize: 25,
   gridSize: 10,
-  selectedPattern: 'empty',
+  selectedPattern: 'Empty',
   autoTicking: false,
   tickInterval: 500,
   maxTickInterval: 1000,
   ticker: null,
   generationCount: 0,
   liveCells: 0,
-  randomLifeActive: false
+  randomLifeActive: false,
+  presetPatterns: [
+    'Empty',
+    'Glider',
+    'Small Exploder',
+    'Exploder',
+    'Ten Cell Row',
+    'Lightweight Spaceship',
+    'Block',
+    'Tub',
+    'Boat'
+  ]
 };
 
 const _gameBoardReducer = createReducer(
   initialState,
 
   on(GameBoardActions.tick, (state) => {
-    const updatedGeneration = getNextGeneration(state.currentGeneration, state.gridSize);
+    let updatedGeneration = getNextGeneration(state.currentGeneration, state.gridSize);
+    if (state.randomLifeActive) {
+      updatedGeneration = addRandomLife(updatedGeneration, state.gridSize);
+    }
     const liveCells = countLiveCells(updatedGeneration);
     return {
       ...state,
@@ -68,10 +83,13 @@ const _gameBoardReducer = createReducer(
   }),
 
   on(GameBoardActions.reset, (state) => {
+    const initialGeneration = initialState.currentGeneration;
+    const resizedInitialGeneration = resizeCurrentGeneration(initialGeneration, state.gridSize);
     return {
       ...initialState,
       gridSize: state.gridSize,
-      tickInterval: state.tickInterval
+      tickInterval: state.tickInterval,
+      currentGeneration: resizedInitialGeneration
     };
   }),
 
@@ -245,4 +263,16 @@ function countLiveCells(generation: number[][]) {
   }
 
   return liveCells;
+}
+
+function addRandomLife(generation: number[][], gridSize: number) {
+  const randomRow = Math.floor(Math.random() * gridSize);
+  const randomColumn = Math.floor(Math.random() * gridSize);
+  const currentCellValue = generation[randomRow][randomColumn];
+  if (currentCellValue) {
+    return addRandomLife(generation, gridSize);
+  } else {
+    generation[randomRow][randomColumn] = 1;
+    return generation;
+  }
 }
