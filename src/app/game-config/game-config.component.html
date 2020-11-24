@@ -23,5 +23,12 @@
 <button (click)="stopTicking()" *ngIf="autoTicking">Stop</button>
 <button (click)="reset()">Reset</button>
 
-<div>Generation Count: {{ generationCount }}</div>
-<div>Live Cells: {{ liveCells }}</div>
+<app-game-counter
+  [label]="'Generation Count'"
+  [count]="generationCount"
+></app-game-counter>
+
+<app-game-counter
+  [label]="'Live Cell Count'"
+  [count]="liveCells"
+></app-game-counter>
