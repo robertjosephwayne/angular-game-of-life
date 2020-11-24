@@ -20,6 +20,8 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   gridSize: number;
   minGridSize: number;
   maxGridSize: number;
+  generationCount: number;
+  liveCells: number;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -36,6 +38,8 @@ export class GameConfigComponent implements OnInit, OnDestroy {
       this.gridSize = state.gridSize;
       this.minGridSize = state.minGridSize;
       this.maxGridSize = state.maxGridSize;
+      this.generationCount = state.generationCount;
+      this.liveCells = state.liveCells;
     });
   }
 

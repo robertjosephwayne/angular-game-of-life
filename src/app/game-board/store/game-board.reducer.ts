@@ -11,6 +11,8 @@ export interface State {
   tickInterval: number;
   maxTickInterval: number;
   ticker: any
+  generationCount: number;
+  liveCells: number;
 }
 
 export const initialState: State = {
@@ -33,7 +35,9 @@ export const initialState: State = {
   autoTicking: false,
   tickInterval: 500,
   maxTickInterval: 1000,
-  ticker: null
+  ticker: null,
+  generationCount: 0,
+  liveCells: 0
 };
 
 const _gameBoardReducer = createReducer(
@@ -41,43 +45,56 @@ const _gameBoardReducer = createReducer(
 
   on(GameBoardActions.tick, (state) => {
     const updatedGeneration = getNextGeneration(state.currentGeneration, state.gridSize);
+    const liveCells = countLiveCells(updatedGeneration);
     return {
       ...state,
-      currentGeneration: updatedGeneration
+      currentGeneration: updatedGeneration,
+      generationCount: state.generationCount + 1,
+      liveCells
     };
   }),
 
   on(GameBoardActions.toggleCellLife, (state, { rowIndex, columnIndex }) => {
     const updatedGeneration = toggleCellLife(state.currentGeneration, rowIndex, columnIndex);
+    const liveCells = countLiveCells(updatedGeneration);
     return {
       ...state,
-      currentGeneration: updatedGeneration
+      currentGeneration: updatedGeneration,
+      liveCells
     };
   }),
 
   on(GameBoardActions.reset, (state) => {
     const pattern = getPattern(state.selectedPattern, state.gridSize);
+    const liveCells = countLiveCells(pattern);
     return {
       ...state,
       currentGeneration: pattern,
+      generationCount: 0,
+      liveCells
     };
   }),
 
   on(GameBoardActions.setGridSize, (state, { gridSize }) => {
     const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, gridSize);
+    const liveCells = countLiveCells(currentGenerationResized);
     return {
       ...state,
       gridSize,
-      currentGeneration: currentGenerationResized
+      currentGeneration: currentGenerationResized,
+      liveCells
     };
   }),
 
   on(GameBoardActions.selectPattern, (state, { patternName }) => {
     const pattern = getPattern(patternName, state.gridSize);
+    const liveCells = countLiveCells(pattern);
     return {
       ...state,
       currentGeneration: pattern,
-      selectedPattern: patternName
+      selectedPattern: patternName,
+      generationCount: 0,
+      liveCells
     };
   }),
 
@@ -195,6 +212,20 @@ function resizeCurrentGeneration(currentGeneration: number[][], gridSize: number
     }
   }
   return currentGenerationResized;
+}
+
+function countLiveCells(generation: number[][]) {
+  const rows = generation.length;
+  const columns = generation[0].length;
+  let liveCells = 0;
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      liveCells += generation[i][j];
+    }
+  }
+
+  return liveCells;
 }
 
 function getPattern(patternName: string, gridSize: number) {

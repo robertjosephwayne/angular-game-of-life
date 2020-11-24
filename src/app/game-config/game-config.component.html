@@ -22,3 +22,6 @@
 <button (click)="startTicking()" *ngIf="!autoTicking">Start</button>
 <button (click)="stopTicking()" *ngIf="autoTicking">Stop</button>
 <button (click)="reset()">Reset</button>
+
+<div>Generation Count: {{ generationCount }}</div>
+<div>Live Cells: {{ liveCells }}</div>
