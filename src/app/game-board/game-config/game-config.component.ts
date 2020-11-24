@@ -46,6 +46,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   tick() {
+    if (this.liveCells === 0 && !this.randomLifeActive) return;
     this.store.dispatch(GameBoardActions.tick());
   }
 
@@ -55,9 +56,10 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   startTicking() {
+    if (this.liveCells === 0 && !this.randomLifeActive) return;
     if (this.autoTicking) this.stopTicking();
     const ticker = setInterval(() => {
-      if (this.liveCells === 0) {
+      if ((this.liveCells === 0 && !this.randomLifeActive) || !this.autoTicking) {
         this.stopTicking();
       } else {
         this.store.dispatch(GameBoardActions.tick());
