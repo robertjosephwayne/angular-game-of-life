@@ -60,6 +60,7 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       currentGeneration: updatedGeneration,
+      generationCount: state.generationCount + 1,
       liveCells
     };
   }),
