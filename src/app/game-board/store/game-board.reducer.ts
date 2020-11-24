@@ -276,8 +276,10 @@ function getEmptyGeneration(gridSize: number) {
   return emptyGeneration;
 }
 
-function getGliderPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getGliderPattern(gridSize: number) {
   const gliderPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
   gliderPattern[startingRow][startingColumn + 1] = 1;
   gliderPattern[startingRow + 1][startingColumn + 2] = 1;
   gliderPattern[startingRow + 2][startingColumn] = 1;
@@ -286,8 +288,10 @@ function getGliderPattern(gridSize: number, startingRow = 0, startingColumn = 0)
   return gliderPattern;
 }
 
-function getSmallExploderPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getSmallExploderPattern(gridSize: number) {
   const smallExploderPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
   smallExploderPattern[startingRow][startingColumn + 1] = 1;
   smallExploderPattern[startingRow + 1][startingColumn] = 1;
   smallExploderPattern[startingRow + 1][startingColumn + 1] = 1;
@@ -298,8 +302,10 @@ function getSmallExploderPattern(gridSize: number, startingRow = 0, startingColu
   return smallExploderPattern;
 }
 
-function getExploderPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getExploderPattern(gridSize: number) {
   const exploderPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2 - 2);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 2);
   exploderPattern[startingRow][startingColumn] = 1;
   exploderPattern[startingRow][startingColumn + 2] = 1;
   exploderPattern[startingRow][startingColumn + 4] = 1;
@@ -315,7 +321,9 @@ function getExploderPattern(gridSize: number, startingRow = 0, startingColumn = 
   return exploderPattern;
 }
 
-function getTenCellRowPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getTenCellRowPattern(gridSize: number) {
+  const startingRow = Math.floor((gridSize - 1) / 2);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 4);
   const tenCellRowPattern = getEmptyGeneration(gridSize);
   const endingColumn = startingColumn + 10;
   for (let i = startingColumn; i < endingColumn; i++) {
@@ -325,8 +333,10 @@ function getTenCellRowPattern(gridSize: number, startingRow = 0, startingColumn 
   return tenCellRowPattern;
 }
 
-function getLightweightSpaceshipPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getLightweightSpaceshipPattern(gridSize: number) {
   const lightweightSpaceshipPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 2);
   lightweightSpaceshipPattern[startingRow][startingColumn + 1] = 1;
   lightweightSpaceshipPattern[startingRow][startingColumn + 2] = 1;
   lightweightSpaceshipPattern[startingRow][startingColumn + 3] = 1;
@@ -339,8 +349,10 @@ function getLightweightSpaceshipPattern(gridSize: number, startingRow = 0, start
   return lightweightSpaceshipPattern;
 }
 
-function getBlockPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getBlockPattern(gridSize: number) {
   const blockPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2);
+  const startingColumn = Math.floor((gridSize - 1) / 2);
   blockPattern[startingRow][startingColumn] = 1;
   blockPattern[startingRow][startingColumn + 1] = 1;
   blockPattern[startingRow + 1][startingColumn] = 1;
@@ -348,8 +360,10 @@ function getBlockPattern(gridSize: number, startingRow = 0, startingColumn = 0) 
   return blockPattern;
 }
 
-function getTubPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getTubPattern(gridSize: number) {
   const tubPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
   tubPattern[startingRow][startingColumn + 1] = 1;
   tubPattern[startingRow + 1][startingColumn] = 1;
   tubPattern[startingRow + 1][startingColumn + 2] = 1;
@@ -357,8 +371,10 @@ function getTubPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
   return tubPattern;
 }
 
-function getBoatPattern(gridSize: number, startingRow = 0, startingColumn = 0) {
+function getBoatPattern(gridSize: number) {
   const boatPattern = getEmptyGeneration(gridSize);
+  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
+  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
   boatPattern[startingRow][startingColumn + 1] = 1;
   boatPattern[startingRow + 1][startingColumn] = 1;
   boatPattern[startingRow + 1][startingColumn + 2] = 1;
