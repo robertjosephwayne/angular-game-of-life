@@ -13,6 +13,7 @@ export interface State {
   ticker: any
   generationCount: number;
   liveCells: number;
+  randomLifeActive: boolean;
 }
 
 export const initialState: State = {
@@ -37,7 +38,8 @@ export const initialState: State = {
   maxTickInterval: 1000,
   ticker: null,
   generationCount: 0,
-  liveCells: 0
+  liveCells: 0,
+  randomLifeActive: false
 };
 
 const _gameBoardReducer = createReducer(
@@ -119,6 +121,20 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       tickInterval: newTickInterval
+    };
+  }),
+
+  on(GameBoardActions.activateRandomLife, (state) => {
+    return {
+      ...state,
+      randomLifeActive: true
+    };
+  }),
+
+  on(GameBoardActions.disableRandomLife, (state) => {
+    return {
+      ...state,
+      randomLifeActive: false
     };
   })
 );

@@ -31,3 +31,11 @@ export const setTickInterval = createAction(
   props<{ newTickInterval: number }>()
 );
 
+export const activateRandomLife = createAction(
+  '[Game Board Component] Activate Random Life'
+);
+
+export const disableRandomLife = createAction(
+  '[Game Board Component] Disable Random Life'
+);
+
