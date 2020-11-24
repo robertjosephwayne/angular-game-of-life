@@ -54,7 +54,11 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   startTicking() {
     if (this.autoTicking) this.stopTicking();
     const ticker = setInterval(() => {
-      this.store.dispatch(GameBoardActions.tick());
+      if (this.liveCells === 0) {
+        this.stopTicking();
+      } else {
+        this.store.dispatch(GameBoardActions.tick());
+      }
     }, this.tickInterval);
     this.store.dispatch(GameBoardActions.startTicking({ newTicker: ticker }));
   }
