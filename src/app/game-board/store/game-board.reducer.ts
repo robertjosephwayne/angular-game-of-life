@@ -68,13 +68,10 @@ const _gameBoardReducer = createReducer(
   }),
 
   on(GameBoardActions.reset, (state) => {
-    const pattern = getPattern(state.selectedPattern, state.gridSize);
-    const liveCells = countLiveCells(pattern);
     return {
-      ...state,
-      currentGeneration: pattern,
-      generationCount: 0,
-      liveCells
+      ...initialState,
+      gridSize: state.gridSize,
+      tickInterval: state.tickInterval
     };
   }),
 
@@ -89,15 +86,10 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.selectPattern, (state, { patternName }) => {
-    const pattern = getPattern(patternName, state.gridSize);
-    const liveCells = countLiveCells(pattern);
+  on(GameBoardActions.setSelectedPattern, (state, { patternName }) => {
     return {
       ...state,
-      currentGeneration: pattern,
       selectedPattern: patternName,
-      generationCount: 0,
-      liveCells
     };
   }),
 
@@ -135,6 +127,16 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       randomLifeActive: false
+    };
+  }),
+
+  on(GameBoardActions.setCurrentGeneration, (state, { newGeneration }) => {
+    const liveCells = countLiveCells(newGeneration);
+    return {
+      ...state,
+      currentGeneration: newGeneration,
+      generationCount: 0,
+      liveCells,
     };
   })
 );
@@ -243,159 +245,4 @@ function countLiveCells(generation: number[][]) {
   }
 
   return liveCells;
-}
-
-function getPattern(patternName: string, gridSize: number) {
-  let pattern = getEmptyGeneration(gridSize);
-
-  switch (patternName) {
-    case 'glider':
-      pattern = getGliderPattern(gridSize);
-      break;
-    case 'small-exploder':
-      pattern = getSmallExploderPattern(gridSize);
-      break;
-    case 'exploder':
-      pattern = getExploderPattern(gridSize);
-      break;
-    case 'ten-cell-row':
-      pattern = getTenCellRowPattern(gridSize);
-      break;
-    case 'lightweight-spaceship':
-      pattern = getLightweightSpaceshipPattern(gridSize);
-      break;
-    case 'block':
-      pattern = getBlockPattern(gridSize);
-      break;
-    case 'tub':
-      pattern = getTubPattern(gridSize);
-      break;
-    case 'boat':
-      pattern = getBoatPattern(gridSize);
-      break;
-    default:
-      break;
-  }
-
-  return pattern;
-}
-
-function getEmptyGeneration(gridSize: number) {
-  const emptyGeneration = [];
-
-  for (let i = 0; i < gridSize; i++) {
-    emptyGeneration[i] = [];
-    for (let j = 0; j < gridSize; j++) {
-      emptyGeneration[i][j] = 0;
-    }
-  }
-
-  return emptyGeneration;
-}
-
-function getGliderPattern(gridSize: number) {
-  const gliderPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
-  gliderPattern[startingRow][startingColumn + 1] = 1;
-  gliderPattern[startingRow + 1][startingColumn + 2] = 1;
-  gliderPattern[startingRow + 2][startingColumn] = 1;
-  gliderPattern[startingRow + 2][startingColumn + 1] = 1;
-  gliderPattern[startingRow + 2][startingColumn + 2] = 1;
-  return gliderPattern;
-}
-
-function getSmallExploderPattern(gridSize: number) {
-  const smallExploderPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
-  smallExploderPattern[startingRow][startingColumn + 1] = 1;
-  smallExploderPattern[startingRow + 1][startingColumn] = 1;
-  smallExploderPattern[startingRow + 1][startingColumn + 1] = 1;
-  smallExploderPattern[startingRow + 1][startingColumn + 2] = 1;
-  smallExploderPattern[startingRow + 2][startingColumn] = 1;
-  smallExploderPattern[startingRow + 2][startingColumn + 2] = 1;
-  smallExploderPattern[startingRow + 3][startingColumn + 1] = 1;
-  return smallExploderPattern;
-}
-
-function getExploderPattern(gridSize: number) {
-  const exploderPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2 - 2);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 2);
-  exploderPattern[startingRow][startingColumn] = 1;
-  exploderPattern[startingRow][startingColumn + 2] = 1;
-  exploderPattern[startingRow][startingColumn + 4] = 1;
-  exploderPattern[startingRow + 1][startingColumn] = 1;
-  exploderPattern[startingRow + 1][startingColumn + 4] = 1;
-  exploderPattern[startingRow + 2][startingColumn] = 1;
-  exploderPattern[startingRow + 2][startingColumn + 4] = 1;
-  exploderPattern[startingRow + 3][startingColumn] = 1;
-  exploderPattern[startingRow + 3][startingColumn + 4] = 1;
-  exploderPattern[startingRow + 4][startingColumn] = 1;
-  exploderPattern[startingRow + 4][startingColumn + 2] = 1;
-  exploderPattern[startingRow + 4][startingColumn + 4] = 1;
-  return exploderPattern;
-}
-
-function getTenCellRowPattern(gridSize: number) {
-  const startingRow = Math.floor((gridSize - 1) / 2);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 4);
-  const tenCellRowPattern = getEmptyGeneration(gridSize);
-  const endingColumn = startingColumn + 10;
-  for (let i = startingColumn; i < endingColumn; i++) {
-    tenCellRowPattern[startingRow][i] = 1;
-  }
-
-  return tenCellRowPattern;
-}
-
-function getLightweightSpaceshipPattern(gridSize: number) {
-  const lightweightSpaceshipPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 2);
-  lightweightSpaceshipPattern[startingRow][startingColumn + 1] = 1;
-  lightweightSpaceshipPattern[startingRow][startingColumn + 2] = 1;
-  lightweightSpaceshipPattern[startingRow][startingColumn + 3] = 1;
-  lightweightSpaceshipPattern[startingRow][startingColumn + 4] = 1;
-  lightweightSpaceshipPattern[startingRow + 1][startingColumn] = 1;
-  lightweightSpaceshipPattern[startingRow + 1][startingColumn + 4] = 1;
-  lightweightSpaceshipPattern[startingRow + 2][startingColumn + 4] = 1;
-  lightweightSpaceshipPattern[startingRow + 3][startingColumn] = 1;
-  lightweightSpaceshipPattern[startingRow + 3][startingColumn + 3] = 1;
-  return lightweightSpaceshipPattern;
-}
-
-function getBlockPattern(gridSize: number) {
-  const blockPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2);
-  const startingColumn = Math.floor((gridSize - 1) / 2);
-  blockPattern[startingRow][startingColumn] = 1;
-  blockPattern[startingRow][startingColumn + 1] = 1;
-  blockPattern[startingRow + 1][startingColumn] = 1;
-  blockPattern[startingRow + 1][startingColumn + 1] = 1;
-  return blockPattern;
-}
-
-function getTubPattern(gridSize: number) {
-  const tubPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
-  tubPattern[startingRow][startingColumn + 1] = 1;
-  tubPattern[startingRow + 1][startingColumn] = 1;
-  tubPattern[startingRow + 1][startingColumn + 2] = 1;
-  tubPattern[startingRow + 2][startingColumn + 1] = 1;
-  return tubPattern;
-}
-
-function getBoatPattern(gridSize: number) {
-  const boatPattern = getEmptyGeneration(gridSize);
-  const startingRow = Math.floor((gridSize - 1) / 2 - 1);
-  const startingColumn = Math.floor((gridSize - 1) / 2 - 1);
-  boatPattern[startingRow][startingColumn + 1] = 1;
-  boatPattern[startingRow + 1][startingColumn] = 1;
-  boatPattern[startingRow + 1][startingColumn + 2] = 1;
-  boatPattern[startingRow + 2][startingColumn + 1] = 1;
-  boatPattern[startingRow + 2][startingColumn + 2] = 1;
-  return boatPattern;
 }
