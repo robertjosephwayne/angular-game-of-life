@@ -6,11 +6,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import * as fromGameBoard from './game-board/store/game-board.reducer';
-import { ConfigSliderComponent } from './config-slider/config-slider.component';
+import { ConfigSliderComponent } from './game-board/game-config/config-slider/config-slider.component';
 import { PatternsComponent } from './patterns/patterns.component';
-import { GameConfigComponent } from './game-config/game-config.component';
+import { GameConfigComponent } from './game-board/game-config/game-config.component';
 import { GameCounterComponent } from './game-board/game-counter/game-counter.component';
-import { ConfigCheckboxComponent } from './game-config/config-checkbox/config-checkbox.component';
+import { ConfigCheckboxComponent } from './game-board/game-config/config-checkbox/config-checkbox.component';
 
 @NgModule({
   declarations: [
