@@ -9,8 +9,8 @@ import * as fromGameBoard from './game-board/store/game-board.reducer';
 import { ConfigSliderComponent } from './config-slider/config-slider.component';
 import { PatternsComponent } from './patterns/patterns.component';
 import { GameConfigComponent } from './game-config/game-config.component';
-import { GameCounterComponent } from './game-counter/game-counter.component';
-import { ConfigCheckboxComponent } from './config-checkbox/config-checkbox.component';
+import { GameCounterComponent } from './game-board/game-counter/game-counter.component';
+import { ConfigCheckboxComponent } from './game-config/config-checkbox/config-checkbox.component';
 
 @NgModule({
   declarations: [
