@@ -50,6 +50,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   reset() {
+    this.stopTicking();
     this.store.dispatch(GameBoardActions.reset());
   }
 
