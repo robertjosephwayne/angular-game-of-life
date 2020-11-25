@@ -34,6 +34,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.autoTicking = state.autoTicking;
       this.tickInterval = state.tickInterval;
+      this.tickSpeed = state.tickSpeed;
       this.maxTickInterval = state.maxTickInterval;
       this.ticker = state.ticker;
       this.gridSize = state.gridSize;
@@ -52,7 +53,9 @@ export class GameConfigComponent implements OnInit, OnDestroy {
 
   reset() {
     this.stopTicking();
-    this.store.dispatch(GameBoardActions.reset());
+    this.store.dispatch(GameBoardActions.resetGridSize());
+    this.store.dispatch(GameBoardActions.resetGeneration());
+    this.store.dispatch(GameBoardActions.resetTickInterval());
   }
 
   startTicking() {
