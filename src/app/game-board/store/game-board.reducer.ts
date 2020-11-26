@@ -84,14 +84,14 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.reset, (state) => {
-    const initialGeneration = initialState.currentGeneration;
-    const resizedInitialGeneration = resizeCurrentGeneration(initialGeneration, state.gridSize);
+  on(GameBoardActions.resetGeneration, (state) => {
+    const initialGeneration = getSelectedPattern(state.selectedPattern, state.gridSize);
+    const liveCells = countLiveCells(initialGeneration);
     return {
-      ...initialState,
-      gridSize: state.gridSize,
-      tickInterval: state.tickInterval,
-      currentGeneration: resizedInitialGeneration
+      ...state,
+      currentGeneration: initialGeneration,
+      generationCount: 0,
+      liveCells
     };
   }),
 
