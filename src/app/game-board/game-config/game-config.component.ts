@@ -77,21 +77,18 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     this.store.dispatch(GameBoardActions.stopTicking());
   }
 
-  handleGridResize(event) {
-    const gridSize = event.target.value;
+  handleGridResize(gridSize) {
     this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
   }
 
-  handleSpeedChange(event) {
-    const tickSpeed = event.target.value;
+  handleSpeedChange(tickSpeed) {
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
     if (this.autoTicking) this.startTicking();
   }
 
-  handleRandomLifeToggle(event) {
-    const isChecked = event.target.checked;
-    if (isChecked) {
+  handleRandomLifeToggle(isEnabled) {
+    if (isEnabled) {
       this.store.dispatch(GameBoardActions.activateRandomLife());
     } else {
       this.store.dispatch(GameBoardActions.disableRandomLife());
