@@ -8,9 +8,10 @@ export interface State {
   gridSize: number;
   selectedPattern: string;
   autoTicking: boolean;
+  ticker: any;
   tickInterval: number;
+  tickSpeed: number;
   maxTickInterval: number;
-  ticker: any
   generationCount: number;
   liveCells: number;
   randomLifeActive: boolean;
