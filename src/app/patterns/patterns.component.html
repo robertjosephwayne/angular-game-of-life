@@ -3,10 +3,11 @@
   <select
     name="patterns"
     id="patterns"
+    [value]="selectedPattern"
     (change)="handlePatternSelect($event.target.value)"
   >
-    <option *ngFor="let patternName of presetPatterns">
-      {{ patternName }}
+    <option *ngFor="let pattern of presetPatterns" id="pattern.id">
+      {{ pattern.label }}
     </option>
   </select>
 </div>
