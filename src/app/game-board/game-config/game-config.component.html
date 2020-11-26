@@ -6,7 +6,7 @@
   [value]="gridSize"
   [min]="minGridSize"
   [max]="maxGridSize"
-  (change)="handleGridResize($event)"
+  (change)="handleGridResize($event.target.value)"
 ></app-config-slider>
 
 <app-config-slider
@@ -15,14 +15,14 @@
   [value]="tickSpeed / 10"
   [min]="0"
   [max]="maxTickInterval / 10"
-  (change)="handleSpeedChange($event)"
+  (change)="handleSpeedChange($event.target.value)"
 ></app-config-slider>
 
 <app-config-checkbox
   [label]="'Generate Random Cells'"
   [id]="'random-life'"
   [isChecked]="randomLifeActive"
-  (change)="handleRandomLifeToggle($event)"
+  (change)="handleRandomLifeToggle($event.target.checked)"
 ></app-config-checkbox>
 
 <button (click)="tick()">Tick</button>
