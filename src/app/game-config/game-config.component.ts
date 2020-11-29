@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameBoardActions from '../store/game-board.actions';
-import * as fromApp from '../../store/app.reducer';
+import * as GameBoardActions from '../game-board/store/game-board.actions';
+import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: 'app-game-config',
@@ -46,16 +46,31 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     });
   }
 
-  tick() {
-    if (this.liveCells === 0 && !this.randomLifeActive) return;
-    this.store.dispatch(GameBoardActions.tick());
+  handleGridResize(gridSize) {
+    this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
   }
 
-  reset() {
-    this.stopTicking();
-    this.store.dispatch(GameBoardActions.resetGridSize());
-    this.store.dispatch(GameBoardActions.resetGeneration());
-    this.store.dispatch(GameBoardActions.resetTickInterval());
+  handleSpeedChange(tickSpeed) {
+    console.log(tickSpeed);
+    const newTickInterval = this.getTickInterval(tickSpeed);
+    this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
+    if (this.autoTicking) this.startTicking();
+  }
+
+  handleRandomLifeToggle(isEnabled) {
+    if (isEnabled) {
+      this.store.dispatch(GameBoardActions.activateRandomLife());
+    } else {
+      this.store.dispatch(GameBoardActions.disableRandomLife());
+    }
+  }
+
+  handlePatternSelection(event) {
+    console.log(event);
+  }
+
+  getTickInterval(tickSpeed) {
+    return this.maxTickInterval - tickSpeed;
   }
 
   startTicking() {
@@ -75,28 +90,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   stopTicking() {
     clearInterval(this.ticker);
     this.store.dispatch(GameBoardActions.stopTicking());
-  }
-
-  handleGridResize(gridSize) {
-    this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
-  }
-
-  handleSpeedChange(tickSpeed) {
-    const newTickInterval = this.getTickInterval(tickSpeed);
-    this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
-    if (this.autoTicking) this.startTicking();
-  }
-
-  handleRandomLifeToggle(isEnabled) {
-    if (isEnabled) {
-      this.store.dispatch(GameBoardActions.activateRandomLife());
-    } else {
-      this.store.dispatch(GameBoardActions.disableRandomLife());
-    }
-  }
-
-  getTickInterval(tickSpeed) {
-    return this.maxTickInterval - tickSpeed * 10;
   }
 
   ngOnDestroy() {
