@@ -1,13 +1,49 @@
-<div id="game-container">
-  <table>
+<mat-card class="mt-8 mx-12">
+  <table id="game-grid" class="border-2 border-gray-300 bg-gray-200">
     <tr *ngFor="let row of currentGeneration; let rowIndex = index">
       <td
+        class="hover:bg-gray-300 border border-gray-300"
         *ngFor="let column of row; let columnIndex = index"
         [ngClass]="{ alive: column }"
         (click)="handleCellClick(rowIndex, columnIndex)"
       ></td>
     </tr>
   </table>
+</mat-card>
 
-  <app-game-config></app-game-config>
+<div class="flex space-x-4 justify-center mt-4">
+  <button
+    mat-fab
+    color="primary"
+    (click)="tick()"
+    [disabled]="(!liveCells && !randomLifeActive) || autoTicking"
+  >
+    <mat-icon>skip_next</mat-icon>
+  </button>
+  <button
+    mat-fab
+    color="primary"
+    (click)="startTicking()"
+    *ngIf="!autoTicking"
+    [disabled]="!liveCells && !randomLifeActive"
+  >
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  <button mat-fab color="warn" (click)="stopTicking()" *ngIf="autoTicking">
+    <mat-icon>stop</mat-icon>
+  </button>
+  <button
+    mat-fab
+    color="primary"
+    (click)="reset()"
+    [disabled]="!generationCount"
+  >
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <button mat-fab color="accent" (click)="zoomIn()" [disabled]="!canZoomIn">
+    <mat-icon>zoom_in</mat-icon>
+  </button>
+  <button mat-fab color="accent" (click)="zoomOut()" [disabled]="!canZoomOut">
+    <mat-icon>zoom_out</mat-icon>
+  </button>
 </div>
