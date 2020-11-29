@@ -15,6 +15,7 @@ export class PatternsComponent implements OnInit, OnDestroy {
   gridSize: number;
   presetPatterns: { id: string, label: string }[];
   selectedPattern: string;
+  ticker: any;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -27,12 +28,18 @@ export class PatternsComponent implements OnInit, OnDestroy {
       this.gridSize = state.gridSize;
       this.selectedPattern = state.selectedPattern;
       this.presetPatterns = state.presetPatterns;
+      this.ticker = state.ticker;
     });
   }
 
   handlePatternSelect(patternName) {
-    this.store.dispatch(GameBoardActions.stopTicking());
+    this.stopTicking();
     this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
+  }
+
+  stopTicking() {
+    clearInterval(this.ticker);
+    this.store.dispatch(GameBoardActions.stopTicking());
   }
 
   ngOnDestroy() {
