@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game-board/game-board.component';
@@ -15,6 +13,7 @@ import { ConfigCheckboxComponent } from './game-config/config-checkbox/config-ch
 import * as fromGameBoard from './game-board/store/game-board.reducer';
 import { GameHeaderComponent } from './game-header/game-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       maxAge: 25, // Retains last 25 states
     }),
     BrowserAnimationsModule,
-    MatSliderModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
