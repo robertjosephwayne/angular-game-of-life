@@ -31,6 +31,7 @@ export class PatternsComponent implements OnInit, OnDestroy {
   }
 
   handlePatternSelect(patternName) {
+    this.store.dispatch(GameBoardActions.stopTicking());
     this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
   }
 
