@@ -16,6 +16,8 @@ export interface State {
   liveCells: number;
   randomLifeActive: boolean;
   presetPatterns: { id: string, label: string }[];
+  canZoomIn: boolean;
+  canZoomOut: boolean;
 }
 
 export const initialState: State = {
@@ -53,7 +55,9 @@ export const initialState: State = {
     { id: 'block', label: 'Block' },
     { id: 'tub', label: 'Tub' },
     { id: 'boat', label: 'Boat' }
-  ]
+  ],
+  canZoomIn: false,
+  canZoomOut: true
 };
 
 const _gameBoardReducer = createReducer(
@@ -96,20 +100,30 @@ const _gameBoardReducer = createReducer(
   }),
 
   on(GameBoardActions.setGridSize, (state, { gridSize }) => {
-    const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, gridSize);
+    let newGridSize = gridSize;
+    if (newGridSize >= state.maxGridSize) {
+      newGridSize = state.maxGridSize;
+    } else if (newGridSize <= state.minGridSize) {
+      newGridSize = state.minGridSize;
+    }
+    const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, newGridSize);
     const liveCells = countLiveCells(currentGenerationResized);
     return {
       ...state,
-      gridSize,
+      gridSize: newGridSize,
       currentGeneration: currentGenerationResized,
-      liveCells
+      liveCells,
+      canZoomIn: newGridSize > state.minGridSize,
+      canZoomOut: newGridSize < state.maxGridSize
     };
   }),
 
   on(GameBoardActions.resetGridSize, (state) => {
     return {
       ...state,
-      gridSize: initialState.gridSize
+      gridSize: initialState.gridSize,
+      canZoomIn: initialState.canZoomIn,
+      canZoomOut: initialState.canZoomOut
     };
   }),
 
