@@ -56,8 +56,8 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     if (this.autoTicking) this.startTicking();
   }
 
-  handleRandomLifeToggle(isEnabled) {
-    if (isEnabled) {
+  handleRandomLifeToggle(randomLifeEnabled) {
+    if (randomLifeEnabled) {
       this.store.dispatch(GameBoardActions.activateRandomLife());
     } else {
       this.store.dispatch(GameBoardActions.disableRandomLife());
