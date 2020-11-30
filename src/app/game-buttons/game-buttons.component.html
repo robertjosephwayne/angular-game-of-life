@@ -2,6 +2,7 @@
   <button mat-fab color="primary" (click)="tick()" [disabled]="!canTick">
     <mat-icon>skip_next</mat-icon>
   </button>
+
   <button
     mat-fab
     color="primary"
@@ -11,31 +12,20 @@
   >
     <mat-icon>play_arrow</mat-icon>
   </button>
+
   <button mat-fab color="warn" (click)="stopTicking()" *ngIf="autoTicking">
     <mat-icon>stop</mat-icon>
   </button>
-  <button
-    mat-fab
-    color="primary"
-    (click)="reset()"
-    [disabled]="!generationCount"
-  >
+
+  <button mat-fab color="primary" (click)="reset()" [disabled]="!canReset">
     <mat-icon>refresh</mat-icon>
   </button>
-  <button
-    mat-fab
-    color="accent"
-    (click)="zoomIn()"
-    [disabled]="gridSize === minGridSize"
-  >
+
+  <button mat-fab color="accent" (click)="zoomIn()" [disabled]="!canZoomIn">
     <mat-icon>zoom_in</mat-icon>
   </button>
-  <button
-    mat-fab
-    color="accent"
-    (click)="zoomOut()"
-    [disabled]="gridSize === maxGridSize"
-  >
+
+  <button mat-fab color="accent" (click)="zoomOut()" [disabled]="!canZoomOut">
     <mat-icon>zoom_out</mat-icon>
   </button>
 </div>

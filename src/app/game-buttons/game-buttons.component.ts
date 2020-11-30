@@ -71,13 +71,17 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     return (this.liveCells || this.randomLifeActive) && !this.autoTicking;
   }
 
-  // get canZoomIn() {
+  get canZoomIn() {
+    return this.gridSize > this.minGridSize;
+  }
 
-  // }
+  get canZoomOut() {
+    return this.gridSize < this.maxGridSize;
+  }
 
-  // get canZoomOut() {
-
-  // }
+  get canReset() {
+    return this.generationCount > 0;
+  }
 
   ngOnDestroy() {
     this.gameBoardSub.unsubscribe();
