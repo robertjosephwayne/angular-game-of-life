@@ -83,7 +83,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   stopTicking() {
-    clearInterval(this.ticker);
     this.store.dispatch(GameBoardActions.stopTicking());
   }
 
