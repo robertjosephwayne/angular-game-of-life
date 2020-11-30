@@ -15,6 +15,7 @@ import { MaterialModule } from './material.module';
 import { EffectsModule } from '@ngrx/effects';
 import { GameBoardEffects } from './game-board/store/game-board.effects';
 import { GameButtonsComponent } from './game-buttons/game-buttons.component';
+import { GameGridComponent } from './game-grid/game-grid.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { GameButtonsComponent } from './game-buttons/game-buttons.component';
     GameConfigComponent,
     GameCounterComponent,
     GameHeaderComponent,
-    GameButtonsComponent
+    GameButtonsComponent,
+    GameGridComponent
   ],
   imports: [
     BrowserModule,
