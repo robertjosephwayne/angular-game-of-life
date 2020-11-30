@@ -16,8 +16,6 @@ export interface State {
   liveCells: number;
   randomLifeActive: boolean;
   presetPatterns: { id: string, label: string }[];
-  canZoomIn: boolean;
-  canZoomOut: boolean;
 }
 
 export const initialState: State = {
@@ -55,9 +53,7 @@ export const initialState: State = {
     { id: 'block', label: 'Block' },
     { id: 'tub', label: 'Tub' },
     { id: 'boat', label: 'Boat' }
-  ],
-  canZoomIn: false,
-  canZoomOut: true
+  ]
 };
 
 const _gameBoardReducer = createReducer(
@@ -112,9 +108,7 @@ const _gameBoardReducer = createReducer(
       ...state,
       gridSize: newGridSize,
       currentGeneration: currentGenerationResized,
-      liveCells,
-      canZoomIn: newGridSize > state.minGridSize,
-      canZoomOut: newGridSize < state.maxGridSize
+      liveCells
     };
   }),
 
@@ -122,8 +116,6 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       gridSize: initialState.gridSize,
-      canZoomIn: initialState.canZoomIn,
-      canZoomOut: initialState.canZoomOut
     };
   }),
 
