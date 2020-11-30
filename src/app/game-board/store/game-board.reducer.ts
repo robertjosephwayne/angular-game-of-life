@@ -15,7 +15,7 @@ export interface State {
   generationCount: number;
   liveCells: number;
   randomLifeActive: boolean;
-  presetPatterns: { id: string, label: string }[];
+  presetPatterns: string[];
 }
 
 export const initialState: State = {
@@ -44,15 +44,15 @@ export const initialState: State = {
   liveCells: 0,
   randomLifeActive: false,
   presetPatterns: [
-    { id: 'empty', label: 'Empty' },
-    { id: 'glider', label: 'Glider' },
-    { id: 'small-exploder', label: 'Small Exploder' },
-    { id: 'exploder', label: 'Exploder' },
-    { id: 'ten-cell-row', label: 'Ten Cell Row' },
-    { id: 'lightweight-spaceship', label: 'Lightweight Spaceship' },
-    { id: 'block', label: 'Block' },
-    { id: 'tub', label: 'Tub' },
-    { id: 'boat', label: 'Boat' }
+    'Empty',
+    'Glider',
+    'Small Exploder',
+    'Exploder',
+    'Ten Cell Row',
+    'Lightweight Spaceship',
+    'Block',
+    'Tub',
+    'Boat'
   ]
 };
 

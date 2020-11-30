@@ -12,7 +12,7 @@ import * as fromApp from '../store/app.reducer';
 })
 export class PatternsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
-  presetPatterns: { id: string, label: string }[];
+  presetPatterns: string[];
   selectedPattern: string;
 
   constructor(private store: Store<fromApp.AppState>) { }
