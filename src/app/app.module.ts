@@ -5,11 +5,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game-board/game-board.component';
-import { ConfigSliderComponent } from './game-config/config-slider/config-slider.component';
 import { PatternsComponent } from './patterns/patterns.component';
 import { GameConfigComponent } from './game-config/game-config.component';
 import { GameCounterComponent } from './game-counter/game-counter.component';
-import { ConfigCheckboxComponent } from './game-config/config-checkbox/config-checkbox.component';
 import * as fromGameBoard from './game-board/store/game-board.reducer';
 import { GameHeaderComponent } from './game-header/game-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,11 +19,9 @@ import { GameBoardEffects } from './game-board/store/game-board.effects';
   declarations: [
     AppComponent,
     GameBoardComponent,
-    ConfigSliderComponent,
     PatternsComponent,
     GameConfigComponent,
     GameCounterComponent,
-    ConfigCheckboxComponent,
     GameHeaderComponent
   ],
   imports: [
