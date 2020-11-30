@@ -53,7 +53,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   handleSpeedChange(tickSpeed) {
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
-    if (this.autoTicking) this.startTicking();
+    if (this.autoTicking) this.store.dispatch(GameBoardActions.startTicking());
   }
 
   handleRandomLifeToggle(randomLifeEnabled) {
@@ -66,14 +66,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
 
   getTickInterval(tickSpeed) {
     return this.maxTickInterval - tickSpeed;
-  }
-
-  startTicking() {
-    this.store.dispatch(GameBoardActions.startTicking());
-  }
-
-  stopTicking() {
-    this.store.dispatch(GameBoardActions.stopTicking());
   }
 
   ngOnDestroy() {
