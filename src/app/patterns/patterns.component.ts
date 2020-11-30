@@ -15,7 +15,9 @@ export class PatternsComponent implements OnInit, OnDestroy {
   presetPatterns: string[];
   selectedPattern: string;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(
+    private store: Store<fromApp.AppState>
+  ) { }
 
   ngOnInit(): void {
     this.setGameBoardData();
