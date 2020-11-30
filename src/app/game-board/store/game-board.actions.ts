@@ -57,11 +57,6 @@ export const disableRandomLife = createAction(
   '[Game Board] Disable Random Life'
 );
 
-export const setCurrentGeneration = createAction(
-  '[Game Board] Set Current Generation',
-  props<{ newGeneration: number[][] }>()
-);
-
 export const zoomIn = createAction(
   '[Game Board] Zoom In'
 );

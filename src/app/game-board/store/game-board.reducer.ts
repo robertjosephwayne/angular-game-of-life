@@ -182,16 +182,6 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.setCurrentGeneration, (state, { newGeneration }) => {
-    const liveCells = countLiveCells(newGeneration);
-    return {
-      ...state,
-      currentGeneration: newGeneration,
-      generationCount: 0,
-      liveCells,
-    };
-  }),
-
   on(GameBoardActions.zoomIn, (state) => {
     const gridSize = Math.max(state.minGridSize, state.gridSize - 1);
     const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, gridSize);
