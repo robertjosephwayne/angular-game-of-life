@@ -24,13 +24,15 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   liveCells: number;
   randomLifeActive: boolean;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(
+    private store: Store<fromApp.AppState>
+  ) { }
 
   ngOnInit(): void {
     this.setGameBoardData();
   }
 
-  setGameBoardData() {
+  setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.autoTicking = state.autoTicking;
       this.tickInterval = state.tickInterval;
@@ -46,17 +48,17 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleGridResize(gridSize) {
+  handleGridResize(gridSize: number): void {
     this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
   }
 
-  handleSpeedChange(tickSpeed) {
+  handleSpeedChange(tickSpeed: number): void {
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
     if (this.autoTicking) this.store.dispatch(GameBoardActions.startTicking());
   }
 
-  handleRandomLifeToggle(randomLifeEnabled) {
+  handleRandomLifeToggle(randomLifeEnabled: boolean): void {
     if (randomLifeEnabled) {
       this.store.dispatch(GameBoardActions.activateRandomLife());
     } else {
@@ -64,11 +66,11 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTickInterval(tickSpeed) {
+  getTickInterval(tickSpeed: number): number {
     return this.maxTickInterval - tickSpeed;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();
   }
 }

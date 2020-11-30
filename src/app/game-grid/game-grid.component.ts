@@ -14,19 +14,21 @@ export class GameGridComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
   currentGeneration: number[][];
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(
+    private store: Store<fromApp.AppState>
+  ) { }
 
   ngOnInit(): void {
     this.setGameBoardData();
   }
 
-  setGameBoardData() {
+  setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
     });
   }
 
-  handleCellClick(rowIndex, columnIndex) {
+  handleCellClick(rowIndex: number, columnIndex: number): void {
     this.store.dispatch(GameBoardActions.toggleCellLife({ rowIndex, columnIndex }));
   }
 
