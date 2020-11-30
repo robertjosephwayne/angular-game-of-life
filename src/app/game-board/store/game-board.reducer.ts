@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+
 import * as GameBoardActions from './game-board.actions';
 
 export interface State {
