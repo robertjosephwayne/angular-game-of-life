@@ -21,19 +21,19 @@ export class PatternsComponent implements OnInit, OnDestroy {
     this.setGameBoardData();
   }
 
-  setGameBoardData() {
+  setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.selectedPattern = state.selectedPattern;
       this.presetPatterns = state.presetPatterns;
     });
   }
 
-  handlePatternSelect(patternName) {
+  handlePatternSelect(patternName: string): void {
     this.store.dispatch(GameBoardActions.stopTicking());
     this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();
   }
 }
