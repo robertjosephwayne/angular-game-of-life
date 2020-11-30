@@ -13,13 +13,8 @@ import * as fromApp from '../store/app.reducer';
 export class GameConfigComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
   autoTicking: boolean;
-  tickInterval: number;
-  maxTickInterval: number;
   tickSpeed: number;
-  ticker: any;
-  gridSize: number;
-  minGridSize: number;
-  maxGridSize: number;
+  maxTickInterval: number;
   generationCount: number;
   liveCells: number;
   randomLifeActive: boolean;
@@ -35,13 +30,8 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.autoTicking = state.autoTicking;
-      this.tickInterval = state.tickInterval;
       this.tickSpeed = state.tickSpeed;
       this.maxTickInterval = state.maxTickInterval;
-      this.ticker = state.ticker;
-      this.gridSize = state.gridSize;
-      this.minGridSize = state.minGridSize;
-      this.maxGridSize = state.maxGridSize;
       this.generationCount = state.generationCount;
       this.liveCells = state.liveCells;
       this.randomLifeActive = state.randomLifeActive;
