@@ -50,7 +50,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   tick() {
-    if (this.liveCells === 0 && !this.randomLifeActive) return;
     this.store.dispatch(GameBoardActions.tick());
   }
 
@@ -62,7 +61,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   startTicking() {
-    if (this.liveCells === 0 && !this.randomLifeActive) return;
     this.store.dispatch(GameBoardActions.startTicking());
   }
 
