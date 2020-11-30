@@ -40,10 +40,20 @@
   >
     <mat-icon>refresh</mat-icon>
   </button>
-  <button mat-fab color="accent" (click)="zoomIn()" [disabled]="!canZoomIn">
+  <button
+    mat-fab
+    color="accent"
+    (click)="zoomIn()"
+    [disabled]="gridSize === minGridSize"
+  >
     <mat-icon>zoom_in</mat-icon>
   </button>
-  <button mat-fab color="accent" (click)="zoomOut()" [disabled]="!canZoomOut">
+  <button
+    mat-fab
+    color="accent"
+    (click)="zoomOut()"
+    [disabled]="gridSize === maxGridSize"
+  >
     <mat-icon>zoom_out</mat-icon>
   </button>
 </div>
