@@ -6,7 +6,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./game-board.component.css']
 })
 export class GameBoardComponent implements OnInit, OnDestroy {
-
   constructor() { }
 
   ngOnInit(): void { }
