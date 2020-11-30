@@ -14,6 +14,8 @@ import * as fromGameBoard from './game-board/store/game-board.reducer';
 import { GameHeaderComponent } from './game-header/game-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { EffectsModule } from '@ngrx/effects';
+import { GameBoardEffects } from './game-board/store/game-board.effects';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { MaterialModule } from './material.module';
       maxAge: 25, // Retains last 25 states
     }),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    EffectsModule.forRoot([GameBoardEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
