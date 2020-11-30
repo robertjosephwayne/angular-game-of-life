@@ -1,13 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 
-export const tick = createAction('[Game Board] Tick');
+export const tick = createAction(
+  '[Game Board] Tick'
+);
 
 export const toggleCellLife = createAction(
   '[Game Board] Toggle Cell Life',
   props<{ rowIndex: number, columnIndex: number }>()
 );
 
-export const resetGeneration = createAction('[Game Board] Reset Generation');
+export const resetGeneration = createAction(
+  '[Game Board] Reset Generation'
+);
 
 export const setGridSize = createAction(
   '[Game Board] Set Grid Size',
@@ -32,7 +36,9 @@ export const setTicker = createAction(
   props<{ newTicker: any }>()
 );
 
-export const stopTicking = createAction('[Game Board] Stop Ticking');
+export const stopTicking = createAction(
+  '[Game Board] Stop Ticking'
+);
 
 export const setTickInterval = createAction(
   '[Game Board] Set Tick Interval',
@@ -54,5 +60,13 @@ export const disableRandomLife = createAction(
 export const setCurrentGeneration = createAction(
   '[Game Board] Set Current Generation',
   props<{ newGeneration: number[][] }>()
+);
+
+export const zoomIn = createAction(
+  '[Game Board] Zoom In'
+);
+
+export const zoomOut = createAction(
+  '[Game Board] Zoom Out'
 );
 
