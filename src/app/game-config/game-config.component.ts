@@ -69,7 +69,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   startTicking() {
-    if (this.liveCells === 0 && !this.randomLifeActive) return;
     this.store.dispatch(GameBoardActions.startTicking());
   }
 
