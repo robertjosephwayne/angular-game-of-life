@@ -70,3 +70,6 @@ export const zoomOut = createAction(
   '[Game Board] Zoom Out'
 );
 
+export const emptyCheck = createAction(
+  '[Game Board] Empty Check'
+);

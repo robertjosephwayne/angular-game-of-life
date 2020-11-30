@@ -214,6 +214,12 @@ const _gameBoardReducer = createReducer(
       gridSize,
       liveCells
     };
+  }),
+
+  on(GameBoardActions.emptyCheck, (state) => {
+    return {
+      ...state
+    };
   })
 );
 
