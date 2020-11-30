@@ -51,7 +51,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   handleSpeedChange(tickSpeed) {
-    console.log(tickSpeed);
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
     if (this.autoTicking) this.startTicking();
