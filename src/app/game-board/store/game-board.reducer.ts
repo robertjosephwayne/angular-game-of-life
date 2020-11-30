@@ -190,6 +190,30 @@ const _gameBoardReducer = createReducer(
       generationCount: 0,
       liveCells,
     };
+  }),
+
+  on(GameBoardActions.zoomIn, (state) => {
+    const gridSize = Math.max(state.minGridSize, state.gridSize - 1);
+    const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, gridSize);
+    const liveCells = countLiveCells(currentGenerationResized);
+    return {
+      ...state,
+      currentGeneration: currentGenerationResized,
+      gridSize,
+      liveCells
+    };
+  }),
+
+  on(GameBoardActions.zoomOut, (state) => {
+    const gridSize = Math.min(state.maxGridSize, state.gridSize + 1);
+    const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, gridSize);
+    const liveCells = countLiveCells(currentGenerationResized);
+    return {
+      ...state,
+      currentGeneration: currentGenerationResized,
+      gridSize,
+      liveCells
+    };
   })
 );
 
