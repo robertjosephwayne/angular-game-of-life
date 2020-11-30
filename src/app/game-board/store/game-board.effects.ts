@@ -19,6 +19,30 @@ export class GameBoardEffects {
     })
   ));
 
+  setTickInterval$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Board] Start Ticking'),
+    withLatestFrom(this.store.select('gameBoard')),
+    map(([action, gameBoardState]) => {
+      clearInterval(gameBoardState.ticker);
+      const ticker = setInterval(() => {
+        this.store.dispatch(GameBoardActions.tick());
+        this.store.dispatch(GameBoardActions.emptyCheck());
+      }, gameBoardState.tickInterval);
+      return GameBoardActions.setTicker({ newTicker: ticker });
+    })
+  ));
+
+  emptyCheck$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Board] Empty Check'),
+    withLatestFrom(this.store.select('gameBoard')),
+    map(([action, gameBoardState]) => {
+      if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
+        return GameBoardActions.stopTicking();
+      }
+      return { type: 'Empty Action' };
+    })
+  ));
+
   constructor(
     private actions$: Actions,
     private store: Store<fromApp.AppState>

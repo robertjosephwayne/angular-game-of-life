@@ -63,16 +63,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   startTicking() {
     if (this.liveCells === 0 && !this.randomLifeActive) return;
-    if (this.autoTicking) this.stopTicking();
-    const ticker = setInterval(() => {
-      if ((this.liveCells === 0 && !this.randomLifeActive) || !this.autoTicking) {
-        this.stopTicking();
-      } else {
-        this.store.dispatch(GameBoardActions.tick());
-      }
-    }, this.tickInterval);
     this.store.dispatch(GameBoardActions.startTicking());
-    this.store.dispatch(GameBoardActions.setTicker({ newTicker: ticker }))
   }
 
   stopTicking() {
