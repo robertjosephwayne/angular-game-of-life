@@ -19,9 +19,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   autoTicking: boolean;
   tickInterval: number;
   ticker: any;
+  minGridSize: number;
+  maxGridSize: number;
   gridSize: number;
-  canZoomIn: boolean;
-  canZoomOut: boolean;
   generationCount: number;
 
   constructor(private store: Store<fromApp.AppState>) { }
@@ -38,9 +38,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       this.autoTicking = state.autoTicking;
       this.tickInterval = state.tickInterval;
       this.ticker = state.ticker;
+      this.minGridSize = state.minGridSize;
+      this.maxGridSize = state.maxGridSize;
       this.gridSize = state.gridSize;
-      this.canZoomIn = state.canZoomIn;
-      this.canZoomOut = state.canZoomOut;
       this.generationCount = state.generationCount;
     });
   }
@@ -80,15 +80,11 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   zoomIn() {
-    this.store.dispatch(GameBoardActions.setGridSize({
-      gridSize: this.gridSize - 1
-    }));
+    this.store.dispatch(GameBoardActions.zoomIn());
   }
 
   zoomOut() {
-    this.store.dispatch(GameBoardActions.setGridSize({
-      gridSize: this.gridSize + 1
-    }));
+    this.store.dispatch(GameBoardActions.zoomOut());
   }
 
   ngOnDestroy(): void {
