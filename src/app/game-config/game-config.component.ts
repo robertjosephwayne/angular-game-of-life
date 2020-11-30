@@ -64,10 +64,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     }
   }
 
-  handlePatternSelection(event) {
-    console.log(event);
-  }
-
   getTickInterval(tickSpeed) {
     return this.maxTickInterval - tickSpeed;
   }
