@@ -1,10 +1,5 @@
 <div class="flex space-x-4 justify-center mt-4">
-  <button
-    mat-fab
-    color="primary"
-    (click)="tick()"
-    [disabled]="(!liveCells && !randomLifeActive) || autoTicking"
-  >
+  <button mat-fab color="primary" (click)="tick()" [disabled]="!canTick">
     <mat-icon>skip_next</mat-icon>
   </button>
   <button
@@ -12,7 +7,7 @@
     color="primary"
     (click)="startTicking()"
     *ngIf="!autoTicking"
-    [disabled]="!liveCells && !randomLifeActive"
+    [disabled]="!canTick"
   >
     <mat-icon>play_arrow</mat-icon>
   </button>
