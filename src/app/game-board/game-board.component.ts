@@ -14,15 +14,6 @@ import * as fromApp from '../store/app.reducer';
 export class GameBoardComponent implements OnInit, OnDestroy {
   currentGeneration: number[][];
   gameBoardSub: Subscription;
-  liveCells: number;
-  randomLifeActive: boolean;
-  autoTicking: boolean;
-  tickInterval: number;
-  ticker: any;
-  minGridSize: number;
-  maxGridSize: number;
-  gridSize: number;
-  generationCount: number;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -33,15 +24,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   setGameBoardData() {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
-      this.liveCells = state.liveCells;
-      this.randomLifeActive = state.randomLifeActive;
-      this.autoTicking = state.autoTicking;
-      this.tickInterval = state.tickInterval;
-      this.ticker = state.ticker;
-      this.minGridSize = state.minGridSize;
-      this.maxGridSize = state.maxGridSize;
-      this.gridSize = state.gridSize;
-      this.generationCount = state.generationCount;
     });
   }
 
@@ -49,32 +31,32 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.store.dispatch(GameBoardActions.toggleCellLife({ rowIndex, columnIndex }));
   }
 
-  tick() {
-    this.store.dispatch(GameBoardActions.tick());
-  }
+  // tick() {
+  //   this.store.dispatch(GameBoardActions.tick());
+  // }
 
-  reset() {
-    this.stopTicking();
-    this.store.dispatch(GameBoardActions.resetGridSize());
-    this.store.dispatch(GameBoardActions.resetGeneration());
-    this.store.dispatch(GameBoardActions.resetTickInterval());
-  }
+  // reset() {
+  //   this.stopTicking();
+  //   this.store.dispatch(GameBoardActions.resetGridSize());
+  //   this.store.dispatch(GameBoardActions.resetGeneration());
+  //   this.store.dispatch(GameBoardActions.resetTickInterval());
+  // }
 
-  startTicking() {
-    this.store.dispatch(GameBoardActions.startTicking());
-  }
+  // startTicking() {
+  //   this.store.dispatch(GameBoardActions.startTicking());
+  // }
 
-  stopTicking() {
-    this.store.dispatch(GameBoardActions.stopTicking());
-  }
+  // stopTicking() {
+  //   this.store.dispatch(GameBoardActions.stopTicking());
+  // }
 
-  zoomIn() {
-    this.store.dispatch(GameBoardActions.zoomIn());
-  }
+  // zoomIn() {
+  //   this.store.dispatch(GameBoardActions.zoomIn());
+  // }
 
-  zoomOut() {
-    this.store.dispatch(GameBoardActions.zoomOut());
-  }
+  // zoomOut() {
+  //   this.store.dispatch(GameBoardActions.zoomOut());
+  // }
 
   ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();

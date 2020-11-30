@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { EffectsModule } from '@ngrx/effects';
 import { GameBoardEffects } from './game-board/store/game-board.effects';
+import { GameButtonsComponent } from './game-buttons/game-buttons.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GameBoardEffects } from './game-board/store/game-board.effects';
     PatternsComponent,
     GameConfigComponent,
     GameCounterComponent,
-    GameHeaderComponent
+    GameHeaderComponent,
+    GameButtonsComponent
   ],
   imports: [
     BrowserModule,
