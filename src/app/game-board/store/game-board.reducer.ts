@@ -156,8 +156,7 @@ const _gameBoardReducer = createReducer(
   on(GameBoardActions.stopTicking, (state) => {
     return {
       ...state,
-      autoTicking: false,
-      ticker: null
+      autoTicking: false
     };
   }),
 
