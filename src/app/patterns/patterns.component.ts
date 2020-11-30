@@ -12,10 +12,8 @@ import * as fromApp from '../store/app.reducer';
 })
 export class PatternsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
-  gridSize: number;
   presetPatterns: { id: string, label: string }[];
   selectedPattern: string;
-  ticker: any;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -25,21 +23,14 @@ export class PatternsComponent implements OnInit, OnDestroy {
 
   setGameBoardData() {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
-      this.gridSize = state.gridSize;
       this.selectedPattern = state.selectedPattern;
       this.presetPatterns = state.presetPatterns;
-      this.ticker = state.ticker;
     });
   }
 
   handlePatternSelect(patternName) {
-    this.stopTicking();
-    this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
-  }
-
-  stopTicking() {
-    clearInterval(this.ticker);
     this.store.dispatch(GameBoardActions.stopTicking());
+    this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
   }
 
   ngOnDestroy() {
