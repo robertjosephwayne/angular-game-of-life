@@ -1,15 +1,6 @@
 <mat-card class="grid justify-items-center items-center my-4 text-center">
   <app-patterns></app-patterns>
 
-  <!-- <app-config-slider
-    [label]="'speed'"
-    [id]="'tick-speed'"
-    [value]="tickSpeed / 10"
-    [min]="0"
-    [max]="maxTickInterval / 10"
-    (change)="handleSpeedChange($event)"
-  ></app-config-slider> -->
-
   <div>
     <label class="align-middle" for="tick-speed">
       <mat-icon>speed</mat-icon>
@@ -22,22 +13,6 @@
       (change)="handleSpeedChange($event.value)"
     ></mat-slider>
   </div>
-
-  <!-- <app-config-slider
-    [label]="'Grid Size'"
-    [id]="'grid-size'"
-    [value]="gridSize"
-    [min]="minGridSize"
-    [max]="maxGridSize"
-    (change)="handleGridResize($event.target.value)"
-  ></app-config-slider> -->
-
-  <!-- <app-config-checkbox
-    [label]="'Generate Random Cells'"
-    [id]="'random-life'"
-    [isChecked]="randomLifeActive"
-    (change)="handleRandomLifeToggle($event.target.checked)"
-  ></app-config-checkbox> -->
 
   <mat-checkbox
     [checked]="randomLifeActive"
