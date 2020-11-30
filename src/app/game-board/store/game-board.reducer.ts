@@ -217,7 +217,7 @@ export function gameBoardReducer(state: State, action: Action) {
   return _gameBoardReducer(state, action);
 }
 
-function getNextGeneration(currentGeneration, gridSize) {
+function getNextGeneration(currentGeneration: number[][], gridSize: number) {
   let nextGeneration = [];
 
   for (let i = 0; i < gridSize; i++) {
@@ -231,7 +231,7 @@ function getNextGeneration(currentGeneration, gridSize) {
   return nextGeneration;
 }
 
-function isAliveNextGeneration(currentGeneration, cellRow, cellColumn) {
+function isAliveNextGeneration(currentGeneration: number[][], cellRow: number, cellColumn: number) {
   const liveNeighbors = countLiveNeighbors(
     currentGeneration,
     cellRow,
@@ -247,7 +247,7 @@ function isAliveNextGeneration(currentGeneration, cellRow, cellColumn) {
   return isAlive;
 }
 
-function countLiveNeighbors(currentGeneration, cellRow, cellColumn) {
+function countLiveNeighbors(currentGeneration: number[][], cellRow: number, cellColumn: number) {
   const lastRow = currentGeneration.length - 1;
   const lastColumn = currentGeneration[0].length - 1;
   let liveNeighbors = 0;
