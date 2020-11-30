@@ -28,7 +28,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     this.setGameBoardData();
   }
 
-  setGameBoardData() {
+  setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.liveCells = state.liveCells;
       this.randomLifeActive = state.randomLifeActive;
@@ -40,50 +40,50 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     });
   }
 
-  tick() {
+  tick(): void {
     this.store.dispatch(GameBoardActions.tick());
   }
 
-  reset() {
+  reset(): void {
     this.stopTicking();
     this.store.dispatch(GameBoardActions.resetGridSize());
     this.store.dispatch(GameBoardActions.resetGeneration());
     this.store.dispatch(GameBoardActions.resetTickInterval());
   }
 
-  startTicking() {
+  startTicking(): void {
     this.store.dispatch(GameBoardActions.startTicking());
   }
 
-  stopTicking() {
+  stopTicking(): void {
     this.store.dispatch(GameBoardActions.stopTicking());
   }
 
-  zoomIn() {
+  zoomIn(): void {
     this.store.dispatch(GameBoardActions.zoomIn());
   }
 
-  zoomOut() {
+  zoomOut(): void {
     this.store.dispatch(GameBoardActions.zoomOut());
   }
 
-  get canTick() {
+  get canTick(): boolean {
     return (this.liveCells || this.randomLifeActive) && !this.autoTicking;
   }
 
-  get canZoomIn() {
+  get canZoomIn(): boolean {
     return this.gridSize > this.minGridSize;
   }
 
-  get canZoomOut() {
+  get canZoomOut(): boolean {
     return this.gridSize < this.maxGridSize;
   }
 
-  get canReset() {
+  get canReset(): boolean {
     return this.generationCount > 0;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();
   }
 
