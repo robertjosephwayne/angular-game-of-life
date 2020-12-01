@@ -5,19 +5,15 @@ import * as GameBoardActions from './game-board.actions';
 export interface State {
   currentGeneration: number[][];
   generationCount: number;
-
   presetPatterns: string[];
   selectedPattern: string;
-
   minGridSize: number;
   maxGridSize: number;
   gridSize: number;
-
   autoTicking: boolean;
   tickInterval: number;
   maxTickInterval: number;
   ticker: any;
-
   randomLifeActive: boolean;
   liveCells: number;
 }
@@ -178,7 +174,6 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       currentGeneration: updatedGeneration,
-      generationCount: state.generationCount + 1,
       liveCells
     };
   }),
