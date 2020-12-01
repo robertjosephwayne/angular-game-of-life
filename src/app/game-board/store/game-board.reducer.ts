@@ -202,7 +202,7 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.emptyCheck, (state) => {
+  on(GameBoardActions.emptyGenerationCheck, (state) => {
     return {
       ...state
     };

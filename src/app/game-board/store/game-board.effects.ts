@@ -25,14 +25,14 @@ export class GameBoardEffects {
       clearInterval(gameBoardState.ticker);
       const ticker = setInterval(() => {
         this.store.dispatch(GameBoardActions.tick());
-        this.store.dispatch(GameBoardActions.emptyCheck());
+        this.store.dispatch(GameBoardActions.emptyGenerationCheck());
       }, gameBoardState.tickInterval);
       return GameBoardActions.setTicker({ newTicker: ticker });
     })
   ));
 
-  emptyCheck$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Board] Empty Check'),
+  emptyGenerationCheck$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Board] Empty Generation Check'),
     withLatestFrom(this.store.select('gameBoard')),
     map(([action, gameBoardState]) => {
       if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
