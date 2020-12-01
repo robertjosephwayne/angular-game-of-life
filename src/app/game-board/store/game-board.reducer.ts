@@ -11,7 +11,6 @@ export interface State {
   autoTicking: boolean;
   ticker: any;
   tickInterval: number;
-  tickSpeed: number;
   maxTickInterval: number;
   generationCount: number;
   liveCells: number;
@@ -39,7 +38,6 @@ export const initialState: State = {
   autoTicking: false,
   ticker: null,
   tickInterval: 500,
-  tickSpeed: 500,
   maxTickInterval: 1000,
   generationCount: 0,
   liveCells: 0,
@@ -157,15 +155,13 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       tickInterval: newTickInterval,
-      tickSpeed: state.maxTickInterval - newTickInterval
     };
   }),
 
   on(GameBoardActions.resetTickInterval, (state) => {
     return {
       ...state,
-      tickInterval: initialState.tickInterval,
-      tickSpeed: initialState.tickSpeed
+      tickInterval: initialState.tickInterval
     };
   }),
 

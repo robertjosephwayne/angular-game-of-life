@@ -13,7 +13,7 @@ import * as fromApp from '../store/app.reducer';
 export class GameConfigComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
   autoTicking: boolean;
-  tickSpeed: number;
+  tickInterval: number;
   maxTickInterval: number;
   generationCount: number;
   liveCells: number;
@@ -30,7 +30,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.autoTicking = state.autoTicking;
-      this.tickSpeed = state.tickSpeed;
+      this.tickInterval = state.tickInterval;
       this.maxTickInterval = state.maxTickInterval;
       this.generationCount = state.generationCount;
       this.liveCells = state.liveCells;
@@ -58,6 +58,10 @@ export class GameConfigComponent implements OnInit, OnDestroy {
 
   getTickInterval(tickSpeed: number): number {
     return this.maxTickInterval - tickSpeed;
+  }
+
+  get tickSpeed(): number {
+    return this.maxTickInterval - this.tickInterval;
   }
 
   ngOnDestroy(): void {
