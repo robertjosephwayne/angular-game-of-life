@@ -4,18 +4,22 @@ import * as GameBoardActions from './game-board.actions';
 
 export interface State {
   currentGeneration: number[][];
+  generationCount: number;
+
+  presetPatterns: string[];
+  selectedPattern: string;
+
   minGridSize: number;
   maxGridSize: number;
   gridSize: number;
-  selectedPattern: string;
+
   autoTicking: boolean;
-  ticker: any;
   tickInterval: number;
   maxTickInterval: number;
-  generationCount: number;
-  liveCells: number;
+  ticker: any;
+
   randomLifeActive: boolean;
-  presetPatterns: string[];
+  liveCells: number;
 }
 
 export const initialState: State = {
@@ -31,17 +35,7 @@ export const initialState: State = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ],
-  minGridSize: 10,
-  maxGridSize: 25,
-  gridSize: 10,
-  selectedPattern: 'Empty',
-  autoTicking: false,
-  ticker: null,
-  tickInterval: 500,
-  maxTickInterval: 1000,
   generationCount: 0,
-  liveCells: 0,
-  randomLifeActive: false,
   presetPatterns: [
     'Empty',
     'Glider',
@@ -52,36 +46,21 @@ export const initialState: State = {
     'Block',
     'Tub',
     'Boat'
-  ]
+  ],
+  selectedPattern: 'Empty',
+  minGridSize: 10,
+  maxGridSize: 25,
+  gridSize: 10,
+  autoTicking: false,
+  tickInterval: 500,
+  maxTickInterval: 1000,
+  ticker: null,
+  randomLifeActive: false,
+  liveCells: 0
 };
 
 const _gameBoardReducer = createReducer(
   initialState,
-
-  on(GameBoardActions.tick, (state) => {
-    let updatedGeneration = getNextGeneration(state.currentGeneration, state.gridSize);
-    if (state.randomLifeActive) {
-      updatedGeneration = addRandomLife(updatedGeneration, state.gridSize);
-    }
-    const liveCells = countLiveCells(updatedGeneration);
-    return {
-      ...state,
-      currentGeneration: updatedGeneration,
-      generationCount: state.generationCount + 1,
-      liveCells
-    };
-  }),
-
-  on(GameBoardActions.toggleCellLife, (state, { rowIndex, columnIndex }) => {
-    const updatedGeneration = toggleCellLife(state.currentGeneration, rowIndex, columnIndex);
-    const liveCells = countLiveCells(updatedGeneration);
-    return {
-      ...state,
-      currentGeneration: updatedGeneration,
-      generationCount: state.generationCount + 1,
-      liveCells
-    };
-  }),
 
   on(GameBoardActions.resetGeneration, (state) => {
     const initialGeneration = getSelectedPattern(state.selectedPattern, state.gridSize);
@@ -91,6 +70,18 @@ const _gameBoardReducer = createReducer(
       currentGeneration: initialGeneration,
       generationCount: 0,
       liveCells
+    };
+  }),
+
+  on(GameBoardActions.setSelectedPattern, (state, { patternName }) => {
+    const newGeneration = getSelectedPattern(patternName, state.gridSize);
+    const liveCells = countLiveCells(newGeneration);
+    return {
+      ...state,
+      selectedPattern: patternName,
+      currentGeneration: newGeneration,
+      liveCells,
+      generationCount: 0
     };
   }),
 
@@ -118,15 +109,17 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.setSelectedPattern, (state, { patternName }) => {
-    const newGeneration = getSelectedPattern(patternName, state.gridSize);
-    const liveCells = countLiveCells(newGeneration);
+  on(GameBoardActions.tick, (state) => {
+    let updatedGeneration = getNextGeneration(state.currentGeneration, state.gridSize);
+    if (state.randomLifeActive) {
+      updatedGeneration = addRandomLife(updatedGeneration, state.gridSize);
+    }
+    const liveCells = countLiveCells(updatedGeneration);
     return {
       ...state,
-      selectedPattern: patternName,
-      currentGeneration: newGeneration,
-      liveCells,
-      generationCount: 0
+      currentGeneration: updatedGeneration,
+      generationCount: state.generationCount + 1,
+      liveCells
     };
   }),
 
@@ -137,17 +130,17 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.setTicker, (state, { newTicker }) => {
-    return {
-      ...state,
-      ticker: newTicker
-    };
-  }),
-
   on(GameBoardActions.stopTicking, (state) => {
     return {
       ...state,
       autoTicking: false
+    };
+  }),
+
+  on(GameBoardActions.setTicker, (state, { newTicker }) => {
+    return {
+      ...state,
+      ticker: newTicker
     };
   }),
 
@@ -176,6 +169,17 @@ const _gameBoardReducer = createReducer(
     return {
       ...state,
       randomLifeActive: false
+    };
+  }),
+
+  on(GameBoardActions.toggleCellLife, (state, { rowIndex, columnIndex }) => {
+    const updatedGeneration = toggleCellLife(state.currentGeneration, rowIndex, columnIndex);
+    const liveCells = countLiveCells(updatedGeneration);
+    return {
+      ...state,
+      currentGeneration: updatedGeneration,
+      generationCount: state.generationCount + 1,
+      liveCells
     };
   }),
 
