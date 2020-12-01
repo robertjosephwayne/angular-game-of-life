@@ -12,13 +12,13 @@ import * as fromApp from '../store/app.reducer';
 })
 export class GameButtonsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
-  liveCells: number;
-  randomLifeActive: boolean;
-  autoTicking: boolean;
   generationCount: number;
-  gridSize: number;
   minGridSize: number;
   maxGridSize: number;
+  gridSize: number;
+  autoTicking: boolean;
+  randomLifeActive: boolean;
+  liveCells: number;
 
   constructor(
     private store: Store<fromApp.AppState>

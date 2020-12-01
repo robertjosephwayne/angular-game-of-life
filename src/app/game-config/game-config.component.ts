@@ -12,12 +12,12 @@ import * as fromApp from '../store/app.reducer';
 })
 export class GameConfigComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
+  generationCount: number;
   autoTicking: boolean;
   tickInterval: number;
   maxTickInterval: number;
-  generationCount: number;
-  liveCells: number;
   randomLifeActive: boolean;
+  liveCells: number;
 
   constructor(
     private store: Store<fromApp.AppState>
