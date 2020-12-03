@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameBoardActions from '../game-board/store/game-board.actions';
+import * as GameConfigActions from '../game-config/store/game-config.actions';
+
 import * as fromApp from '../store/app.reducer';
 
 @Component({
@@ -11,48 +12,40 @@ import * as fromApp from '../store/app.reducer';
   styleUrls: ['./game-config.component.css']
 })
 export class GameConfigComponent implements OnInit, OnDestroy {
-  gameBoardSub: Subscription;
-  generationCount: number;
+  gameConfigSub: Subscription;
   autoTicking: boolean;
   tickInterval: number;
   maxTickInterval: number;
   randomLifeActive: boolean;
-  liveCells: number;
 
   constructor(
     private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit(): void {
-    this.setGameBoardData();
+    this.setGameConfigData();
   }
 
-  setGameBoardData(): void {
-    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+  setGameConfigData(): void {
+    this.gameConfigSub = this.store.select('gameConfig').subscribe(state => {
+      this.maxTickInterval = state.maxTickInterval;
       this.autoTicking = state.autoTicking;
       this.tickInterval = state.tickInterval;
-      this.maxTickInterval = state.maxTickInterval;
-      this.generationCount = state.generationCount;
-      this.liveCells = state.liveCells;
       this.randomLifeActive = state.randomLifeActive;
     });
   }
 
-  handleGridResize(gridSize: number): void {
-    this.store.dispatch(GameBoardActions.setGridSize({ gridSize }));
-  }
-
   handleSpeedChange(tickSpeed: number): void {
     const newTickInterval = this.getTickInterval(tickSpeed);
-    this.store.dispatch(GameBoardActions.setTickInterval({ newTickInterval }));
-    if (this.autoTicking) this.store.dispatch(GameBoardActions.startTicking());
+    this.store.dispatch(GameConfigActions.setTickInterval({ newTickInterval }));
+    if (this.autoTicking) this.store.dispatch(GameConfigActions.startTicking());
   }
 
   handleRandomLifeToggle(randomLifeEnabled: boolean): void {
     if (randomLifeEnabled) {
-      this.store.dispatch(GameBoardActions.activateRandomLife());
+      this.store.dispatch(GameConfigActions.activateRandomLife());
     } else {
-      this.store.dispatch(GameBoardActions.disableRandomLife());
+      this.store.dispatch(GameConfigActions.disableRandomLife());
     }
   }
 
@@ -65,6 +58,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.gameBoardSub.unsubscribe();
+    this.gameConfigSub.unsubscribe();
   }
 }
