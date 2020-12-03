@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameBoardActions from '../game-board/store/game-board.actions';
-import * as fromApp from '../store/app.reducer';
+import * as GameConfigActions from '../store/game-config.actions';
+import * as PatternsActions from '../patterns/store/patterns.actions';
+
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-patterns',
@@ -11,7 +13,7 @@ import * as fromApp from '../store/app.reducer';
   styleUrls: ['./patterns.component.css']
 })
 export class PatternsComponent implements OnInit, OnDestroy {
-  gameBoardSub: Subscription;
+  patternsSub: Subscription;
   presetPatterns: string[];
   selectedPattern: string;
 
@@ -20,22 +22,22 @@ export class PatternsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.setGameBoardData();
+    this.setPatternsData();
   }
 
-  setGameBoardData(): void {
-    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+  setPatternsData(): void {
+    this.patternsSub = this.store.select('patterns').subscribe(state => {
       this.selectedPattern = state.selectedPattern;
       this.presetPatterns = state.presetPatterns;
     });
   }
 
   handlePatternSelect(patternName: string): void {
-    this.store.dispatch(GameBoardActions.stopTicking());
-    this.store.dispatch(GameBoardActions.setSelectedPattern({ patternName }));
+    this.store.dispatch(GameConfigActions.stopTicking());
+    this.store.dispatch(PatternsActions.setSelectedPattern({ patternName }));
   }
 
   ngOnDestroy(): void {
-    this.gameBoardSub.unsubscribe();
+    this.patternsSub.unsubscribe();
   }
 }
