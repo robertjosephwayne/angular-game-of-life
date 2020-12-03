@@ -1,19 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { GameStatsComponent } from './game-stats.component';
 
 describe('GameStatsComponent', () => {
   let component: GameStatsComponent;
   let fixture: ComponentFixture<GameStatsComponent>;
+  let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameStatsComponent ]
+      declarations: [GameStatsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        provideMockStore()
+      ]
+    });
+
+    store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(GameStatsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
