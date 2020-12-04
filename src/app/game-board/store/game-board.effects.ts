@@ -29,6 +29,20 @@ export class GameBoardEffects {
     })
   ));
 
+  updateLiveCellCount$ = createEffect(() => this.actions$.pipe(
+    ofType(
+      '[Game Board] Reset Generation',
+      '[Game Board] Tick',
+      '[Game Board] Add Random Live Cell',
+      '[Game Board] Toggle Cell Life',
+      '[Game Board] Set Current Generation',
+      '[Game Board] Resize Current Generation'
+    ),
+    map(() => {
+      return GameStatsActions.updateLiveCellCount();
+    })
+  ))
+
   constructor(
     private actions$: Actions,
     private store: Store<fromApp.AppState>
