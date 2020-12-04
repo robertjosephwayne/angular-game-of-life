@@ -47,4 +47,16 @@ describe('PatternsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the label', () => {
+    const patternsElement: HTMLElement = fixture.nativeElement;
+    const patternsLabel = patternsElement.querySelector('mat-label');
+    expect(patternsLabel.textContent).toEqual('Preset Patterns');
+  });
+
+  it('should include an option for each preset pattern', () => {
+    const patternsElement: HTMLElement = fixture.nativeElement;
+    const options = patternsElement.querySelectorAll('mat-option');
+    expect(options.length).toEqual(9);
+  });
 });
