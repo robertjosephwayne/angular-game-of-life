@@ -7,6 +7,18 @@ describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
   let fixture: ComponentFixture<GameConfigComponent>;
   let store: MockStore;
+  const initialState = {
+    gameConfig: {
+      maxTickInterval: 1000,
+      autoTicking: false,
+      tickInterval: 500,
+      ticker: null,
+      randomLifeActive: false,
+      minGridSize: 10,
+      maxGridSize: 25,
+      gridSize: 10
+    }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +30,7 @@ describe('GameConfigComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideMockStore()
+        provideMockStore({ initialState })
       ]
     });
 

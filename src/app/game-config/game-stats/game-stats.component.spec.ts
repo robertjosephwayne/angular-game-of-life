@@ -7,6 +7,12 @@ describe('GameStatsComponent', () => {
   let component: GameStatsComponent;
   let fixture: ComponentFixture<GameStatsComponent>;
   let store: MockStore;
+  const initialState = {
+    gameStats: {
+      generationCount: 0,
+      liveCells: 0
+    }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +24,7 @@ describe('GameStatsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideMockStore()
+        provideMockStore({ initialState })
       ]
     });
 

@@ -7,6 +7,19 @@ describe('GameButtonsComponent', () => {
   let component: GameButtonsComponent;
   let fixture: ComponentFixture<GameButtonsComponent>;
   let store: MockStore;
+  const initialState = {
+    gameConfig: {
+      autoTicking: false,
+      randomLifeActive: false,
+      gridSize: 10,
+      minGridsize: 10,
+      maxGridSize: 25
+    },
+    gameStats: {
+      liveCells: 0,
+      generationCount: 0
+    }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,7 +30,7 @@ describe('GameButtonsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: provideMockStore()
+      providers: provideMockStore({ initialState })
     });
 
     store = TestBed.inject(MockStore);

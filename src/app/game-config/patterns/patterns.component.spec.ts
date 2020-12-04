@@ -7,6 +7,22 @@ describe('PatternsComponent', () => {
   let component: PatternsComponent;
   let fixture: ComponentFixture<PatternsComponent>;
   let store: MockStore;
+  const initialState = {
+    patterns: {
+      presetPatterns: [
+        'Empty',
+        'Glider',
+        'Small Exploder',
+        'Exploder',
+        'Ten Cell Row',
+        'Lightweight Spaceship',
+        'Block',
+        'Tub',
+        'Boat'
+      ],
+      selectedPattern: 'Empty'
+    }
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +34,7 @@ describe('PatternsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideMockStore()
+        provideMockStore({ initialState })
       ]
     });
 
