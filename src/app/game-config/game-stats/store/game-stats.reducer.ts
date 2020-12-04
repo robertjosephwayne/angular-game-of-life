@@ -29,6 +29,12 @@ const _gameStatsReducer = createReducer(
     };
   }),
 
+  on(GameStatsActions.updateLiveCellCount, (state) => {
+    return {
+      ...state
+    };
+  }),
+
   on(GameStatsActions.setLiveCellCount, (state, { liveCells }) => {
     return {
       ...state,

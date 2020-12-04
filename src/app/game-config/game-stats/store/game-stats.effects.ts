@@ -9,15 +9,9 @@ import * as fromApp from '../../../store/app.reducer';
 @Injectable()
 export class GameStatsEffects {
 
-  countLiveCells$ = createEffect(() => this.actions$.pipe(
+  updateLiveCellCount$ = createEffect(() => this.actions$.pipe(
     ofType(
-      '[Game Board] Reset Generation',
-      '[Game Board] Tick',
-      '[Game Board] Add Random Live Cell',
-      '[Game Board] Toggle Cell Life',
-      '[Game Board] Set Current Generation',
-      '[Game Board] Resize Current Generation'
-    ),
+      '[Game Stats] Update Live Cell Count'),
     withLatestFrom(this.store.select('gameBoard')),
     map(([action, gameBoardState]) => {
       const liveCells = countLiveCells(gameBoardState.currentGeneration);
