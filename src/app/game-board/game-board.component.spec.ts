@@ -58,8 +58,7 @@ describe('GameBoardComponent', () => {
   it('should display the correct number of initial columns', () => {
     const gameBoardElement = fixture.nativeElement;
     const gameTable = gameBoardElement.querySelector('table');
-    const firstRow = gameTable.querySelector('tr');
-    const firstRowCells = firstRow.cells;
+    const firstRowCells = gameTable.querySelector('tr').cells;
     expect(firstRowCells.length).toEqual(10);
   });
 });
