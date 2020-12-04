@@ -8,9 +8,9 @@ describe('GameCounterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameCounterComponent ]
+      declarations: [GameCounterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +21,19 @@ describe('GameCounterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the label', () => {
+    component.label = 'Test Label';
+    fixture.detectChanges();
+    const gameCounterElement: HTMLElement = fixture.nativeElement;
+    expect(gameCounterElement.textContent).toContain('Test Label');
+  });
+
+  it('should display the count', () => {
+    component.count = 5;
+    fixture.detectChanges();
+    const gameCounterElement: HTMLElement = fixture.nativeElement;
+    expect(gameCounterElement.textContent).toContain('5');
   });
 });
