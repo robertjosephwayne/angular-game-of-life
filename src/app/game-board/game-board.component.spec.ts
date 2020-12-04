@@ -61,4 +61,31 @@ describe('GameBoardComponent', () => {
     const firstRowCells = gameTable.querySelector('tr').cells;
     expect(firstRowCells.length).toEqual(10);
   });
+
+  it('should display the same number of rows and columns', () => {
+    const gameBoardElement = fixture.nativeElement;
+    const gameTable = gameBoardElement.querySelector('table');
+
+    const rows = gameTable.querySelectorAll('tr');
+    const rowCount = rows.length;
+
+    const firstRowCells = rows[0].cells;
+    const columnCount = firstRowCells.length;
+
+    expect(rowCount).toEqual(columnCount);
+  });
+
+  it('should display the correct number of cells', () => {
+    const gameBoardElement = fixture.nativeElement;
+    const gameTable = gameBoardElement.querySelector('table');
+    const cellCount = gameTable.querySelectorAll('td').length;
+
+    const rows = gameTable.querySelectorAll('tr');
+    const rowCount = rows.length;
+
+    const firstRowCells = rows[0].cells;
+    const columnCount = firstRowCells.length;
+
+    expect(cellCount).toEqual(rowCount * columnCount);
+  })
 });
