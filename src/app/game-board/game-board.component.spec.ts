@@ -47,4 +47,11 @@ describe('GameBoardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the correct number of initial rows', () => {
+    const gameBoardElement = fixture.nativeElement;
+    const gameTable = gameBoardElement.querySelector('table');
+    const rows = gameTable.querySelectorAll('tr');
+    expect(rows.length).toEqual(10);
+  });
 });
