@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from './material.module';
+import { environment } from '../environments/environment';
 
 import * as fromGameBoard from './game-board/store/game-board.reducer';
 import * as fromGameConfig from './game-config/store/game-config.reducer';
@@ -46,6 +47,7 @@ import { PatternsComponent } from './game-config/patterns/patterns.component';
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
+      logOnly: environment.production
     }),
     BrowserAnimationsModule,
     MaterialModule,
