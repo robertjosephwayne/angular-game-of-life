@@ -3,10 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
-import * as GameBoardActions from '../store/game-board.actions';
+import * as GameBoardActions from './game-board.actions';
 import * as GameStatsActions from '../../game-config/game-stats/store/game-stats.actions';
 
-import * as fromApp from '../../store/app.reducer';
+import * as fromApp from '../../../store/app.reducer';
 
 @Injectable()
 export class GameBoardEffects {

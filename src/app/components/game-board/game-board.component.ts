@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameBoardActions from '../game-board/store/game-board.actions';
+import * as GameBoardActions from './store/game-board.actions';
 
-import * as fromApp from '../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-game-board',

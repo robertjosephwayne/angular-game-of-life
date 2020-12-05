@@ -6,7 +6,7 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import * as GameBoardActions from '../../game-board/store/game-board.actions';
 import * as GameConfigActions from '../store/game-config.actions';
 
-import * as fromApp from '../../store/app.reducer';
+import * as fromApp from '../../../store/app.reducer';
 
 @Injectable()
 export class GameConfigEffects {

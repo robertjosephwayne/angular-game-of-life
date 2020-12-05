@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import * as GameConfigActions from '../store/game-config.actions';
 import * as PatternsActions from '../patterns/store/patterns.actions';
 
-import * as fromApp from '../../store/app.reducer';
+import * as fromApp from '../../../store/app.reducer';
 
 @Component({
   selector: 'app-patterns',

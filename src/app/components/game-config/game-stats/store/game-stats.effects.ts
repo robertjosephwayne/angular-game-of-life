@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
 import * as GameStatsActions from '../store/game-stats.actions';
-import * as fromApp from '../../../store/app.reducer';
+import * as fromApp from '../../../../store/app.reducer';
 
 @Injectable()
 export class GameStatsEffects {

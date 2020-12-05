@@ -7,7 +7,7 @@ import * as GameConfigActions from '../game-config/store/game-config.actions';
 import * as GameStatsActions from '../game-config/game-stats/store/game-stats.actions';
 import * as PatternsActions from '../game-config/patterns/store/patterns.actions';
 
-import * as fromApp from '../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-game-buttons',

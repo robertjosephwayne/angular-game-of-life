@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import * as GameConfigActions from '../game-config/store/game-config.actions';
 
-import * as fromApp from '../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-game-config',
