@@ -1,9 +1,9 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromGameBoard from '../components/game-board/store/game-board.reducer';
-import * as fromGameConfig from '../components/game-config/store/game-config.reducer';
-import * as fromGameStats from '../components/game-config/game-stats/store/game-stats.reducer';
-import * as fromPatterns from '../components/game-config/patterns/store/patterns.reducer';
+import * as fromGameBoard from './game-board/game-board.reducer';
+import * as fromGameConfig from './game-config/game-config.reducer';
+import * as fromGameStats from './game-stats/game-stats.reducer';
+import * as fromPatterns from './patterns/patterns.reducer';
 
 export interface AppState {
   gameBoard: fromGameBoard.State;

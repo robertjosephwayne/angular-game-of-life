@@ -7,15 +7,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from './material.module';
 import { environment } from '../environments/environment';
 
-import * as fromGameBoard from './components/game-board/store/game-board.reducer';
-import * as fromGameConfig from './components/game-config/store/game-config.reducer';
-import * as fromGameStats from './components/game-config/game-stats/store/game-stats.reducer';
-import * as fromPatterns from './components/game-config/patterns/store/patterns.reducer';
+import * as fromGameBoard from './store/game-board/game-board.reducer';
+import * as fromGameConfig from './store/game-config/game-config.reducer';
+import * as fromGameStats from './store/game-stats/game-stats.reducer';
+import * as fromPatterns from './store/patterns/patterns.reducer';
 
-import { GameBoardEffects } from './components/game-board/store/game-board.effects';
-import { GameConfigEffects } from './components/game-config/store/game-config.effects';
-import { GameStatsEffects } from './components/game-config/game-stats/store/game-stats.effects';
-import { PatternsEffects } from './components/game-config/patterns/store/patterns.effects';
+import { GameBoardEffects } from './store/game-board/game-board.effects';
+import { GameConfigEffects } from './store/game-config/game-config.effects';
+import { GameStatsEffects } from './store/game-stats/game-stats.effects';
+import { PatternsEffects } from './store/patterns/patterns.effects';
 
 import { AppComponent } from './app.component';
 import { GameBoardComponent } from './components/game-board/game-board.component';

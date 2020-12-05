@@ -3,8 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
-import * as GameStatsActions from '../store/game-stats.actions';
-import * as fromApp from '../../../../store/app.reducer';
+import * as GameStatsActions from './game-stats.actions';
+
+import * as fromApp from '../app.reducer';
 
 @Injectable()
 export class GameStatsEffects {

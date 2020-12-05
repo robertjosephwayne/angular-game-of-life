@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameConfigActions from '../store/game-config.actions';
-import * as PatternsActions from '../patterns/store/patterns.actions';
+import * as GameConfigActions from '../../../store/game-config/game-config.actions';
+import * as PatternsActions from '../../../store/patterns/patterns.actions';
 
 import * as fromApp from '../../../store/app.reducer';
 

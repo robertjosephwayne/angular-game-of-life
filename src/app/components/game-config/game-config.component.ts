@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameConfigActions from '../game-config/store/game-config.actions';
+import * as GameConfigActions from '../../store/game-config/game-config.actions';
 
 import * as fromApp from '../../store/app.reducer';
 

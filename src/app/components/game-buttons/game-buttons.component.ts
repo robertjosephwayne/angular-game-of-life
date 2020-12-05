@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameBoardActions from '../game-board/store/game-board.actions';
-import * as GameConfigActions from '../game-config/store/game-config.actions';
-import * as GameStatsActions from '../game-config/game-stats/store/game-stats.actions';
-import * as PatternsActions from '../game-config/patterns/store/patterns.actions';
+import * as GameBoardActions from '../../store/game-board/game-board.actions';
+import * as GameConfigActions from '../../store/game-config/game-config.actions';
+import * as GameStatsActions from '../../store/game-stats/game-stats.actions';
+import * as PatternsActions from '../../store/patterns/patterns.actions';
 
 import * as fromApp from '../../store/app.reducer';
 
