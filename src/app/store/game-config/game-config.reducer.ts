@@ -87,30 +87,7 @@ const _gameConfigReducer = createReducer(
       ...state,
       randomLifeActive: false
     };
-  }),
-
-  on(GameConfigActions.resetGridSize, (state) => {
-    return {
-      ...state,
-      gridSize: initialState.gridSize,
-    };
-  }),
-
-  on(GameConfigActions.zoomIn, (state) => {
-    const newGridSize = Math.max(state.minGridSize, state.gridSize - 1);
-    return {
-      ...state,
-      gridSize: newGridSize
-    };
-  }),
-
-  on(GameConfigActions.zoomOut, (state) => {
-    const newGridSize = Math.min(state.maxGridSize, state.gridSize + 1);
-    return {
-      ...state,
-      gridSize: newGridSize
-    };
-  }),
+  })
 );
 
 export function gameConfigReducer(state: State, action: Action) {

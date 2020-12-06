@@ -37,15 +37,3 @@ export const activateRandomLife = createAction(
 export const disableRandomLife = createAction(
   '[Game Config] Disable Random Life'
 );
-
-export const resetGridSize = createAction(
-  '[Game Config] Reset Grid Size'
-);
-
-export const zoomIn = createAction(
-  '[Game Config] Zoom In'
-);
-
-export const zoomOut = createAction(
-  '[Game Config] Zoom Out'
-);
