@@ -10,6 +10,7 @@ import * as fromApp from '../../../store/app.reducer';
   styleUrls: ['./game-stats.component.css']
 })
 export class GameStatsComponent implements OnInit, OnDestroy {
+  gameBoardSub: Subscription;
   gameStatsSub: Subscription;
   generationCount: number;
   liveCells: number;
@@ -19,17 +20,24 @@ export class GameStatsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.setGameBoardData();
     this.setGameStatsData();
+  }
+
+  setGameBoardData(): void {
+    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+      this.generationCount = state.generationCount;
+    });
   }
 
   setGameStatsData(): void {
     this.gameStatsSub = this.store.select('gameStats').subscribe(state => {
-      this.generationCount = state.generationCount;
       this.liveCells = state.liveCells;
     });
   }
 
   ngOnDestroy(): void {
+    this.gameBoardSub.unsubscribe();
     this.gameStatsSub.unsubscribe();
   }
 
