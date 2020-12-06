@@ -55,16 +55,6 @@ const _gameBoardReducer = createReducer(
     };
   }),
 
-  on(GameBoardActions.resizeCurrentGeneration, (state, { newSize }) => {
-    const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, newSize);
-    const liveCells = countLiveCells(currentGenerationResized);
-    return {
-      ...state,
-      currentGeneration: currentGenerationResized,
-      liveCells
-    };
-  }),
-
   on(GameBoardActions.setCurrentGeneration, (state, { newGeneration }) => {
     const liveCells = countLiveCells(newGeneration);
     return {

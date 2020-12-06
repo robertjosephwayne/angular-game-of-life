@@ -13,11 +13,6 @@ export const toggleCellLife = createAction(
   props<{ rowIndex: number, columnIndex: number }>()
 );
 
-export const resizeCurrentGeneration = createAction(
-  '[Game Board] Resize Current Generation',
-  props<{ newSize: number }>()
-);
-
 export const setCurrentGeneration = createAction(
   '[Game Board] Set Current Generation',
   props<{ newGeneration: number[][] }>()
