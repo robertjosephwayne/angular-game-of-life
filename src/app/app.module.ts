@@ -8,11 +8,11 @@ import { MaterialModule } from './material.module';
 import { environment } from '../environments/environment';
 
 import * as fromGameBoard from './store/game-board/game-board.reducer';
-import * as fromGameConfig from './store/game-config/game-config.reducer';
+import * as fromTicker from './store/ticker/ticker.reducer';
 import * as fromPatterns from './store/patterns/patterns.reducer';
 
 import { GameBoardEffects } from './store/game-board/game-board.effects';
-import { GameConfigEffects } from './store/game-config/game-config.effects';
+import { TickerEffects } from './store/ticker/ticker.effects';
 import { PatternsEffects } from './store/patterns/patterns.effects';
 
 import { AppComponent } from './app.component';
@@ -39,7 +39,7 @@ import { PatternsComponent } from './components/game-config/patterns/patterns.co
     BrowserModule,
     StoreModule.forRoot({
       gameBoard: fromGameBoard.gameBoardReducer,
-      gameConfig: fromGameConfig.gameConfigReducer,
+      ticker: fromTicker.tickerReducer,
       patterns: fromPatterns.patternsReducer
     }),
     StoreDevtoolsModule.instrument({
@@ -50,7 +50,7 @@ import { PatternsComponent } from './components/game-config/patterns/patterns.co
     MaterialModule,
     EffectsModule.forRoot([
       GameBoardEffects,
-      GameConfigEffects,
+      TickerEffects,
       PatternsEffects
     ])
   ],
