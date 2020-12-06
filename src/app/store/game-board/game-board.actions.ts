@@ -38,3 +38,7 @@ export const activateRandomLife = createAction(
 export const disableRandomLife = createAction(
   '[Game Config] Disable Random Life'
 );
+
+export const autoTick = createAction(
+  '[Ticker Effect] Auto Tick'
+);
