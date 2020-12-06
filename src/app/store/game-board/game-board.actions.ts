@@ -22,3 +22,11 @@ export const setCurrentGeneration = createAction(
   '[Game Board] Set Current Generation',
   props<{ newGeneration: number[][] }>()
 );
+
+export const zoomIn = createAction(
+  '[Game Config] Zoom In'
+);
+
+export const zoomOut = createAction(
+  '[Game Config] Zoom Out'
+);
