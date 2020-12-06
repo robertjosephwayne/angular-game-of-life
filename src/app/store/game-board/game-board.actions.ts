@@ -4,10 +4,6 @@ export const tick = createAction(
   '[Game Board] Tick'
 );
 
-export const addRandomLiveCell = createAction(
-  '[Game Board] Add Random Live Cell'
-);
-
 export const toggleCellLife = createAction(
   '[Game Board Component] Toggle Cell Life',
   props<{ rowIndex: number, columnIndex: number }>()
