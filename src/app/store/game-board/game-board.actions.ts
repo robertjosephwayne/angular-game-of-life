@@ -10,7 +10,7 @@ export const toggleCellLife = createAction(
 );
 
 export const setCurrentGeneration = createAction(
-  '[Game Board] Set Current Generation',
+  '[Patterns Component] Set Current Generation',
   props<{ newGeneration: number[][] }>()
 );
 
