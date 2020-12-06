@@ -1,66 +1,66 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import * as GameConfigActions from './game-config.actions';
+import * as TickerActions from './ticker.actions';
 
 export interface State {
   maxTickInterval: number;
   tickInterval: number;
-  ticker: any;
+  activeTicker: any;
   randomLifeActive: boolean;
 }
 
 export const initialState: State = {
   maxTickInterval: 1000,
   tickInterval: 500,
-  ticker: null,
+  activeTicker: null,
   randomLifeActive: false
 };
 
-const _gameConfigReducer = createReducer(
+const _tickerReducer = createReducer(
   initialState,
 
-  on(GameConfigActions.setTicker, (state, { newTicker }) => {
+  on(TickerActions.setTicker, (state, { newTicker }) => {
     return {
       ...state,
-      ticker: newTicker
+      activeTicker: newTicker
     };
   }),
 
-  on(GameConfigActions.clearTicker, (state) => {
+  on(TickerActions.clearTicker, (state) => {
     return {
       ...state,
-      ticker: null
+      activeTicker: null
     }
   }),
 
-  on(GameConfigActions.setTickInterval, (state, { newTickInterval }) => {
+  on(TickerActions.setTickInterval, (state, { newTickInterval }) => {
     return {
       ...state,
       tickInterval: newTickInterval,
     };
   }),
 
-  on(GameConfigActions.resetTickInterval, (state) => {
+  on(TickerActions.resetTickInterval, (state) => {
     return {
       ...state,
       tickInterval: initialState.tickInterval
     };
   }),
 
-  on(GameConfigActions.emptyGenerationCheck, (state) => {
+  on(TickerActions.emptyGenerationCheck, (state) => {
     return {
       ...state
     };
   }),
 
-  on(GameConfigActions.activateRandomLife, (state) => {
+  on(TickerActions.activateRandomLife, (state) => {
     return {
       ...state,
       randomLifeActive: true
     };
   }),
 
-  on(GameConfigActions.disableRandomLife, (state) => {
+  on(TickerActions.disableRandomLife, (state) => {
     return {
       ...state,
       randomLifeActive: false
@@ -68,6 +68,6 @@ const _gameConfigReducer = createReducer(
   })
 );
 
-export function gameConfigReducer(state: State, action: Action) {
-  return _gameConfigReducer(state, action);
+export function tickerReducer(state: State, action: Action) {
+  return _tickerReducer(state, action);
 }

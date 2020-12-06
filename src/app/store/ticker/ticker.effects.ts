@@ -4,42 +4,42 @@ import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
 import * as GameBoardActions from '../game-board/game-board.actions';
-import * as GameConfigActions from './game-config.actions';
+import * as TickerActions from './ticker.actions';
 
 import * as fromApp from '../app.reducer';
 
 @Injectable()
-export class GameConfigEffects {
+export class TickerEffects {
 
   setTickInterval$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config] Start Ticking'),
-    withLatestFrom(this.store.select('gameConfig')),
-    map(([action, gameConfigState]) => {
-      clearInterval(gameConfigState.ticker);
+    withLatestFrom(this.store.select('ticker')),
+    map(([action, tickerState]) => {
+      clearInterval(tickerState.activeTicker);
       const ticker = setInterval(() => {
         this.store.dispatch(GameBoardActions.tick());
-        this.store.dispatch(GameConfigActions.emptyGenerationCheck());
-      }, gameConfigState.tickInterval);
-      return GameConfigActions.setTicker({ newTicker: ticker });
+        this.store.dispatch(TickerActions.emptyGenerationCheck());
+      }, tickerState.tickInterval);
+      return TickerActions.setTicker({ newTicker: ticker });
     })
   ));
 
   clearTickInterval$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config] Stop Ticking'),
-    withLatestFrom(this.store.select('gameConfig')),
-    map(([action, gameConfigState]) => {
-      clearInterval(gameConfigState.ticker);
-      return GameConfigActions.clearTicker();
+    withLatestFrom(this.store.select('ticker')),
+    map(([action, tickerState]) => {
+      clearInterval(tickerState.activeTicker);
+      return TickerActions.clearTicker();
     })
   ));
 
   emptyGenerationCheck$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config] Empty Generation Check'),
-    withLatestFrom(this.store.select('gameConfig')),
+    withLatestFrom(this.store.select('ticker')),
     withLatestFrom(this.store.select('gameBoard')),
-    map(([[action, gameConfigState], gameBoardState]) => {
-      if (!(gameBoardState.liveCells || gameConfigState.randomLifeActive)) {
-        return GameConfigActions.stopTicking();
+    map(([[action, tickerState], gameBoardState]) => {
+      if (!(gameBoardState.liveCells || tickerState.randomLifeActive)) {
+        return TickerActions.stopTicking();
       }
       return { type: 'Empty Action' };
     })

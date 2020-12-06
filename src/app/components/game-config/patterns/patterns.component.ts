@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import * as GameConfigActions from '../../../store/game-config/game-config.actions';
+import * as TickerActions from '../../../store/ticker/ticker.actions';
 import * as PatternsActions from '../../../store/patterns/patterns.actions';
 
 import * as fromApp from '../../../store/app.reducer';
@@ -33,7 +33,7 @@ export class PatternsComponent implements OnInit, OnDestroy {
   }
 
   handlePatternSelect(patternName: string): void {
-    this.store.dispatch(GameConfigActions.stopTicking());
+    this.store.dispatch(TickerActions.stopTicking());
     this.store.dispatch(PatternsActions.setSelectedPattern({ patternName }));
   }
 

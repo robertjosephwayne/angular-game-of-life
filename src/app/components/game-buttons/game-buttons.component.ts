@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import * as GameBoardActions from '../../store/game-board/game-board.actions';
-import * as GameConfigActions from '../../store/game-config/game-config.actions';
+import * as TickerActions from '../../store/ticker/ticker.actions';
 import * as PatternsActions from '../../store/patterns/patterns.actions';
 
 import * as fromApp from '../../store/app.reducer';
@@ -15,12 +15,12 @@ import * as fromApp from '../../store/app.reducer';
 })
 export class GameButtonsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
-  gameConfigSub: Subscription;
+  tickerSub: Subscription;
   currentGeneration: number[][];
   generationCount: number;
   minGridSize: number;
   maxGridSize: number;
-  ticker: any;
+  activeTicker: any;
   randomLifeActive: boolean;
   liveCells: number;
 
@@ -30,7 +30,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setGameBoardData();
-    this.setGameConfigData();
+    this.setTickerData();
   }
 
   setGameBoardData(): void {
@@ -43,9 +43,9 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     });
   }
 
-  setGameConfigData(): void {
-    this.gameConfigSub = this.store.select('gameConfig').subscribe(state => {
-      this.ticker = state.ticker;
+  setTickerData(): void {
+    this.tickerSub = this.store.select('ticker').subscribe(state => {
+      this.activeTicker = state.activeTicker;
       this.randomLifeActive = state.randomLifeActive;
     });
   }
@@ -57,15 +57,15 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   reset(): void {
     this.stopTicking();
     this.store.dispatch(PatternsActions.resetSelectedPattern());
-    this.store.dispatch(GameConfigActions.resetTickInterval());
+    this.store.dispatch(TickerActions.resetTickInterval());
   }
 
   startTicking(): void {
-    this.store.dispatch(GameConfigActions.startTicking());
+    this.store.dispatch(TickerActions.startTicking());
   }
 
   stopTicking(): void {
-    this.store.dispatch(GameConfigActions.stopTicking());
+    this.store.dispatch(TickerActions.stopTicking());
   }
 
   zoomIn(): void {
@@ -77,7 +77,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   get canTick(): boolean {
-    return (this.liveCells || this.randomLifeActive) && !this.ticker;
+    return (this.liveCells || this.randomLifeActive) && !this.activeTicker;
   }
 
   get canZoomIn(): boolean {
@@ -98,7 +98,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();
-    this.gameConfigSub.unsubscribe();
+    this.tickerSub.unsubscribe();
   }
-
 }

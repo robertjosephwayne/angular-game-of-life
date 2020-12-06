@@ -12,9 +12,9 @@ export class GameBoardEffects {
 
   addRandomLiveCells$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Board] Tick'),
-    withLatestFrom(this.store.select('gameConfig')),
-    map(([action, gameConfigState]) => {
-      if (gameConfigState.randomLifeActive) {
+    withLatestFrom(this.store.select('ticker')),
+    map(([action, tickerState]) => {
+      if (tickerState.randomLifeActive) {
         return GameBoardActions.addRandomLiveCell();
       }
       return { type: 'Empty Action' };
