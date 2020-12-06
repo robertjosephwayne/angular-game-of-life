@@ -22,13 +22,6 @@ export class GameBoardEffects {
     })
   ));
 
-  incrementGenerationCount$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Board] Tick'),
-    map(() => {
-      return GameStatsActions.incrementGenerationCount();
-    })
-  ));
-
   updateLiveCellCount$ = createEffect(() => this.actions$.pipe(
     ofType(
       '[Game Board] Reset Generation',
