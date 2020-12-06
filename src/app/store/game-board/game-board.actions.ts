@@ -30,3 +30,11 @@ export const zoomIn = createAction(
 export const zoomOut = createAction(
   '[Game Config] Zoom Out'
 );
+
+export const activateRandomLife = createAction(
+  '[Game Config] Activate Random Life'
+);
+
+export const disableRandomLife = createAction(
+  '[Game Config] Disable Random Life'
+);

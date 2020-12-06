@@ -6,14 +6,12 @@ export interface State {
   maxTickInterval: number;
   tickInterval: number;
   activeTicker: any;
-  randomLifeActive: boolean;
 }
 
 export const initialState: State = {
   maxTickInterval: 1000,
   tickInterval: 500,
-  activeTicker: null,
-  randomLifeActive: false
+  activeTicker: null
 };
 
 const _tickerReducer = createReducer(
@@ -50,20 +48,6 @@ const _tickerReducer = createReducer(
   on(TickerActions.emptyGenerationCheck, (state) => {
     return {
       ...state
-    };
-  }),
-
-  on(TickerActions.activateRandomLife, (state) => {
-    return {
-      ...state,
-      randomLifeActive: true
-    };
-  }),
-
-  on(TickerActions.disableRandomLife, (state) => {
-    return {
-      ...state,
-      randomLifeActive: false
     };
   })
 );

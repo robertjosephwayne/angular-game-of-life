@@ -35,10 +35,9 @@ export class TickerEffects {
 
   emptyGenerationCheck$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config] Empty Generation Check'),
-    withLatestFrom(this.store.select('ticker')),
     withLatestFrom(this.store.select('gameBoard')),
-    map(([[action, tickerState], gameBoardState]) => {
-      if (!(gameBoardState.liveCells || tickerState.randomLifeActive)) {
+    map(([action, gameBoardState]) => {
+      if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
         return TickerActions.stopTicking();
       }
       return { type: 'Empty Action' };

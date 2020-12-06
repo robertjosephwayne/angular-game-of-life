@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
+import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as TickerActions from '../../store/ticker/ticker.actions';
 
 import * as fromApp from '../../store/app.reducer';
@@ -12,6 +13,7 @@ import * as fromApp from '../../store/app.reducer';
   styleUrls: ['./game-config.component.css']
 })
 export class GameConfigComponent implements OnInit, OnDestroy {
+  gameBoardSub: Subscription;
   tickerSub: Subscription;
   tickInterval: number;
   maxTickInterval: number;
@@ -26,12 +28,17 @@ export class GameConfigComponent implements OnInit, OnDestroy {
     this.setTickerData();
   }
 
+  setGameBoardData(): void {
+    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+      this.randomLifeActive = state.randomLifeActive;
+    });
+  }
+
   setTickerData(): void {
     this.tickerSub = this.store.select('ticker').subscribe(state => {
       this.maxTickInterval = state.maxTickInterval;
       this.activeTicker = state.activeTicker;
       this.tickInterval = state.tickInterval;
-      this.randomLifeActive = state.randomLifeActive;
     });
   }
 
@@ -43,9 +50,9 @@ export class GameConfigComponent implements OnInit, OnDestroy {
 
   handleRandomLifeToggle(randomLifeEnabled: boolean): void {
     if (randomLifeEnabled) {
-      this.store.dispatch(TickerActions.activateRandomLife());
+      this.store.dispatch(GameBoardActions.activateRandomLife());
     } else {
-      this.store.dispatch(TickerActions.disableRandomLife());
+      this.store.dispatch(GameBoardActions.disableRandomLife());
     }
   }
 
@@ -58,6 +65,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.gameBoardSub.unsubscribe();
     this.tickerSub.unsubscribe();
   }
 }

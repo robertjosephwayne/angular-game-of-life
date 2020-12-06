@@ -40,13 +40,13 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
       this.liveCells = state.liveCells;
       this.minGridSize = state.minGridSize;
       this.maxGridSize = state.maxGridSize;
+      this.randomLifeActive = state.randomLifeActive;
     });
   }
 
   setTickerData(): void {
     this.tickerSub = this.store.select('ticker').subscribe(state => {
       this.activeTicker = state.activeTicker;
-      this.randomLifeActive = state.randomLifeActive;
     });
   }
 

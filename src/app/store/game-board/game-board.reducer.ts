@@ -8,6 +8,7 @@ export interface State {
   liveCells: number;
   minGridSize: number;
   maxGridSize: number;
+  randomLifeActive;
 }
 
 export const initialState: State = {
@@ -26,14 +27,15 @@ export const initialState: State = {
   generationCount: 0,
   liveCells: 0,
   minGridSize: 10,
-  maxGridSize: 25
+  maxGridSize: 25,
+  randomLifeActive: false
 };
 
 const _gameBoardReducer = createReducer(
   initialState,
 
   on(GameBoardActions.tick, (state) => {
-    const nextGeneration = getNextGeneration(state.currentGeneration);
+    let nextGeneration = getNextGeneration(state.currentGeneration, state.randomLifeActive);
     const liveCells = countLiveCells(nextGeneration);
     return {
       ...state,
@@ -41,16 +43,6 @@ const _gameBoardReducer = createReducer(
       generationCount: state.generationCount + 1,
       liveCells
     };
-  }),
-
-  on(GameBoardActions.addRandomLiveCell, (state) => {
-    let updatedGeneration = addRandomLife(state.currentGeneration);
-    const liveCells = countLiveCells(updatedGeneration);
-    return {
-      ...state,
-      currentGeneration: updatedGeneration,
-      liveCells
-    }
   }),
 
   on(GameBoardActions.toggleCellLife, (state, { rowIndex, columnIndex }) => {
@@ -106,14 +98,29 @@ const _gameBoardReducer = createReducer(
       liveCells
     };
   }),
+
+  on(GameBoardActions.activateRandomLife, (state) => {
+    return {
+      ...state,
+      randomLifeActive: true
+    };
+  }),
+
+  on(GameBoardActions.disableRandomLife, (state) => {
+    return {
+      ...state,
+      randomLifeActive: false
+    };
+  })
 );
 
 export function gameBoardReducer(state: State, action: Action) {
   return _gameBoardReducer(state, action);
 }
 
-function getNextGeneration(currentGeneration: number[][]) {
+function getNextGeneration(currentGeneration: number[][], randomLifeActive: boolean) {
   const gridSize = currentGeneration.length;
+
   let nextGeneration = [];
 
   for (let i = 0; i < gridSize; i++) {
@@ -122,6 +129,10 @@ function getNextGeneration(currentGeneration: number[][]) {
       const isAlive = isAliveNextGeneration(currentGeneration, i, j);
       nextGeneration[i][j] = isAlive;
     }
+  }
+
+  if (randomLifeActive) {
+    nextGeneration = addRandomLife(nextGeneration);
   }
 
   return nextGeneration;

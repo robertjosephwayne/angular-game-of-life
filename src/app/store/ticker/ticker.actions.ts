@@ -29,11 +29,3 @@ export const resetTickInterval = createAction(
 export const emptyGenerationCheck = createAction(
   '[Game Config] Empty Generation Check'
 );
-
-export const activateRandomLife = createAction(
-  '[Game Config] Activate Random Life'
-);
-
-export const disableRandomLife = createAction(
-  '[Game Config] Disable Random Life'
-);
