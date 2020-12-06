@@ -35,18 +35,18 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+      this.currentGeneration = state.currentGeneration;
       this.generationCount = state.generationCount;
       this.liveCells = state.liveCells;
-    })
+      this.minGridSize = state.minGridSize;
+      this.maxGridSize = state.maxGridSize;
+    });
   }
 
   setGameConfigData(): void {
     this.gameConfigSub = this.store.select('gameConfig').subscribe(state => {
       this.autoTicking = state.autoTicking;
       this.randomLifeActive = state.randomLifeActive;
-      this.gridSize = state.gridSize;
-      this.minGridSize = state.minGridSize;
-      this.maxGridSize = state.maxGridSize;
     });
   }
 
