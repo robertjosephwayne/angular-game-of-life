@@ -11,7 +11,7 @@ import * as fromApp from '../app.reducer';
 export class TickerEffects {
 
   setTickInterval$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Config] Start Ticking'),
+    ofType('[Game Config Component] Start Ticking'),
     withLatestFrom(this.store.select('ticker')),
     map(([action, tickerState]) => {
       clearInterval(tickerState.activeTicker);
