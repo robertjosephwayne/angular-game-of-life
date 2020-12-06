@@ -36,9 +36,9 @@ export class GameConfigEffects {
   emptyGenerationCheck$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config] Empty Generation Check'),
     withLatestFrom(this.store.select('gameConfig')),
-    withLatestFrom(this.store.select('gameStats')),
-    map(([[action, gameConfigState], gameStatsState]) => {
-      if (!(gameStatsState.liveCells || gameConfigState.randomLifeActive)) {
+    withLatestFrom(this.store.select('gameBoard')),
+    map(([[action, gameConfigState], gameBoardState]) => {
+      if (!(gameBoardState.liveCells || gameConfigState.randomLifeActive)) {
         return GameConfigActions.stopTicking();
       }
       return { type: 'Empty Action' };
