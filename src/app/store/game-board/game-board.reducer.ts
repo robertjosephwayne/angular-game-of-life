@@ -6,6 +6,8 @@ export interface State {
   currentGeneration: number[][];
   generationCount: number;
   liveCells: number;
+  minGridSize: number;
+  maxGridSize: number;
 }
 
 export const initialState: State = {
@@ -22,7 +24,9 @@ export const initialState: State = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ],
   generationCount: 0,
-  liveCells: 0
+  liveCells: 0,
+  minGridSize: 10,
+  maxGridSize: 25
 };
 
 const _gameBoardReducer = createReducer(
