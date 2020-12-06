@@ -15,6 +15,7 @@ import * as fromApp from '../../store/app.reducer';
   styleUrls: ['./game-buttons.component.css']
 })
 export class GameButtonsComponent implements OnInit, OnDestroy {
+  gameBoardSub: Subscription;
   gameConfigSub: Subscription;
   gameStatsSub: Subscription;
   generationCount: number;
@@ -30,8 +31,15 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.setGameBoardData();
     this.setGameConfigData();
     this.setGameStatsData();
+  }
+
+  setGameBoardData(): void {
+    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+      this.generationCount = state.generationCount;
+    })
   }
 
   setGameConfigData(): void {
@@ -47,7 +55,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   setGameStatsData(): void {
     this.gameStatsSub = this.store.select('gameStats').subscribe(state => {
       this.liveCells = state.liveCells;
-      this.generationCount = state.generationCount;
     });
   }
 
@@ -95,6 +102,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.gameBoardSub.unsubscribe();
     this.gameConfigSub.unsubscribe();
     this.gameStatsSub.unsubscribe();
   }
