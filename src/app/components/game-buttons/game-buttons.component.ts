@@ -69,11 +69,11 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   zoomIn(): void {
-    this.store.dispatch(GameConfigActions.zoomIn());
+    this.store.dispatch(GameBoardActions.zoomIn());
   }
 
   zoomOut(): void {
-    this.store.dispatch(GameConfigActions.zoomOut());
+    this.store.dispatch(GameBoardActions.zoomOut());
   }
 
   get canTick(): boolean {
