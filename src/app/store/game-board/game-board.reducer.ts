@@ -4,6 +4,7 @@ import * as GameBoardActions from './game-board.actions';
 
 export interface State {
   currentGeneration: number[][];
+  generationCount: number;
 }
 
 export const initialState: State = {
@@ -18,7 +19,8 @@ export const initialState: State = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  ]
+  ],
+  generationCount: 0
 };
 
 const _gameBoardReducer = createReducer(
