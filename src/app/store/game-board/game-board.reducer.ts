@@ -30,7 +30,8 @@ const _gameBoardReducer = createReducer(
     const nextGeneration = getNextGeneration(state.currentGeneration);
     return {
       ...state,
-      currentGeneration: nextGeneration
+      currentGeneration: nextGeneration,
+      generationCount: state.generationCount + 1
     };
   }),
 
