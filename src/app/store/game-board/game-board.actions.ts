@@ -9,7 +9,7 @@ export const addRandomLiveCell = createAction(
 );
 
 export const toggleCellLife = createAction(
-  '[Game Board] Toggle Cell Life',
+  '[Game Board Component] Toggle Cell Life',
   props<{ rowIndex: number, columnIndex: number }>()
 );
 
