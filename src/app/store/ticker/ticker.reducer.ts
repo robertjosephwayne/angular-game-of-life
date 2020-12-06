@@ -43,12 +43,6 @@ const _tickerReducer = createReducer(
       ...state,
       tickInterval: initialState.tickInterval
     };
-  }),
-
-  on(TickerActions.emptyGenerationCheck, (state) => {
-    return {
-      ...state
-    };
   })
 );
 
