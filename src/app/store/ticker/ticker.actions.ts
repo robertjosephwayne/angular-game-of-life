@@ -26,6 +26,6 @@ export const resetTickInterval = createAction(
   '[Game Config] Reset Tick Interval'
 );
 
-export const emptyGenerationCheck = createAction(
-  '[Game Config] Empty Generation Check'
+export const autoTick = createAction(
+  '[Ticker Effect] Auto Tick'
 );
