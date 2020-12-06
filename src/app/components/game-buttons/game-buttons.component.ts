@@ -92,6 +92,10 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     return this.generationCount > 0;
   }
 
+  get gridSize(): number {
+    return this.currentGeneration.length;
+  }
+
   ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();
     this.gameConfigSub.unsubscribe();
