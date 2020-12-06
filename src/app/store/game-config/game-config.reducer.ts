@@ -8,9 +8,7 @@ export interface State {
   tickInterval: number;
   ticker: any;
   randomLifeActive: boolean;
-  minGridSize: number;
-  maxGridSize: number;
-  gridSize: number;
+
 }
 
 export const initialState: State = {
@@ -18,10 +16,7 @@ export const initialState: State = {
   autoTicking: false,
   tickInterval: 500,
   ticker: null,
-  randomLifeActive: false,
-  minGridSize: 10,
-  maxGridSize: 25,
-  gridSize: 10
+  randomLifeActive: false
 };
 
 const _gameConfigReducer = createReducer(
