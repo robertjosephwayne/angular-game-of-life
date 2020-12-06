@@ -9,25 +9,25 @@ export const toggleCellLife = createAction(
   props<{ rowIndex: number, columnIndex: number }>()
 );
 
-export const setCurrentGeneration = createAction(
-  '[Patterns Component] Set Current Generation',
-  props<{ newGeneration: number[][] }>()
-);
-
 export const zoomIn = createAction(
-  '[Game Config] Zoom In'
+  '[Game Buttons Component] Zoom In'
 );
 
 export const zoomOut = createAction(
-  '[Game Config] Zoom Out'
+  '[Game Buttons Component] Zoom Out'
 );
 
 export const activateRandomLife = createAction(
-  '[Game Config] Activate Random Life'
+  '[Game Config Component] Activate Random Life'
 );
 
 export const disableRandomLife = createAction(
-  '[Game Config] Disable Random Life'
+  '[Game Config Component] Disable Random Life'
+);
+
+export const setCurrentGeneration = createAction(
+  '[Patterns Component] Set Current Generation',
+  props<{ newGeneration: number[][] }>()
 );
 
 export const autoTick = createAction(
