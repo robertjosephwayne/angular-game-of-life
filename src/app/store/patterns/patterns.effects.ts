@@ -12,8 +12,8 @@ export class PatternsEffects {
 
   updateCurrentGeneration$ = createEffect(() => this.actions$.pipe(
     ofType(
-      '[Patterns] Set Selected Pattern',
-      '[Patterns] Reset Selected Pattern'
+      '[Patterns Component] Set Selected Pattern',
+      '[Game Buttons Component] Reset Selected Pattern'
     ),
     withLatestFrom(this.store.select('patterns')),
     withLatestFrom(this.store.select('gameBoard')),
