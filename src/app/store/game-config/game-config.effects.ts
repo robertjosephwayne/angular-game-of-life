@@ -45,20 +45,6 @@ export class GameConfigEffects {
     })
   ));
 
-  // resizeCurrentGeneration$ = createEffect(() => this.actions$.pipe(
-  //   ofType(
-  //     '[Game Config] Zoom In',
-  //     '[Game Config] Zoom Out',
-  //     '[Game Config] Reset Grid Size'
-  //   ),
-  //   withLatestFrom(this.store.select('gameConfig')),
-  //   map(([action, gameConfigState]) => {
-  //     return GameBoardActions.resizeCurrentGeneration({
-  //       newSize: gameConfigState.gridSize
-  //     });
-  //   })
-  // ));
-
   constructor(
     private actions$: Actions,
     private store: Store<fromApp.AppState>
