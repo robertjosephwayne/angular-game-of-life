@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 
 import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as GameConfigActions from '../../store/game-config/game-config.actions';
-import * as GameStatsActions from '../../store/game-stats/game-stats.actions';
 import * as PatternsActions from '../../store/patterns/patterns.actions';
 
 import * as fromApp from '../../store/app.reducer';
@@ -17,7 +16,6 @@ import * as fromApp from '../../store/app.reducer';
 export class GameButtonsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
   gameConfigSub: Subscription;
-  gameStatsSub: Subscription;
   generationCount: number;
   minGridSize: number;
   maxGridSize: number;
@@ -33,12 +31,12 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setGameBoardData();
     this.setGameConfigData();
-    this.setGameStatsData();
   }
 
   setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.generationCount = state.generationCount;
+      this.liveCells = state.liveCells;
     })
   }
 
@@ -52,12 +50,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     });
   }
 
-  setGameStatsData(): void {
-    this.gameStatsSub = this.store.select('gameStats').subscribe(state => {
-      this.liveCells = state.liveCells;
-    });
-  }
-
   tick(): void {
     this.store.dispatch(GameBoardActions.tick());
   }
@@ -66,7 +58,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     this.stopTicking();
     this.store.dispatch(PatternsActions.resetSelectedPattern());
     this.store.dispatch(GameConfigActions.resetTickInterval());
-    this.store.dispatch(GameStatsActions.resetGenerationCount());
   }
 
   startTicking(): void {
@@ -104,7 +95,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.gameBoardSub.unsubscribe();
     this.gameConfigSub.unsubscribe();
-    this.gameStatsSub.unsubscribe();
   }
 
 }
