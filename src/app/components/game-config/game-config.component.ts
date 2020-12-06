@@ -13,9 +13,9 @@ import * as fromApp from '../../store/app.reducer';
 })
 export class GameConfigComponent implements OnInit, OnDestroy {
   gameConfigSub: Subscription;
-  autoTicking: boolean;
   tickInterval: number;
   maxTickInterval: number;
+  ticker: any;
   randomLifeActive: boolean;
 
   constructor(
@@ -29,7 +29,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   setGameConfigData(): void {
     this.gameConfigSub = this.store.select('gameConfig').subscribe(state => {
       this.maxTickInterval = state.maxTickInterval;
-      this.autoTicking = state.autoTicking;
+      this.ticker = state.ticker;
       this.tickInterval = state.tickInterval;
       this.randomLifeActive = state.randomLifeActive;
     });
@@ -38,7 +38,7 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   handleSpeedChange(tickSpeed: number): void {
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(GameConfigActions.setTickInterval({ newTickInterval }));
-    if (this.autoTicking) this.store.dispatch(GameConfigActions.startTicking());
+    if (this.ticker) this.store.dispatch(GameConfigActions.startTicking());
   }
 
   handleRandomLifeToggle(randomLifeEnabled: boolean): void {

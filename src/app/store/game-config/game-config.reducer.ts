@@ -4,16 +4,13 @@ import * as GameConfigActions from './game-config.actions';
 
 export interface State {
   maxTickInterval: number;
-  autoTicking: boolean;
   tickInterval: number;
   ticker: any;
   randomLifeActive: boolean;
-
 }
 
 export const initialState: State = {
   maxTickInterval: 1000,
-  autoTicking: false,
   tickInterval: 500,
   ticker: null,
   randomLifeActive: false
@@ -21,20 +18,6 @@ export const initialState: State = {
 
 const _gameConfigReducer = createReducer(
   initialState,
-
-  on(GameConfigActions.startTicking, (state) => {
-    return {
-      ...state,
-      autoTicking: true
-    };
-  }),
-
-  on(GameConfigActions.stopTicking, (state) => {
-    return {
-      ...state,
-      autoTicking: false
-    };
-  }),
 
   on(GameConfigActions.setTicker, (state, { newTicker }) => {
     return {

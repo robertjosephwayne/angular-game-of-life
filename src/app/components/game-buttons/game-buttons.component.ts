@@ -20,7 +20,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   generationCount: number;
   minGridSize: number;
   maxGridSize: number;
-  autoTicking: boolean;
+  ticker: any;
   randomLifeActive: boolean;
   liveCells: number;
 
@@ -45,7 +45,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   setGameConfigData(): void {
     this.gameConfigSub = this.store.select('gameConfig').subscribe(state => {
-      this.autoTicking = state.autoTicking;
+      this.ticker = state.ticker;
       this.randomLifeActive = state.randomLifeActive;
     });
   }
@@ -77,7 +77,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   get canTick(): boolean {
-    return (this.liveCells || this.randomLifeActive) && !this.autoTicking;
+    return (this.liveCells || this.randomLifeActive) && !this.ticker;
   }
 
   get canZoomIn(): boolean {
