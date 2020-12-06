@@ -16,10 +16,10 @@ export class PatternsEffects {
       '[Patterns] Reset Selected Pattern'
     ),
     withLatestFrom(this.store.select('patterns')),
-    withLatestFrom(this.store.select('gameConfig')),
-    map(([[action, patternsState], gameConfigState]) => {
+    withLatestFrom(this.store.select('gameBoard')),
+    map(([[action, patternsState], gameBoardState]) => {
       const selectedPattern = patternsState.selectedPattern;
-      const gridSize = gameConfigState.gridSize;
+      const gridSize = gameBoardState.currentGeneration.length;
       const newGeneration = getSelectedPattern(selectedPattern, gridSize);
       return GameBoardActions.setCurrentGeneration({ newGeneration });
     })
