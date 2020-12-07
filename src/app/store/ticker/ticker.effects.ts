@@ -59,6 +59,13 @@ export class TickerEffects {
     })
   ));
 
+  manualTick$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Buttons Component] Manual Tick'),
+    map(() => {
+      return GameBoardActions.nextGeneration();
+    })
+  ));
+
   constructor(
     private actions$: Actions,
     private store: Store<fromApp.AppState>
