@@ -4,11 +4,19 @@ import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
 import * as GameBoardActions from '../game-board/game-board.actions';
+import * as PatternsActions from '../patterns/patterns.actions';
 
 import * as fromApp from '../app.reducer';
 
 @Injectable()
 export class PatternsEffects {
+
+  resetSelectedPattern$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Buttons Component] Reset'),
+    map(() => {
+      return PatternsActions.resetSelectedPattern();
+    })
+  ));
 
   updateCurrentGeneration$ = createEffect(() => this.actions$.pipe(
     ofType(
