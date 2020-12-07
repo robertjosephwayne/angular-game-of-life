@@ -24,6 +24,8 @@ export class TickerEffects {
     map(([action, tickerState]) => {
       if (tickerState.activeTicker) {
         return TickerActions.updateActiveTickInterval();
+      } else {
+        return { type: 'Empty Action' };
       }
     })
   ));
