@@ -17,6 +17,10 @@ export const zoomOut = createAction(
   '[Game Buttons Component] Zoom Out'
 );
 
+export const reset = createAction(
+  '[Game Buttons Component] Reset'
+);
+
 export const activateRandomLife = createAction(
   '[Game Config Component] Activate Random Life'
 );
@@ -28,8 +32,4 @@ export const disableRandomLife = createAction(
 export const setCurrentGeneration = createAction(
   '[Patterns Component] Set Current Generation',
   props<{ newGeneration: number[][] }>()
-);
-
-export const autoTick = createAction(
-  '[Ticker Effect] Auto Tick'
 );
