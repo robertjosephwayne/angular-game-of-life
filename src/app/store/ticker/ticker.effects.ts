@@ -3,12 +3,20 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
+import * as GameBoardActions from '../game-board/game-board.actions';
 import * as TickerActions from './ticker.actions';
 
 import * as fromApp from '../app.reducer';
 
 @Injectable()
 export class TickerEffects {
+
+  resetTickInterval$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Buttons Component] Reset'),
+    map(() => {
+      return TickerActions.resetTickInterval();
+    })
+  ));
 
   setTickInterval$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config Component] Start Ticking'),
