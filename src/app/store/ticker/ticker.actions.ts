@@ -1,11 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
 export const resetTickInterval = createAction(
-  '[Game Buttons Component] Reset Tick Interval'
+  '[Ticker Effect] Reset Tick Interval'
 );
 
 export const startTicking = createAction(
   '[Game Config Component] Start Ticking',
+);
+
+export const updateActiveTickInterval = createAction(
+  '[Ticker Effect] Update Active Tick Interval'
 );
 
 export const stopTicking = createAction(
