@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-export const tick = createAction(
-  '[Game Board] Tick'
+export const nextGeneration = createAction(
+  '[Ticker Effect] Next Generation'
 );
 
 export const toggleCellLife = createAction(
