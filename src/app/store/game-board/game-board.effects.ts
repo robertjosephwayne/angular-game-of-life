@@ -11,18 +11,6 @@ import * as fromApp from '../app.reducer';
 @Injectable()
 export class GameBoardEffects {
 
-  autoTick$ = createEffect(() => this.actions$.pipe(
-    ofType('[Ticker Effect] Auto Tick'),
-    withLatestFrom(this.store.select('gameBoard')),
-    map(([action, gameBoardState]) => {
-      if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
-        return TickerActions.stopTicking();
-      } else {
-        return GameBoardActions.tick();
-      }
-    })
-  ));
-
   constructor(
     private actions$: Actions,
     private store: Store<fromApp.AppState>
