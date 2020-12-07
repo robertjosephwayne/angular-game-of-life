@@ -49,8 +49,7 @@ export class TickerEffects {
     map(([action, gameBoardState]) => {
       if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
         return TickerActions.stopTicking();
-      }
-      else {
+      } else {
         return GameBoardActions.nextGeneration();
       }
     })
