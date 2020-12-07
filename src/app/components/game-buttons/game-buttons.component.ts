@@ -63,7 +63,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   stopTicking(): void {
-    this.store.dispatch(TickerActions.stopTicking());
+    this.store.dispatch(TickerActions.pause());
   }
 
   zoomIn(): void {
