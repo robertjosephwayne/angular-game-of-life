@@ -29,3 +29,7 @@ export const clearTicker = createAction(
 export const autoTick = createAction(
   '[Ticker Effect] Auto Tick'
 );
+
+export const manualTick = createAction(
+  '[Game Buttons Component] Manual Tick'
+);
