@@ -34,17 +34,6 @@ export const initialState: State = {
 const _gameBoardReducer = createReducer(
   initialState,
 
-  on(GameBoardActions.nextGeneration, (state) => {
-    let nextGeneration = getNextGeneration(state.currentGeneration, state.randomLifeActive);
-    const liveCells = countLiveCells(nextGeneration);
-    return {
-      ...state,
-      currentGeneration: nextGeneration,
-      generationCount: state.generationCount + 1,
-      liveCells
-    };
-  }),
-
   on(GameBoardActions.toggleCellLife, (state, { rowIndex, columnIndex }) => {
     const updatedGeneration = toggleCellLife(state.currentGeneration, rowIndex, columnIndex);
     const liveCells = countLiveCells(updatedGeneration);
@@ -53,16 +42,6 @@ const _gameBoardReducer = createReducer(
       currentGeneration: updatedGeneration,
       liveCells
     };
-  }),
-
-  on(GameBoardActions.setCurrentGeneration, (state, { newGeneration }) => {
-    const liveCells = countLiveCells(newGeneration);
-    return {
-      ...state,
-      currentGeneration: newGeneration,
-      generationCount: 0,
-      liveCells
-    }
   }),
 
   on(GameBoardActions.zoomIn, (state) => {
@@ -101,7 +80,29 @@ const _gameBoardReducer = createReducer(
       ...state,
       randomLifeActive: false
     };
+  }),
+
+  on(GameBoardActions.setCurrentGeneration, (state, { newGeneration }) => {
+    const liveCells = countLiveCells(newGeneration);
+    return {
+      ...state,
+      currentGeneration: newGeneration,
+      generationCount: 0,
+      liveCells
+    }
+  }),
+
+  on(GameBoardActions.nextGeneration, (state) => {
+    let nextGeneration = getNextGeneration(state.currentGeneration, state.randomLifeActive);
+    const liveCells = countLiveCells(nextGeneration);
+    return {
+      ...state,
+      currentGeneration: nextGeneration,
+      generationCount: state.generationCount + 1,
+      liveCells
+    };
   })
+
 );
 
 export function gameBoardReducer(state: State, action: Action) {

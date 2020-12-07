@@ -1,9 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-export const nextGeneration = createAction(
-  '[Ticker Effect] Next Generation'
-);
-
 export const toggleCellLife = createAction(
   '[Game Board Component] Toggle Cell Life',
   props<{ rowIndex: number, columnIndex: number }>()
@@ -32,4 +28,8 @@ export const disableRandomLife = createAction(
 export const setCurrentGeneration = createAction(
   '[Patterns Component] Set Current Generation',
   props<{ newGeneration: number[][] }>()
+);
+
+export const nextGeneration = createAction(
+  '[Ticker Effect] Next Generation'
 );

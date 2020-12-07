@@ -17,6 +17,13 @@ export const initialState: State = {
 const _tickerReducer = createReducer(
   initialState,
 
+  on(TickerActions.setTickInterval, (state, { newTickInterval }) => {
+    return {
+      ...state,
+      tickInterval: newTickInterval,
+    };
+  }),
+
   on(TickerActions.setTicker, (state, { newTicker }) => {
     return {
       ...state,
@@ -31,19 +38,13 @@ const _tickerReducer = createReducer(
     }
   }),
 
-  on(TickerActions.setTickInterval, (state, { newTickInterval }) => {
-    return {
-      ...state,
-      tickInterval: newTickInterval,
-    };
-  }),
-
   on(TickerActions.resetTickInterval, (state) => {
     return {
       ...state,
       tickInterval: initialState.tickInterval
     };
   })
+
 );
 
 export function tickerReducer(state: State, action: Action) {
