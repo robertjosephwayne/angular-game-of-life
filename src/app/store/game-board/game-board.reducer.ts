@@ -34,7 +34,7 @@ export const initialState: State = {
 const _gameBoardReducer = createReducer(
   initialState,
 
-  on(GameBoardActions.tick, (state) => {
+  on(GameBoardActions.nextGeneration, (state) => {
     let nextGeneration = getNextGeneration(state.currentGeneration, state.randomLifeActive);
     const liveCells = countLiveCells(nextGeneration);
     return {
