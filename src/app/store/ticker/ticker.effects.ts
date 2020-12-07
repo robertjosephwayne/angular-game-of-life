@@ -56,14 +56,17 @@ export class TickerEffects {
   ));
 
   stopTicking$ = createEffect(() => this.actions$.pipe(
-    ofType('[Patterns Component] Set Current Generation'),
+    ofType(
+      '[Patterns Component] Set Current Generation',
+      '[Game Buttons Component] Pause'
+    ),
     map(() => {
       return TickerActions.stopTicking();
     })
   ));
 
   clearTickInterval$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Config] Stop Ticking'),
+    ofType('[Ticker Effect] Stop Ticking'),
     withLatestFrom(this.store.select('ticker')),
     map(([action, tickerState]) => {
       clearInterval(tickerState.activeTicker);
