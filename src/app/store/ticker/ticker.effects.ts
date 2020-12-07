@@ -30,7 +30,7 @@ export class TickerEffects {
 
   startTicking$ = createEffect(() => this.actions$.pipe(
     ofType(
-      '[Game Config Component] Start Ticking',
+      '[Game Buttons Component] Start Ticking',
       '[Ticker Effect] Update Active Tick Interval'
     ),
     withLatestFrom(this.store.select('ticker')),
