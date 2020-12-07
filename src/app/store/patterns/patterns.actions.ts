@@ -6,5 +6,5 @@ export const setSelectedPattern = createAction(
 );
 
 export const resetSelectedPattern = createAction(
-  '[Game Buttons Component] Reset Selected Pattern'
+  '[Patterns Effect] Reset Selected Pattern'
 );
