@@ -30,6 +30,26 @@ export class TickerEffects {
     })
   ));
 
+  autoTick$ = createEffect(() => this.actions$.pipe(
+    ofType('[Ticker Effect] Auto Tick'),
+    withLatestFrom(this.store.select('gameBoard')),
+    map(([action, gameBoardState]) => {
+      if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
+        return TickerActions.stopTicking();
+      }
+      else {
+        return GameBoardActions.nextGeneration();
+      }
+    })
+  ));
+
+  stopTicking$ = createEffect(() => this.actions$.pipe(
+    ofType('[Patterns Component] Set Current Generation'),
+    map(() => {
+      return TickerActions.stopTicking();
+    })
+  ));
+
   clearTickInterval$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Config] Stop Ticking'),
     withLatestFrom(this.store.select('ticker')),
