@@ -56,8 +56,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   reset(): void {
     this.store.dispatch(GameBoardActions.reset());
-    // this.store.dispatch(PatternsActions.resetSelectedPattern());
-    // this.store.dispatch(TickerActions.resetTickInterval());
   }
 
   startTicking(): void {
