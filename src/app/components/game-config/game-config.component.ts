@@ -45,7 +45,6 @@ export class GameConfigComponent implements OnInit, OnDestroy {
   handleSpeedChange(tickSpeed: number): void {
     const newTickInterval = this.getTickInterval(tickSpeed);
     this.store.dispatch(TickerActions.setTickInterval({ newTickInterval }));
-    if (this.activeTicker) this.store.dispatch(TickerActions.startTicking());
   }
 
   handleRandomLifeToggle(randomLifeEnabled: boolean): void {
