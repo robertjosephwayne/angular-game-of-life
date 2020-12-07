@@ -5,15 +5,19 @@ export const resetTickInterval = createAction(
 );
 
 export const startTicking = createAction(
-  '[Game Config Component] Start Ticking',
+  '[Game Buttons Component] Start Ticking',
 );
 
 export const updateActiveTickInterval = createAction(
   '[Ticker Effect] Update Active Tick Interval'
 );
 
+export const pause = createAction(
+  '[Game Buttons Component] Pause'
+);
+
 export const stopTicking = createAction(
-  '[Game Config] Stop Ticking'
+  '[Ticker Effect] Stop Ticking'
 );
 
 export const setTickInterval = createAction(
