@@ -19,7 +19,20 @@ export class TickerEffects {
   ));
 
   setTickInterval$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Config Component] Start Ticking'),
+    ofType('[Game Config Component] Set Tick Interval'),
+    withLatestFrom(this.store.select('ticker')),
+    map(([action, tickerState]) => {
+      if (tickerState.activeTicker) {
+        return TickerActions.updateActiveTickInterval();
+      }
+    })
+  ));
+
+  startTicking$ = createEffect(() => this.actions$.pipe(
+    ofType(
+      '[Game Config Component] Start Ticking',
+      '[Ticker Effect] Update Active Tick Interval'
+    ),
     withLatestFrom(this.store.select('ticker')),
     map(([action, tickerState]) => {
       clearInterval(tickerState.activeTicker);
