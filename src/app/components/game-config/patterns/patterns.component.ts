@@ -33,7 +33,6 @@ export class PatternsComponent implements OnInit, OnDestroy {
   }
 
   handlePatternSelect(patternName: string): void {
-    this.store.dispatch(TickerActions.stopTicking());
     this.store.dispatch(PatternsActions.setSelectedPattern({ patternName }));
   }
 
