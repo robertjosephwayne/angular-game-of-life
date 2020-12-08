@@ -7,9 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from './material.module';
 import { environment } from '../environments/environment';
 
-import * as fromGameBoard from './store/game-board/game-board.reducer';
-import * as fromTicker from './store/ticker/ticker.reducer';
-import * as fromPatterns from './store/patterns/patterns.reducer';
+import * as fromApp from './store/app.reducer';
 
 import { GameBoardEffects } from './store/game-board/game-board.effects';
 import { TickerEffects } from './store/ticker/ticker.effects';
@@ -37,11 +35,7 @@ import { PatternsComponent } from './components/game-config/patterns/patterns.co
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({
-      gameBoard: fromGameBoard.gameBoardReducer,
-      ticker: fromTicker.tickerReducer,
-      patterns: fromPatterns.patternsReducer
-    }),
+    StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production
