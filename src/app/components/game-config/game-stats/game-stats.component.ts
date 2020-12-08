@@ -1,18 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import * as fromApp from '../../../store/app.reducer';
+import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
 
 @Component({
   selector: 'app-game-stats',
   templateUrl: './game-stats.component.html',
   styleUrls: ['./game-stats.component.css']
 })
-export class GameStatsComponent implements OnInit, OnDestroy {
-  gameBoardSub: Subscription;
-  currentGeneration: number[][];
-  generationCount: number;
+export class GameStatsComponent implements OnInit {
+  generationCount$: Observable<number>;
+  liveCellCount$: Observable<number>;
 
   constructor(
     private store: Store<fromApp.AppState>

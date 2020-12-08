@@ -1,9 +1,9 @@
 <app-game-counter
-    [label]="'Generation Count'"
-    [count]="generationCount"
-  ></app-game-counter>
+  [label]="'Generation Count'"
+  [count]="generationCount$ | async"
+></app-game-counter>
 
-  <app-game-counter
-    [label]="'Live Cell Count'"
-    [count]="liveCellCount"
-  ></app-game-counter>
+<app-game-counter
+  [label]="'Live Cell Count'"
+  [count]="liveCellCount$ | async"
+></app-game-counter>
