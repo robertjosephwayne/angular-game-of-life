@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
-import * as GameBoardActions from '../game-board/game-board.actions';
 import * as TickerActions from './ticker.actions';
 
 import * as fromApp from '../app.reducer';
