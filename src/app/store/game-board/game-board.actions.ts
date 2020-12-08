@@ -31,5 +31,5 @@ export const setCurrentGeneration = createAction(
 );
 
 export const nextGeneration = createAction(
-  '[Ticker Effect] Next Generation'
+  '[Game Board Effect] Next Generation'
 );
