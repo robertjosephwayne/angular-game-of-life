@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as TickerActions from '../../store/ticker/ticker.actions';
 
 import * as fromApp from '../../store/app.reducer';
+import * as fromGameBoard from '../../store/game-board/game-board.selectors';
 
 @Component({
   selector: 'app-game-buttons',
@@ -16,11 +17,11 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
   tickerSub: Subscription;
   currentGeneration: number[][];
-  generationCount: number;
   minGridSize: number;
   maxGridSize: number;
   activeTicker: any;
   randomLifeActive: boolean;
+  canReset$: Observable<boolean>;
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -34,11 +35,11 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
-      this.generationCount = state.generationCount;
       this.minGridSize = state.minGridSize;
       this.maxGridSize = state.maxGridSize;
       this.randomLifeActive = state.randomLifeActive;
     });
+    this.canReset$ = this.store.select(fromGameBoard.canReset);
   }
 
   setTickerData(): void {
@@ -81,10 +82,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   get canZoomOut(): boolean {
     return this.gridSize < this.maxGridSize;
-  }
-
-  get canReset(): boolean {
-    return this.generationCount > 0;
   }
 
   get gridSize(): number {
