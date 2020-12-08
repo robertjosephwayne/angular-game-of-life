@@ -11,8 +11,8 @@ import * as fromApp from '../../../store/app.reducer';
 })
 export class GameStatsComponent implements OnInit, OnDestroy {
   gameBoardSub: Subscription;
+  currentGeneration: number[][];
   generationCount: number;
-  liveCells: number;
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -24,9 +24,19 @@ export class GameStatsComponent implements OnInit, OnDestroy {
 
   setGameBoardData(): void {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
+      this.currentGeneration = state.currentGeneration;
       this.generationCount = state.generationCount;
-      this.liveCells = state.liveCells;
     });
+  }
+
+  get liveCellCount(): number {
+    let count = 0;
+    for (let row of this.currentGeneration) {
+      for (let cell of row) {
+        count += cell;
+      }
+    }
+    return count;
   }
 
   ngOnDestroy(): void {
