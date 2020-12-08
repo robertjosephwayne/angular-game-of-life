@@ -22,7 +22,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   maxGridSize: number;
   activeTicker: any;
   randomLifeActive: boolean;
-  liveCells: number;
 
   constructor(
     private store: Store<fromApp.AppState>
@@ -37,7 +36,6 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
       this.currentGeneration = state.currentGeneration;
       this.generationCount = state.generationCount;
-      this.liveCells = state.liveCells;
       this.minGridSize = state.minGridSize;
       this.maxGridSize = state.maxGridSize;
       this.randomLifeActive = state.randomLifeActive;
@@ -75,7 +73,7 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   get canTick(): boolean {
-    return (this.liveCells || this.randomLifeActive) && !this.activeTicker;
+    return (this.currentGenerationHasLife || this.randomLifeActive) && !this.activeTicker;
   }
 
   get canZoomIn(): boolean {
@@ -92,6 +90,15 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
 
   get gridSize(): number {
     return this.currentGeneration.length;
+  }
+
+  get currentGenerationHasLife(): boolean {
+    for (let row of this.currentGeneration) {
+      for (let cell of row) {
+        if (cell) return true;
+      }
+    }
+    return false;
   }
 
   ngOnDestroy(): void {
