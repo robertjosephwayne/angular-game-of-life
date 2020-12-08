@@ -5,7 +5,6 @@ import * as GameBoardActions from './game-board.actions';
 export interface State {
   currentGeneration: number[][];
   generationCount: number;
-  liveCells: number;
   minGridSize: number;
   maxGridSize: number;
   randomLifeActive;
@@ -25,7 +24,6 @@ export const initialState: State = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ],
   generationCount: 0,
-  liveCells: 0,
   minGridSize: 10,
   maxGridSize: 25,
   randomLifeActive: false
@@ -36,11 +34,9 @@ const _gameBoardReducer = createReducer(
 
   on(GameBoardActions.toggleCellLife, (state, { rowIndex, columnIndex }) => {
     const updatedGeneration = toggleCellLife(state.currentGeneration, rowIndex, columnIndex);
-    const liveCells = countLiveCells(updatedGeneration);
     return {
       ...state,
-      currentGeneration: updatedGeneration,
-      liveCells
+      currentGeneration: updatedGeneration
     };
   }),
 
@@ -48,11 +44,9 @@ const _gameBoardReducer = createReducer(
     const gridSize = state.currentGeneration.length;
     const newGridSize = Math.max(state.minGridSize, gridSize - 1);
     const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, newGridSize);
-    const liveCells = countLiveCells(currentGenerationResized);
     return {
       ...state,
-      currentGeneration: currentGenerationResized,
-      liveCells
+      currentGeneration: currentGenerationResized
     };
   }),
 
@@ -60,11 +54,9 @@ const _gameBoardReducer = createReducer(
     const gridSize = state.currentGeneration.length;
     const newGridSize = Math.min(state.maxGridSize, gridSize + 1);
     const currentGenerationResized = resizeCurrentGeneration(state.currentGeneration, newGridSize);
-    const liveCells = countLiveCells(currentGenerationResized);
     return {
       ...state,
-      currentGeneration: currentGenerationResized,
-      liveCells
+      currentGeneration: currentGenerationResized
     };
   }),
 
@@ -83,23 +75,19 @@ const _gameBoardReducer = createReducer(
   }),
 
   on(GameBoardActions.setCurrentGeneration, (state, { newGeneration }) => {
-    const liveCells = countLiveCells(newGeneration);
     return {
       ...state,
       currentGeneration: newGeneration,
-      generationCount: 0,
-      liveCells
+      generationCount: 0
     }
   }),
 
   on(GameBoardActions.nextGeneration, (state) => {
     let nextGeneration = getNextGeneration(state.currentGeneration, state.randomLifeActive);
-    const liveCells = countLiveCells(nextGeneration);
     return {
       ...state,
       currentGeneration: nextGeneration,
-      generationCount: state.generationCount + 1,
-      liveCells
+      generationCount: state.generationCount + 1
     };
   })
 
@@ -218,18 +206,4 @@ function addRandomLife(generation: number[][]) {
     updatedGeneration[randomRow][randomColumn] = 1;
     return updatedGeneration;
   }
-}
-
-function countLiveCells(generation: number[][]) {
-  const rows = generation.length;
-  const columns = generation[0].length;
-  let liveCells = 0;
-
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < columns; j++) {
-      liveCells += generation[i][j];
-    }
-  }
-
-  return liveCells;
 }
