@@ -1,6 +1,6 @@
 <mat-card class="mt-8 mx-12">
   <table class="border-2 border-gray-300 bg-gray-200">
-    <tr *ngFor="let row of currentGeneration; let rowIndex = index">
+    <tr *ngFor="let row of currentGeneration$ | async; let rowIndex = index">
       <td
         class="hover:bg-gray-300 border border-gray-300"
         *ngFor="let column of row; let columnIndex = index"
