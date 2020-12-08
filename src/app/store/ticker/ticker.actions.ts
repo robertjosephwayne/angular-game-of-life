@@ -12,9 +12,9 @@ export const pause = createAction(
   '[Game Buttons Component] Pause'
 );
 
-export const setTickInterval = createAction(
-  '[Game Config Component] Set Tick Interval',
-  props<{ newTickInterval: number }>()
+export const setTickSpeed = createAction(
+  '[Game Config Component] Set Tick Speed',
+  props<{ newTickSpeed: number }>()
 );
 
 export const updateActiveTickInterval = createAction(
@@ -38,8 +38,8 @@ export const autoTick = createAction(
   '[Ticker Effect] Auto Tick'
 );
 
-export const resetTickInterval = createAction(
-  '[Ticker Effect] Reset Tick Interval'
+export const resetTickSpeed = createAction(
+  '[Ticker Effect] Reset Tick Speed'
 );
 
 export const tick = createAction(

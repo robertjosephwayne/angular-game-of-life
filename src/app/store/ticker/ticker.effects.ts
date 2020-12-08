@@ -6,19 +6,20 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import * as TickerActions from './ticker.actions';
 
 import * as fromApp from '../app.reducer';
+import * as fromTicker from '../../store/ticker/ticker.selectors';
 
 @Injectable()
 export class TickerEffects {
 
-  resetTickInterval$ = createEffect(() => this.actions$.pipe(
+  resetTickSpeed$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Buttons Component] Reset'),
     map(() => {
-      return TickerActions.resetTickInterval();
+      return TickerActions.resetTickSpeed();
     })
   ));
 
-  setTickInterval$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Config Component] Set Tick Interval'),
+  setTickSpeed$ = createEffect(() => this.actions$.pipe(
+    ofType('[Game Config Component] Set Tick Speed'),
     withLatestFrom(this.store.select('ticker')),
     map(([action, tickerState]) => {
       if (tickerState.activeTicker) {
@@ -35,11 +36,12 @@ export class TickerEffects {
       '[Ticker Effect] Update Active Tick Interval'
     ),
     withLatestFrom(this.store.select('ticker')),
-    map(([action, tickerState]) => {
+    withLatestFrom(this.store.select(fromTicker.selectTickInterval)),
+    map(([[action, tickerState], tickInterval]) => {
       clearInterval(tickerState.activeTicker);
       const ticker = setInterval(() => {
         this.store.dispatch(TickerActions.autoTick());
-      }, tickerState.tickInterval);
+      }, tickInterval);
       return TickerActions.setTicker({ newTicker: ticker });
     })
   ));

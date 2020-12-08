@@ -4,23 +4,23 @@ import * as TickerActions from './ticker.actions';
 
 export interface State {
   maxTickInterval: number;
-  tickInterval: number;
+  tickSpeed: number;
   activeTicker: any;
 }
 
 export const initialState: State = {
   maxTickInterval: 1000,
-  tickInterval: 500,
+  tickSpeed: 500,
   activeTicker: null
 };
 
 const _tickerReducer = createReducer(
   initialState,
 
-  on(TickerActions.setTickInterval, (state, { newTickInterval }) => {
+  on(TickerActions.setTickSpeed, (state, { newTickSpeed }) => {
     return {
       ...state,
-      tickInterval: newTickInterval,
+      tickSpeed: newTickSpeed,
     };
   }),
 
@@ -38,10 +38,10 @@ const _tickerReducer = createReducer(
     }
   }),
 
-  on(TickerActions.resetTickInterval, (state) => {
+  on(TickerActions.resetTickSpeed, (state) => {
     return {
       ...state,
-      tickInterval: initialState.tickInterval
+      tickSpeed: initialState.tickSpeed
     };
   })
 
