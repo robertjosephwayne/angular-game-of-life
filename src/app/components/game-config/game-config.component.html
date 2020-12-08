@@ -8,14 +8,14 @@
     <mat-slider
       class="justify-self-center"
       [min]="0"
-      [max]="maxTickInterval"
-      [value]="tickSpeed"
+      [max]="maxTickInterval$ | async"
+      [value]="tickSpeed$ | async"
       (change)="handleSpeedChange($event.value)"
     ></mat-slider>
   </div>
 
   <mat-checkbox
-    [checked]="randomLifeActive"
+    [checked]="randomLifeActive$ | async"
     labelPosition="before"
     (change)="handleRandomLifeToggle($event.checked)"
   >
