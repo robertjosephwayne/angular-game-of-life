@@ -17,7 +17,12 @@
     <mat-icon>stop</mat-icon>
   </button>
 
-  <button mat-fab color="primary" (click)="reset()" [disabled]="!canReset">
+  <button
+    mat-fab
+    color="primary"
+    (click)="reset()"
+    [disabled]="!(canReset$ | async)"
+  >
     <mat-icon>refresh</mat-icon>
   </button>
 
