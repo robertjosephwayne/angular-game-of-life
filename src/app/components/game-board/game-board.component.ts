@@ -24,16 +24,10 @@ export class GameBoardComponent implements OnInit {
   }
 
   setGameBoardData(): void {
-    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
-      this.currentGeneration = state.currentGeneration;
-    });
+    this.currentGeneration$ = this.store.select(fromGameBoard.selectCurrentGeneration);
   }
 
   handleCellClick(rowIndex: number, columnIndex: number): void {
     this.store.dispatch(GameBoardActions.toggleCellLife({ rowIndex, columnIndex }));
-  }
-
-  ngOnDestroy(): void {
-    this.gameBoardSub.unsubscribe();
   }
 }
