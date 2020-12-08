@@ -54,17 +54,4 @@ export class GameConfigComponent implements OnInit, OnDestroy {
       this.store.dispatch(GameBoardActions.disableRandomLife());
     }
   }
-
-  getTickInterval(tickSpeed: number): number {
-    return this.maxTickInterval - tickSpeed;
-  }
-
-  get tickSpeed(): number {
-    return this.maxTickInterval - this.tickInterval;
-  }
-
-  ngOnDestroy(): void {
-    this.gameBoardSub.unsubscribe();
-    this.tickerSub.unsubscribe();
-  }
 }
