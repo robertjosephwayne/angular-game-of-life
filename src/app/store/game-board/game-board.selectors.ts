@@ -14,6 +14,11 @@ export const selectGenerationCount = createSelector(
   gameBoard => gameBoard.generationCount
 );
 
+export const canReset = createSelector(
+  selectGenerationCount,
+  generationCount => generationCount > 0
+);
+
 function countLiveCells(generation): number {
   let count = 0;
   for (let row of generation) {
