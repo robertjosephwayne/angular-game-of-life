@@ -23,23 +23,7 @@ export class GameStatsComponent implements OnInit {
   }
 
   setGameBoardData(): void {
-    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
-      this.currentGeneration = state.currentGeneration;
-      this.generationCount = state.generationCount;
-    });
-  }
-
-  get liveCellCount(): number {
-    let count = 0;
-    for (let row of this.currentGeneration) {
-      for (let cell of row) {
-        count += cell;
-      }
-    }
-    return count;
-  }
-
-  ngOnDestroy(): void {
-    this.gameBoardSub.unsubscribe();
+    this.generationCount$ = this.store.select(fromGameBoard.selectGenerationCount);
+    this.liveCellCount$ = this.store.select(fromGameBoard.selectLiveCellCount);
   }
 }
