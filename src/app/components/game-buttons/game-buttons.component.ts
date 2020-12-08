@@ -1,27 +1,25 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as TickerActions from '../../store/ticker/ticker.actions';
 
 import * as fromApp from '../../store/app.reducer';
 import * as fromGameBoard from '../../store/game-board/game-board.selectors';
+import * as fromTicker from '../../store/ticker/ticker.selectors'
 
 @Component({
   selector: 'app-game-buttons',
   templateUrl: './game-buttons.component.html',
   styleUrls: ['./game-buttons.component.css']
 })
-export class GameButtonsComponent implements OnInit, OnDestroy {
-  gameBoardSub: Subscription;
-  tickerSub: Subscription;
-  currentGeneration: number[][];
-  minGridSize: number;
-  maxGridSize: number;
-  activeTicker: any;
-  randomLifeActive: boolean;
+export class GameButtonsComponent implements OnInit {
+  isTickerActive$: Observable<boolean>;
   canReset$: Observable<boolean>;
+  canGenerateNextGeneration$: Observable<boolean>;
+  canZoomIn$: Observable<boolean>;
+  canZoomOut$: Observable<boolean>;
 
   constructor(
     private store: Store<fromApp.AppState>
