@@ -7,13 +7,18 @@
     mat-fab
     color="primary"
     (click)="startTicking()"
-    *ngIf="!activeTicker"
-    [disabled]="!canTick"
+    *ngIf="!(isTickerActive$ | async)"
+    [disabled]="!(canGenerateNextGeneration$ | async)"
   >
     <mat-icon>play_arrow</mat-icon>
   </button>
 
-  <button mat-fab color="warn" (click)="stopTicking()" *ngIf="activeTicker">
+  <button
+    mat-fab
+    color="warn"
+    (click)="stopTicking()"
+    *ngIf="isTickerActive$ | async"
+  >
     <mat-icon>stop</mat-icon>
   </button>
 
