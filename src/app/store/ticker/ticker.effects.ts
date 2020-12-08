@@ -51,7 +51,7 @@ export class TickerEffects {
       if (!(hasLife(gameBoardState.currentGeneration) || gameBoardState.randomLifeActive)) {
         return TickerActions.stopTicking();
       } else {
-        return GameBoardActions.nextGeneration();
+        return TickerActions.tick();
       }
     })
   ));
@@ -78,7 +78,7 @@ export class TickerEffects {
   manualTick$ = createEffect(() => this.actions$.pipe(
     ofType('[Game Buttons Component] Manual Tick'),
     map(() => {
-      return GameBoardActions.nextGeneration();
+      return TickerActions.tick();
     })
   ));
 
