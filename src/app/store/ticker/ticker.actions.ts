@@ -41,3 +41,7 @@ export const autoTick = createAction(
 export const resetTickInterval = createAction(
   '[Ticker Effect] Reset Tick Interval'
 );
+
+export const tick = createAction(
+  '[Ticker Effect] Tick'
+);
