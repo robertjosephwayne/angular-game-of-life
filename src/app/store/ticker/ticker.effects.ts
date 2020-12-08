@@ -49,7 +49,7 @@ export class TickerEffects {
     ofType('[Ticker Effect] Auto Tick'),
     withLatestFrom(this.store.select('gameBoard')),
     map(([action, gameBoardState]) => {
-      if (!(gameBoardState.liveCells || gameBoardState.randomLifeActive)) {
+      if (!(hasLife(gameBoardState.currentGeneration) || gameBoardState.randomLifeActive)) {
         return TickerActions.stopTicking();
       } else {
         return GameBoardActions.nextGeneration();
@@ -89,3 +89,11 @@ export class TickerEffects {
   ) { }
 }
 
+function hasLife(generation): boolean {
+  for (let row of generation) {
+    for (let cell of row) {
+      if (cell) return true;
+    }
+  }
+  return false;
+}
