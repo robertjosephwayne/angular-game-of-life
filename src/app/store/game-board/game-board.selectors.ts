@@ -4,9 +4,14 @@ import * as fromApp from '../app.reducer';
 
 export const selectGameBoard = (state: fromApp.AppState) => state.gameBoard;
 
-export const selectLiveCellCount = createSelector(
+export const selectCurrentGeneration = createSelector(
   selectGameBoard,
-  gameBoard => countLiveCells(gameBoard.currentGeneration)
+  gameBoard => gameBoard.currentGeneration
+);
+
+export const selectLiveCellCount = createSelector(
+  selectCurrentGeneration,
+  currentGeneration => countLiveCells(currentGeneration)
 );
 
 export const selectGenerationCount = createSelector(
@@ -14,9 +19,47 @@ export const selectGenerationCount = createSelector(
   gameBoard => gameBoard.generationCount
 );
 
+export const selectGridSize = createSelector(
+  selectCurrentGeneration,
+  currentGeneration => currentGeneration.length
+);
+
+export const selectMinGridSize = createSelector(
+  selectGameBoard,
+  gameBoard => gameBoard.minGridSize
+);
+
+export const selectMaxGridSize = createSelector(
+  selectGameBoard,
+  gameBoard => gameBoard.maxGridSize
+);
+
+export const canZoomIn = createSelector(
+  selectGridSize,
+  selectMinGridSize,
+  (gridSize, minGridSize) => gridSize > minGridSize
+);
+
+export const canZoomOut = createSelector(
+  selectGridSize,
+  selectMaxGridSize,
+  (gridSize, maxGridSize) => gridSize < maxGridSize
+);
+
 export const canReset = createSelector(
   selectGenerationCount,
   generationCount => generationCount > 0
+);
+
+export const isRandomLifeActive = createSelector(
+  selectGameBoard,
+  gameBoard => gameBoard.randomLifeActive
+);
+
+export const canGenerateNextGeneration = createSelector(
+  isRandomLifeActive,
+  selectLiveCellCount,
+  (randomLifeActive, liveCellCount) => randomLifeActive || liveCellCount
 );
 
 function countLiveCells(generation): number {
