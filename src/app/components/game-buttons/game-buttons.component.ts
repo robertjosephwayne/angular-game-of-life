@@ -51,16 +51,16 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
     this.store.dispatch(TickerActions.manualTick());
   }
 
-  reset(): void {
-    this.store.dispatch(GameBoardActions.reset());
-  }
-
   startTicking(): void {
     this.store.dispatch(TickerActions.startTicking());
   }
 
   stopTicking(): void {
     this.store.dispatch(TickerActions.pause());
+  }
+
+  reset(): void {
+    this.store.dispatch(GameBoardActions.reset());
   }
 
   zoomIn(): void {
