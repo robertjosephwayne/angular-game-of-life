@@ -1,50 +1,44 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as TickerActions from '../../store/ticker/ticker.actions';
 
 import * as fromApp from '../../store/app.reducer';
+import * as fromGameBoard from '../../store/game-board/game-board.selectors';
+import * as fromTicker from '../../store/ticker/ticker.selectors';
 
 @Component({
   selector: 'app-game-config',
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.css']
 })
-export class GameConfigComponent implements OnInit, OnDestroy {
-  gameBoardSub: Subscription;
-  tickerSub: Subscription;
-  tickInterval: number;
-  maxTickInterval: number;
-  activeTicker: any;
-  randomLifeActive: boolean;
+export class GameConfigComponent implements OnInit {
+  tickSpeed$: Observable<number>;
+  maxTickInterval$: Observable<number>;
+  randomLifeActive$: Observable<boolean>;
 
   constructor(
     private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit(): void {
+    this.setGameBoardData();
     this.setTickerData();
   }
 
   setGameBoardData(): void {
-    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
-      this.randomLifeActive = state.randomLifeActive;
-    });
+    this.randomLifeActive$ = this.store.select(fromGameBoard.isRandomLifeActive);
   }
 
   setTickerData(): void {
-    this.tickerSub = this.store.select('ticker').subscribe(state => {
-      this.maxTickInterval = state.maxTickInterval;
-      this.activeTicker = state.activeTicker;
-      this.tickInterval = state.tickInterval;
-    });
+    this.maxTickInterval$ = this.store.select(fromTicker.selectMaxTickInterval);
+    this.tickSpeed$ = this.store.select(fromTicker.selectTickSpeed);
   }
 
-  handleSpeedChange(tickSpeed: number): void {
-    const newTickInterval = this.getTickInterval(tickSpeed);
-    this.store.dispatch(TickerActions.setTickInterval({ newTickInterval }));
+  handleSpeedChange(newTickSpeed: number): void {
+    this.store.dispatch(TickerActions.setTickSpeed({ newTickSpeed }));
   }
 
   handleRandomLifeToggle(randomLifeEnabled: boolean): void {
