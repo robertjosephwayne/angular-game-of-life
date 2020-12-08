@@ -33,19 +33,14 @@ export class GameButtonsComponent implements OnInit, OnDestroy {
   }
 
   setGameBoardData(): void {
-    this.gameBoardSub = this.store.select('gameBoard').subscribe(state => {
-      this.currentGeneration = state.currentGeneration;
-      this.minGridSize = state.minGridSize;
-      this.maxGridSize = state.maxGridSize;
-      this.randomLifeActive = state.randomLifeActive;
-    });
+    this.canGenerateNextGeneration$ = this.store.select(fromGameBoard.canGenerateNextGeneration);
+    this.canZoomIn$ = this.store.select(fromGameBoard.canZoomIn);
+    this.canZoomOut$ = this.store.select(fromGameBoard.canZoomOut);
     this.canReset$ = this.store.select(fromGameBoard.canReset);
   }
 
   setTickerData(): void {
-    this.tickerSub = this.store.select('ticker').subscribe(state => {
-      this.activeTicker = state.activeTicker;
-    });
+    this.isTickerActive$ = this.store.select(fromTicker.isTickerActive);
   }
 
   tick(): void {
