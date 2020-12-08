@@ -4,10 +4,13 @@
     <mat-select
       name="patterns"
       id="patterns"
-      [value]="selectedPattern"
+      [value]="selectedPattern$ | async"
       (selectionChange)="handlePatternSelect($event.value)"
     >
-      <mat-option *ngFor="let pattern of presetPatterns" [value]="pattern">
+      <mat-option
+        *ngFor="let pattern of presetPatterns$ | async"
+        [value]="pattern"
+      >
         {{ pattern }}
       </mat-option>
     </mat-select>
