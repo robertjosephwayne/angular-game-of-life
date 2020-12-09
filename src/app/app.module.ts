@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from './material.module';
 import { environment } from '../environments/environment';
 
-import * as fromApp from './store/app.reducer';
+import { appReducer } from './store/app.reducer';
 
 import { GameBoardEffects } from './store/game-board/game-board.effects';
 import { TickerEffects } from './store/ticker/ticker.effects';
@@ -37,7 +37,7 @@ import { GameGridComponent } from './components/game-board/game-grid/game-grid.c
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot(fromApp.appReducer),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production
