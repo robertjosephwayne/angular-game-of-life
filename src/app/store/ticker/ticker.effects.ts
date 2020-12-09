@@ -88,12 +88,3 @@ export class TickerEffects {
     private store: Store<AppState>
   ) { }
 }
-
-function hasLife(generation): boolean {
-  for (let row of generation) {
-    for (let cell of row) {
-      if (cell) return true;
-    }
-  }
-  return false;
-}
