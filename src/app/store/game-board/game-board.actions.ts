@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { LifeGeneration } from 'src/app/models/life-generation.model';
 
 export const toggleCellLife = createAction(
   '[Game Board Component] Toggle Cell Life',
@@ -27,7 +28,7 @@ export const disableRandomLife = createAction(
 
 export const setCurrentGeneration = createAction(
   '[Patterns Component] Set Current Generation',
-  props<{ newGeneration: number[][] }>()
+  props<{ newGeneration: LifeGeneration }>()
 );
 
 export const nextGeneration = createAction(

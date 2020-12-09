@@ -7,13 +7,15 @@ import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
 
 import * as GameBoardActions from '../../../store/game-board/game-board.actions';
 
+import { LifeGeneration } from 'src/app/models/life-generation.model';
+
 @Component({
   selector: 'app-game-grid',
   templateUrl: './game-grid.component.html',
   styleUrls: ['./game-grid.component.css']
 })
 export class GameGridComponent implements OnInit {
-  currentGeneration$: Observable<number[][]>;
+  currentGeneration$: Observable<LifeGeneration>;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
