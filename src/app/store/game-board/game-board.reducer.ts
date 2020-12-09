@@ -97,7 +97,7 @@ export function gameBoardReducer(state: State, action: Action) {
   return _gameBoardReducer(state, action);
 }
 
-function getNextGeneration(currentGeneration: number[][], randomLifeActive: boolean) {
+function getNextGeneration(currentGeneration: LifeGeneration, randomLifeActive: boolean): LifeGeneration {
   const gridSize = currentGeneration.length;
 
   let nextGeneration = [];
@@ -117,7 +117,7 @@ function getNextGeneration(currentGeneration: number[][], randomLifeActive: bool
   return nextGeneration;
 }
 
-function isAliveNextGeneration(currentGeneration: number[][], cellRow: number, cellColumn: number) {
+function isAliveNextGeneration(currentGeneration: LifeGeneration, cellRow: number, cellColumn: number): number {
   const liveNeighbors = countLiveNeighbors(
     currentGeneration,
     cellRow,
@@ -133,7 +133,7 @@ function isAliveNextGeneration(currentGeneration: number[][], cellRow: number, c
   return isAlive;
 }
 
-function countLiveNeighbors(currentGeneration: number[][], cellRow: number, cellColumn: number) {
+function countLiveNeighbors(currentGeneration: LifeGeneration, cellRow: number, cellColumn: number): number {
   const lastRow = currentGeneration.length - 1;
   const lastColumn = currentGeneration[0].length - 1;
   let liveNeighbors = 0;
@@ -162,7 +162,7 @@ function countLiveNeighbors(currentGeneration: number[][], cellRow: number, cell
   return liveNeighbors;
 }
 
-function toggleCellLife(generation: number[][], rowIndex: number, columnIndex: number) {
+function toggleCellLife(generation: LifeGeneration, rowIndex: number, columnIndex: number): LifeGeneration {
   let updatedGeneration = [];
   generation.forEach(row => {
     updatedGeneration.push(row.slice());
@@ -175,7 +175,7 @@ function toggleCellLife(generation: number[][], rowIndex: number, columnIndex: n
   return updatedGeneration;
 }
 
-function resizeCurrentGeneration(currentGeneration: number[][], newSize: number) {
+function resizeCurrentGeneration(currentGeneration: LifeGeneration, newSize: number): LifeGeneration {
   const currentSize = currentGeneration.length;
   const currentGenerationResized = [];
   for (let i = 0; i < newSize; i++) {
@@ -191,7 +191,7 @@ function resizeCurrentGeneration(currentGeneration: number[][], newSize: number)
   return currentGenerationResized;
 }
 
-function addRandomLife(generation: number[][]) {
+function addRandomLife(generation: LifeGeneration): LifeGeneration {
   let updatedGeneration = [];
   generation.forEach(row => {
     updatedGeneration.push(row.slice());
