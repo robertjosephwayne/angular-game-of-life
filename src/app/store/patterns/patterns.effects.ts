@@ -5,6 +5,9 @@ import { map, withLatestFrom } from 'rxjs/operators';
 
 import { AppState } from '../app.state';
 
+import * as fromPatterns from '../patterns/patterns.selectors';
+import * as fromGameBoard from '../game-board/game-board.selectors';
+
 import * as GameBoardActions from '../game-board/game-board.actions';
 import * as PatternsActions from '../patterns/patterns.actions';
 
@@ -21,11 +24,9 @@ export class PatternsEffects {
       PatternsActions.setSelectedPattern,
       PatternsActions.resetSelectedPattern
     ),
-    withLatestFrom(this.store.select('patterns')),
-    withLatestFrom(this.store.select('gameBoard')),
-    map(([[action, patternsState], gameBoardState]) => {
-      const selectedPattern = patternsState.selectedPattern;
-      const gridSize = gameBoardState.currentGeneration.length;
+    withLatestFrom(this.store.select(fromPatterns.selectedPattern)),
+    withLatestFrom(this.store.select(fromGameBoard.selectGridSize)),
+    map(([[action, selectedPattern], gridSize]) => {
       const newGeneration = getSelectedPattern(selectedPattern, gridSize);
       return GameBoardActions.setCurrentGeneration({ newGeneration });
     })
