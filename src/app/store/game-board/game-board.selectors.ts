@@ -59,7 +59,7 @@ export const isRandomLifeActive = createSelector(
 export const canGenerateNextGeneration = createSelector(
   isRandomLifeActive,
   selectLiveCellCount,
-  (randomLifeActive, liveCellCount) => randomLifeActive || liveCellCount
+  (randomLifeActive, liveCellCount) => !!(randomLifeActive || liveCellCount)
 );
 
 function countLiveCells(generation): number {
