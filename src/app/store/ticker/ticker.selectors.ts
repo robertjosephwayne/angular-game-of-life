@@ -9,6 +9,11 @@ export const isTickerActive = createSelector(
   ticker => !!ticker.activeTicker
 );
 
+export const selectActiveTicker = createSelector(
+  selectTicker,
+  ticker => ticker.activeTicker
+);
+
 export const selectMaxTickInterval = createSelector(
   selectTicker,
   ticker => ticker.maxTickInterval
