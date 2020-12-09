@@ -12,16 +12,14 @@ import * as PatternsActions from '../patterns/patterns.actions';
 export class PatternsEffects {
 
   resetSelectedPattern$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Buttons Component] Reset'),
-    map(() => {
-      return PatternsActions.resetSelectedPattern();
-    })
+    ofType(GameBoardActions.reset),
+    map(() => PatternsActions.resetSelectedPattern())
   ));
 
   updateCurrentGeneration$ = createEffect(() => this.actions$.pipe(
     ofType(
-      '[Patterns Component] Set Selected Pattern',
-      '[Patterns Effect] Reset Selected Pattern'
+      PatternsActions.setSelectedPattern,
+      PatternsActions.resetSelectedPattern
     ),
     withLatestFrom(this.store.select('patterns')),
     withLatestFrom(this.store.select('gameBoard')),

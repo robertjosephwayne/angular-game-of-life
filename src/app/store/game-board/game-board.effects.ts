@@ -6,12 +6,13 @@ import { map } from 'rxjs/operators';
 import { AppState } from '../app.state';
 
 import * as GameBoardActions from './game-board.actions';
+import * as TickerActions from '../ticker/ticker.actions';
 
 @Injectable()
 export class GameBoardEffects {
 
   nextGeneration$ = createEffect(() => this.actions$.pipe(
-    ofType('[Ticker Effect] Tick'),
+    ofType(TickerActions.tick),
     map(() => {
       return GameBoardActions.nextGeneration();
     })
