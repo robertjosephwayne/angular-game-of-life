@@ -1,26 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { PatternsState, initialState } from './patterns.state';
+
 import * as PatternsActions from './patterns.actions';
-
-export interface State {
-  presetPatterns: string[];
-  selectedPattern: string;
-}
-
-export const initialState: State = {
-  presetPatterns: [
-    'Empty',
-    'Glider',
-    'Small Exploder',
-    'Exploder',
-    'Ten Cell Row',
-    'Lightweight Spaceship',
-    'Block',
-    'Tub',
-    'Boat'
-  ],
-  selectedPattern: 'Empty'
-};
 
 const _patternsReducer = createReducer(
   initialState,
@@ -40,6 +22,6 @@ const _patternsReducer = createReducer(
   })
 );
 
-export function patternsReducer(state: State, action: Action) {
+export function patternsReducer(state: PatternsState, action: Action) {
   return _patternsReducer(state, action);
 }
