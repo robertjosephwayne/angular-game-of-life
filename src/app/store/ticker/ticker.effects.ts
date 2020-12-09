@@ -71,9 +71,9 @@ export class TickerEffects {
 
   clearTickInterval$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.stopTicking),
-    withLatestFrom(this.store.select('ticker')),
-    map(([action, tickerState]) => {
-      clearInterval(tickerState.activeTicker);
+    withLatestFrom(this.store.select(fromTicker.selectActiveTicker)),
+    map(([action, activeTicker]) => {
+      clearInterval(activeTicker);
       return TickerActions.clearTicker();
     })
   ));
