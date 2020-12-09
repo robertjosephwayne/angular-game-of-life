@@ -2,12 +2,14 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import * as GameBoardActions from './game-board.actions';
 
+import { LifeGeneration } from 'src/app/models/life-generation.model';
+
 export interface State {
-  currentGeneration: number[][];
+  currentGeneration: LifeGeneration;
   generationCount: number;
   minGridSize: number;
   maxGridSize: number;
-  randomLifeActive;
+  randomLifeActive: boolean;
 }
 
 export const initialState: State = {
