@@ -65,9 +65,7 @@ export class TickerEffects {
       GameBoardActions.setCurrentGeneration,
       TickerActions.pause
     ),
-    map(() => {
-      return TickerActions.stopTicking();
-    })
+    map(() => TickerActions.stopTicking())
   ));
 
   clearTickInterval$ = createEffect(() => this.actions$.pipe(
@@ -81,9 +79,7 @@ export class TickerEffects {
 
   manualTick$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.manualTick),
-    map(() => {
-      return TickerActions.tick();
-    })
+    map(() => TickerActions.tick())
   ));
 
   constructor(
