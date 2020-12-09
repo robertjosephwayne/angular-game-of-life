@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+
 import { map, withLatestFrom } from 'rxjs/operators';
 
 import { AppState } from '../app.state';
 
+import * as GameBoardActions from '../game-board/game-board.actions';
+import * as PatternsActions from '../patterns/patterns.actions';
 import * as TickerActions from './ticker.actions';
 
 import * as fromTicker from '../../store/ticker/ticker.selectors';
@@ -13,14 +16,12 @@ import * as fromTicker from '../../store/ticker/ticker.selectors';
 export class TickerEffects {
 
   resetTickSpeed$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Buttons Component] Reset'),
-    map(() => {
-      return TickerActions.resetTickSpeed();
-    })
+    ofType(GameBoardActions.reset),
+    map(() => TickerActions.resetTickSpeed())
   ));
 
   setTickSpeed$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Config Component] Set Tick Speed'),
+    ofType(TickerActions.setTickSpeed),
     withLatestFrom(this.store.select('ticker')),
     map(([action, tickerState]) => {
       if (tickerState.activeTicker) {
@@ -33,8 +34,8 @@ export class TickerEffects {
 
   startTicking$ = createEffect(() => this.actions$.pipe(
     ofType(
-      '[Game Buttons Component] Start Ticking',
-      '[Ticker Effect] Update Active Tick Interval'
+      TickerActions.startTicking,
+      TickerActions.updateActiveTickInterval
     ),
     withLatestFrom(this.store.select('ticker')),
     withLatestFrom(this.store.select(fromTicker.selectTickInterval)),
@@ -48,7 +49,7 @@ export class TickerEffects {
   ));
 
   autoTick$ = createEffect(() => this.actions$.pipe(
-    ofType('[Ticker Effect] Auto Tick'),
+    ofType(TickerActions.autoTick),
     withLatestFrom(this.store.select('gameBoard')),
     map(([action, gameBoardState]) => {
       if (!(hasLife(gameBoardState.currentGeneration) || gameBoardState.randomLifeActive)) {
@@ -61,8 +62,8 @@ export class TickerEffects {
 
   stopTicking$ = createEffect(() => this.actions$.pipe(
     ofType(
-      '[Patterns Component] Set Current Generation',
-      '[Game Buttons Component] Pause'
+      GameBoardActions.setCurrentGeneration,
+      TickerActions.pause
     ),
     map(() => {
       return TickerActions.stopTicking();
@@ -70,7 +71,7 @@ export class TickerEffects {
   ));
 
   clearTickInterval$ = createEffect(() => this.actions$.pipe(
-    ofType('[Ticker Effect] Stop Ticking'),
+    ofType(TickerActions.stopTicking),
     withLatestFrom(this.store.select('ticker')),
     map(([action, tickerState]) => {
       clearInterval(tickerState.activeTicker);
@@ -79,7 +80,7 @@ export class TickerEffects {
   ));
 
   manualTick$ = createEffect(() => this.actions$.pipe(
-    ofType('[Game Buttons Component] Manual Tick'),
+    ofType(TickerActions.manualTick),
     map(() => {
       return TickerActions.tick();
     })
