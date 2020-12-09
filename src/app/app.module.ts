@@ -15,12 +15,13 @@ import { PatternsEffects } from './store/patterns/patterns.effects';
 
 import { AppComponent } from './app.component';
 import { GameBoardComponent } from './components/game-board/game-board.component';
-import { GameButtonsComponent } from './components/game-buttons/game-buttons.component';
+import { GameButtonsComponent } from './components/game-board/game-buttons/game-buttons.component';
 import { GameConfigComponent } from './components/game-config/game-config.component';
 import { GameCounterComponent } from './components/game-config//game-stats/game-counter/game-counter.component';
 import { GameHeaderComponent } from './components/game-header/game-header.component';
 import { GameStatsComponent } from './components/game-config/game-stats/game-stats.component';
 import { PatternsComponent } from './components/game-config/patterns/patterns.component';
+import { GameGridComponent } from './components/game-board/game-grid/game-grid.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PatternsComponent } from './components/game-config/patterns/patterns.co
     GameCounterComponent,
     GameHeaderComponent,
     GameStatsComponent,
-    PatternsComponent
+    PatternsComponent,
+    GameGridComponent
   ],
   imports: [
     BrowserModule,
