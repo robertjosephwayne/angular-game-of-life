@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromApp from '../../../store/app.reducer';
-import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
+import { AppState } from '../../../store/app.state';
 
 import * as GameBoardActions from '../../../store/game-board/game-board.actions';
+
+import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
 
 import { LifeGeneration } from 'src/app/models/life-generation.model';
 
@@ -17,7 +18,7 @@ import { LifeGeneration } from 'src/app/models/life-generation.model';
 export class GameGridComponent implements OnInit {
   currentGeneration$: Observable<LifeGeneration>;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.setGameBoardData();

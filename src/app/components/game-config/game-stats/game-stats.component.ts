@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as fromApp from '../../../store/app.reducer';
+import { AppState } from '../../../store/app.state';
+
 import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
 
 @Component({
@@ -15,7 +16,7 @@ export class GameStatsComponent implements OnInit {
   liveCellCount$: Observable<number>;
 
   constructor(
-    private store: Store<fromApp.AppState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {

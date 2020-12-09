@@ -1,8 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromApp from '../app.reducer';
+import { AppState } from '../app.state';
 
-export const selectGameBoard = (state: fromApp.AppState) => state.gameBoard;
+export const selectGameBoard = (state: AppState) => state.gameBoard;
 
 export const selectCurrentGeneration = createSelector(
   selectGameBoard,
@@ -34,6 +34,11 @@ export const selectMaxGridSize = createSelector(
   gameBoard => gameBoard.maxGridSize
 );
 
+export const isRandomLifeActive = createSelector(
+  selectGameBoard,
+  gameBoard => gameBoard.randomLifeActive
+);
+
 export const canZoomIn = createSelector(
   selectGridSize,
   selectMinGridSize,
@@ -49,11 +54,6 @@ export const canZoomOut = createSelector(
 export const canReset = createSelector(
   selectGenerationCount,
   generationCount => generationCount > 0
-);
-
-export const isRandomLifeActive = createSelector(
-  selectGameBoard,
-  gameBoard => gameBoard.randomLifeActive
 );
 
 export const canGenerateNextGeneration = createSelector(

@@ -1,8 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromApp from '../app.reducer';
+import { AppState } from '../app.state';
 
-export const selectTicker = (state: fromApp.AppState) => state.ticker;
+export const selectTicker = (state: AppState) => state.ticker;
 
 export const isTickerActive = createSelector(
   selectTicker,

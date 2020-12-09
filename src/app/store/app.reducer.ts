@@ -1,17 +1,13 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromGameBoard from './game-board/game-board.reducer';
-import * as fromTicker from './ticker/ticker.reducer';
-import * as fromPatterns from './patterns/patterns.reducer';
+import { AppState } from './app.state';
 
-export interface AppState {
-  gameBoard: fromGameBoard.State;
-  ticker: fromTicker.State;
-  patterns: fromPatterns.State;
-}
+import { gameBoardReducer } from './game-board/game-board.reducer';
+import { tickerReducer } from './ticker/ticker.reducer';
+import { patternsReducer } from './patterns/patterns.reducer';
 
 export const appReducer: ActionReducerMap<AppState> = {
-  gameBoard: fromGameBoard.gameBoardReducer,
-  ticker: fromTicker.tickerReducer,
-  patterns: fromPatterns.patternsReducer
+  gameBoard: gameBoardReducer,
+  ticker: tickerReducer,
+  patterns: patternsReducer
 };

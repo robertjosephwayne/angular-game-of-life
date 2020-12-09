@@ -1,9 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromApp from '../app.reducer';
+import { AppState } from '../app.state';
 
-
-export const selectPatterns = (state: fromApp.AppState) => state.patterns;
+export const selectPatterns = (state: AppState) => state.patterns;
 
 export const selectPresetPatterns = createSelector(
   selectPatterns,

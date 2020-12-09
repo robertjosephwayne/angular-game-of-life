@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 
-import * as fromApp from '../app.reducer';
+import { AppState } from '../app.state';
 
 import * as GameBoardActions from './game-board.actions';
 
@@ -19,7 +19,7 @@ export class GameBoardEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<fromApp.AppState>
+    private store: Store<AppState>
   ) { }
 
 }

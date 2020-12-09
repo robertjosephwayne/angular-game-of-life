@@ -3,9 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
+import { AppState } from '../app.state';
+
 import * as TickerActions from './ticker.actions';
 
-import * as fromApp from '../app.reducer';
 import * as fromTicker from '../../store/ticker/ticker.selectors';
 
 @Injectable()
@@ -86,7 +87,7 @@ export class TickerEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<fromApp.AppState>
+    private store: Store<AppState>
   ) { }
 }
 

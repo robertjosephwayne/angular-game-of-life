@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { AppState } from '../../../store/app.state';
+
 import * as PatternsActions from '../../../store/patterns/patterns.actions';
 
-import * as fromApp from '../../../store/app.reducer';
 import * as fromPatterns from '../../../store/patterns/patterns.selectors';
 
 @Component({
@@ -17,7 +18,7 @@ export class PatternsComponent implements OnInit {
   selectedPattern$: Observable<string>;
 
   constructor(
-    private store: Store<fromApp.AppState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {

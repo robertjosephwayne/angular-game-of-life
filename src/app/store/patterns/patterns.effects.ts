@@ -3,10 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, withLatestFrom } from 'rxjs/operators';
 
+import { AppState } from '../app.state';
+
 import * as GameBoardActions from '../game-board/game-board.actions';
 import * as PatternsActions from '../patterns/patterns.actions';
-
-import * as fromApp from '../app.reducer';
 
 @Injectable()
 export class PatternsEffects {
@@ -35,7 +35,7 @@ export class PatternsEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<fromApp.AppState>
+    private store: Store<AppState>
   ) { }
 }
 
