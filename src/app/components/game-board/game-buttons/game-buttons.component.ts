@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import * as GameBoardActions from '../../store/game-board/game-board.actions';
-import * as TickerActions from '../../store/ticker/ticker.actions';
+import * as GameBoardActions from '../../../store/game-board/game-board.actions';
+import * as TickerActions from '../../../store/ticker/ticker.actions';
 
-import * as fromApp from '../../store/app.reducer';
-import * as fromGameBoard from '../../store/game-board/game-board.selectors';
-import * as fromTicker from '../../store/ticker/ticker.selectors'
+import * as fromApp from '../../../store/app.reducer';
+import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
+import * as fromTicker from '../../../store/ticker/ticker.selectors'
 
 @Component({
   selector: 'app-game-buttons',
