@@ -13,9 +13,7 @@ export class GameBoardEffects {
 
   nextGeneration$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.tick),
-    map(() => {
-      return GameBoardActions.nextGeneration();
-    })
+    map(() => GameBoardActions.nextGeneration())
   ));
 
   constructor(
