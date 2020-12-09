@@ -7,7 +7,6 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import { AppState } from '../app.state';
 
 import * as GameBoardActions from '../game-board/game-board.actions';
-import * as PatternsActions from '../patterns/patterns.actions';
 import * as TickerActions from './ticker.actions';
 
 import * as fromTicker from '../../store/ticker/ticker.selectors';
