@@ -1,18 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { TickerState, initialState } from './ticker.state';
+
 import * as TickerActions from './ticker.actions';
-
-export interface State {
-  maxTickInterval: number;
-  tickSpeed: number;
-  activeTicker: any;
-}
-
-export const initialState: State = {
-  maxTickInterval: 1000,
-  tickSpeed: 500,
-  activeTicker: null
-};
 
 const _tickerReducer = createReducer(
   initialState,
@@ -47,6 +37,6 @@ const _tickerReducer = createReducer(
 
 );
 
-export function tickerReducer(state: State, action: Action) {
+export function tickerReducer(state: TickerState, action: Action) {
   return _tickerReducer(state, action);
 }
