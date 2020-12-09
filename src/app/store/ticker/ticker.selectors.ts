@@ -4,7 +4,7 @@ import { AppState } from '../app.state';
 
 export const selectTicker = (state: AppState) => state.ticker;
 
-export const isTickerActive = createSelector(
+export const isTicking = createSelector(
   selectTicker,
   ticker => !!ticker.activeTicker
 );

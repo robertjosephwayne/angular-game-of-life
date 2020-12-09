@@ -22,7 +22,7 @@ export class TickerEffects {
 
   setTickSpeed$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.setTickSpeed),
-    withLatestFrom(this.store.select(fromTicker.isTickerActive)),
+    withLatestFrom(this.store.select(fromTicker.isTicking)),
     map(([action, isTickerActive]) => {
       if (isTickerActive) {
         return TickerActions.updateActiveTickInterval();

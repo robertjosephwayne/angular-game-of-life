@@ -24,7 +24,7 @@
     mat-fab
     color="warn"
     (click)="stopTicking()"
-    *ngIf="isTickerActive$ | async"
+    *ngIf="isTicking$ | async"
   >
     <mat-icon>stop</mat-icon>
   </button>

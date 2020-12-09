@@ -16,7 +16,7 @@ import * as fromTicker from '../../../store/ticker/ticker.selectors'
   styleUrls: ['./game-buttons.component.css']
 })
 export class GameButtonsComponent implements OnInit {
-  isTickerActive$: Observable<boolean>;
+  isTicking$: Observable<boolean>;
   canReset$: Observable<boolean>;
   canGenerateNextGeneration$: Observable<boolean>;
   canZoomIn$: Observable<boolean>;
@@ -39,7 +39,7 @@ export class GameButtonsComponent implements OnInit {
   }
 
   setTickerData(): void {
-    this.isTickerActive$ = this.store.select(fromTicker.isTickerActive);
+    this.isTicking$ = this.store.select(fromTicker.isTicking);
   }
 
   tick(): void {
