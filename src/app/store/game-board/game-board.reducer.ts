@@ -1,35 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import { GameBoardState, initialState } from './game-board.state';
+
 import * as GameBoardActions from './game-board.actions';
 
 import { LifeGeneration } from 'src/app/models/life-generation.model';
-
-export interface State {
-  currentGeneration: LifeGeneration;
-  generationCount: number;
-  minGridSize: number;
-  maxGridSize: number;
-  randomLifeActive: boolean;
-}
-
-export const initialState: State = {
-  currentGeneration: [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  ],
-  generationCount: 0,
-  minGridSize: 10,
-  maxGridSize: 25,
-  randomLifeActive: false
-};
 
 const _gameBoardReducer = createReducer(
   initialState,
@@ -95,7 +70,7 @@ const _gameBoardReducer = createReducer(
 
 );
 
-export function gameBoardReducer(state: State, action: Action) {
+export function gameBoardReducer(state: GameBoardState, action: Action) {
   return _gameBoardReducer(state, action);
 }
 
