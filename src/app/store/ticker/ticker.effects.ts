@@ -9,6 +9,7 @@ import { AppState } from '../app.state';
 import * as GameBoardActions from '../game-board/game-board.actions';
 import * as TickerActions from './ticker.actions';
 
+import * as fromGameBoard from '../../store/game-board/game-board.selectors';
 import * as fromTicker from '../../store/ticker/ticker.selectors';
 
 @Injectable()
@@ -49,9 +50,10 @@ export class TickerEffects {
 
   autoTick$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.autoTick),
-    withLatestFrom(this.store.select('gameBoard')),
-    map(([action, gameBoardState]) => {
-      if (!(hasLife(gameBoardState.currentGeneration) || gameBoardState.randomLifeActive)) {
+    withLatestFrom(this.store.select(fromGameBoard.selectLiveCellCount)),
+    withLatestFrom(this.store.select(fromGameBoard.isRandomLifeActive)),
+    map(([[action, liveCellCount], isRandomLifeActive]) => {
+      if (!(liveCellCount || isRandomLifeActive)) {
         return TickerActions.stopTicking();
       } else {
         return TickerActions.tick();
