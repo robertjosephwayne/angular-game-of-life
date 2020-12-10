@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { AppState, mockState } from 'src/app/store/app.state';
+
+import * as GameBoardActions from '../../../store/game-board/game-board.actions';
 
 import { GameGridComponent } from './game-grid.component';
 
