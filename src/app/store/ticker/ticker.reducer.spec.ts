@@ -5,11 +5,8 @@ import { tickerReducer } from './ticker.reducer';
 import { initialState, TickerState } from './ticker.state';
 
 describe('Ticker Reducer', () => {
-
   describe('Ticker Actions', () => {
-
     describe('init action', () => {
-
       it('should return the initial state', () => {
         const nextState = tickerReducer(
           undefined,
@@ -18,11 +15,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('unknown action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -31,11 +26,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('startTicking action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -44,11 +37,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('manualTick action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -57,11 +48,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('pause action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -70,11 +59,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('setTickSpeed action', () => {
-
       it('should set the tick speed to the specified tick speed', () => {
         const state: TickerState = {
           ...initialState,
@@ -90,11 +77,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState.tickSpeed).toEqual(newTickSpeed);
       });
-
     });
 
     describe('updateActiveTickInterval action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -103,11 +88,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('stopTicking action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -116,11 +99,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('setTicker action', () => {
-
       it('should set the active ticker to the specified ticker', () => {
         const state: TickerState = {
           ...initialState,
@@ -138,11 +119,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState.activeTicker).toEqual(newTicker);
       });
-
     });
 
     describe('clearTicker action', () => {
-
       it('should set the active ticker to null', () => {
         const activeTicker = setInterval(() => {
           return;
@@ -153,8 +132,6 @@ describe('Ticker Reducer', () => {
           activeTicker
         };
 
-
-
         const nextState = tickerReducer(
           state,
           TickerActions.clearTicker()
@@ -162,11 +139,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState.activeTicker).toBeNull();
       });
-
     });
 
     describe('autoTick action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -175,11 +150,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('resetTickSpeed action', () => {
-
       it('should set the tick speed to the tick speed from the initial state', () => {
         const state: TickerState = {
           ...initialState,
@@ -193,11 +166,9 @@ describe('Ticker Reducer', () => {
 
         expect(nextState.tickSpeed).toEqual(initialState.tickSpeed);
       });
-
     });
 
     describe('tick action', () => {
-
       it('should return the previous state', () => {
         const nextState = tickerReducer(
           initialState,
@@ -206,9 +177,6 @@ describe('Ticker Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
-
   });
-
 });

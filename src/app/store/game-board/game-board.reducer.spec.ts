@@ -10,7 +10,6 @@ describe('Game Board Reducer', () => {
   describe('Game Board Actions', () => {
 
     describe('init action', () => {
-
       it('should return the initial state', () => {
         const nextState = gameBoardReducer(
           undefined,
@@ -19,11 +18,9 @@ describe('Game Board Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('unknown action', () => {
-
       it('should return the previous state', () => {
         const nextState = gameBoardReducer(
           initialState,
@@ -32,11 +29,9 @@ describe('Game Board Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('toggleCellLife action', () => {
-
       it('should toggle the selected cell to alive if it was dead', () => {
         const state: GameBoardState = {
           ...initialState,
@@ -145,11 +140,9 @@ describe('Game Board Reducer', () => {
 
         expect(differentCellCount).toEqual(0);
       });
-
     });
 
     describe('zoomIn action', () => {
-
       it('should not change the current generation row count if grid size is already at the minimum size', () => {
         const state: GameBoardState = {
           ...initialState,
@@ -285,11 +278,9 @@ describe('Game Board Reducer', () => {
       it('should not change the cells which are within the new grid size', () => {
 
       });
-
     });
 
     describe('zoomOut action', () => {
-
       it('should not change the current row count if grid size is already at the maximum size', () => {
         const state: GameBoardState = {
           ...initialState,
@@ -424,11 +415,9 @@ describe('Game Board Reducer', () => {
       it('should not change the cells which are within the new grid size', () => {
 
       });
-
     });
 
     describe('activateRandomLife action', () => {
-
       it('should activate random life', () => {
         const state: GameBoardState = {
           ...initialState,
@@ -442,11 +431,9 @@ describe('Game Board Reducer', () => {
 
         expect(nextState.randomLifeActive).toBeTrue();
       });
-
     });
 
     describe('disableRandomLife action', () => {
-
       it('should disable random life', () => {
         const state: GameBoardState = {
           ...initialState,
@@ -460,11 +447,9 @@ describe('Game Board Reducer', () => {
 
         expect(nextState.randomLifeActive).toBeFalse();
       });
-
     });
 
     describe('setCurrentGeneration action', () => {
-
       it('should set the current generation to a new generation', () => {
         const newGeneration: LifeGeneration = [
           [1, 1, 1, 1, 1],
@@ -498,11 +483,9 @@ describe('Game Board Reducer', () => {
 
         expect(nextState.generationCount).toEqual(0);
       });
-
     });
 
     describe('nextGeneration action', () => {
-
       it('should set the current generation to the next generation', () => {
         const state: GameBoardState = {
           ...initialState,
@@ -542,11 +525,9 @@ describe('Game Board Reducer', () => {
 
         expect(nextState.generationCount).toEqual(initialState.generationCount + 1);
       });
-
     });
 
     describe('reset action', () => {
-
       it('should return the initial state', () => {
         const nextState = gameBoardReducer(
           initialState,
@@ -555,11 +536,8 @@ describe('Game Board Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
-
   });
-
 });
 
 function countDifferentCells(firstGeneration: LifeGeneration, secondGeneration: LifeGeneration): number {

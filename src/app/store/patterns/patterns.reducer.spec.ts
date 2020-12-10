@@ -5,11 +5,8 @@ import { patternsReducer } from './patterns.reducer';
 import { initialState, PatternsState } from './patterns.state';
 
 describe('Patterns Reducer', () => {
-
   describe('Patterns Actions', () => {
-
     describe('init action', () => {
-
       it('should return the initial state', () => {
         const nextState = patternsReducer(
           undefined,
@@ -18,11 +15,9 @@ describe('Patterns Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('unknown action', () => {
-
       it('should return the previous state', () => {
         const nextState = patternsReducer(
           initialState,
@@ -31,11 +26,9 @@ describe('Patterns Reducer', () => {
 
         expect(nextState).toBe(initialState);
       });
-
     });
 
     describe('setSelectedPattern action', () => {
-
       it('should set the selected pattern to the specified pattern name if it is valid', () => {
         const state: PatternsState = {
           ...initialState,
@@ -73,11 +66,9 @@ describe('Patterns Reducer', () => {
 
         expect(nextState.selectedPattern).toBe('Tub');
       });
-
     });
 
     describe('resetSelectedPattern action', () => {
-
       it('should set the selected pattern to the selected pattern from the initial state', () => {
         const state: PatternsState = {
           ...initialState,
@@ -91,9 +82,6 @@ describe('Patterns Reducer', () => {
 
         expect(nextState.selectedPattern).toEqual(initialState.selectedPattern);
       });
-
     });
-
   });
-
 });
