@@ -23,10 +23,6 @@ describe('GameButtonsComponent', () => {
       .compileComponents();
   });
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: provideMockStore({ initialState })
-    });
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(GameButtonsComponent);
