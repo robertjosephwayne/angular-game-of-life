@@ -356,6 +356,38 @@ describe('Game Board Reducer', () => {
         expect(nextColumnCount).toEqual(initialColumnCount);
       });
 
+      it('should increase the row count by 1 if grid size is below maximum size', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          currentGeneration: [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          ],
+          minGridSize: 5,
+          maxGridSize: 25
+        };
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.zoomOut()
+        );
+
+        const initialGeneration = state.currentGeneration;
+        const initialRowCount = initialGeneration.length;
+
+        const nextGeneration = nextState.currentGeneration;
+        const nextRowCount = nextGeneration.length;
+
+        expect(nextRowCount).toEqual(initialRowCount + 1);
+      });
+
     describe('activateRandomLife action', () => {
 
     });
