@@ -130,6 +130,24 @@ describe('Game Board Reducer', () => {
         expect(differentCellCount).toEqual(0);
       });
 
+      it('should not change the current generation if the column is invalid', () => {
+        const rowIndex = 0;
+        const columnIndex = -1;
+
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.toggleCellLife({ rowIndex, columnIndex })
+        );
+
+        const initialGeneration = initialState.currentGeneration;
+        const nextGeneration = nextState.currentGeneration;
+        const differentCellCount = countDifferentCells(initialGeneration, nextGeneration);
+
+        expect(differentCellCount).toEqual(0);
+      });
+
+    });
+
     describe('zoomIn action', () => {
 
     });
