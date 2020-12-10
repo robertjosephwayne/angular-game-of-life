@@ -51,3 +51,25 @@ describe('GameButtonsComponent', () => {
     fixture.detectChanges();
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.startTicking());
   });
+
+  it('should dispatch the pause action when the stop button is clicked', () => {
+    const testActiveTicker = setInterval(() => {
+      return;
+    }, 10000);
+
+    store.setState(
+      mockState({
+        ticker: {
+          maxTickInterval: 1000,
+          tickSpeed: 500,
+          activeTicker: testActiveTicker
+        }
+      })
+    );
+    fixture.detectChanges();
+
+    const stopButton = fixture.debugElement.query(By.css('#stop'));
+    stopButton.nativeElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
+  });
