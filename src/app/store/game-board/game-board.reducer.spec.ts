@@ -465,7 +465,22 @@ describe('Game Board Reducer', () => {
 
     describe('setCurrentGeneration action', () => {
 
-    });
+      it('should set the current generation to a new generation', () => {
+        const newGeneration: LifeGeneration = [
+          [1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0],
+          [1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0],
+          [1, 1, 1, 1, 1],
+        ];
+
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.setCurrentGeneration({ newGeneration })
+        );
+
+        expect(nextState.currentGeneration).toBe(newGeneration);
+      });
 
     describe('nextGeneration action', () => {
 
