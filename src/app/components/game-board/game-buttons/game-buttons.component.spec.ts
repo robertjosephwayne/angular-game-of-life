@@ -38,7 +38,7 @@ describe('GameButtonsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch manualTick action when next button is clicked', () => {
+  it('should dispatch the manualTick action when next button is clicked', () => {
     const nextButton = fixture.debugElement.query(By.css('#next'));
     nextButton.nativeElement.dispatchEvent(new Event('click'));
     fixture.detectChanges();
