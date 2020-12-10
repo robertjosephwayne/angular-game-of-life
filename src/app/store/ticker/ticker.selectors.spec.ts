@@ -55,4 +55,17 @@ describe('Ticker Selectors', () => {
     });
   });
 
+  describe('selectMaxTickInterval', () => {
+    it('should return the max tick interval', () => {
+      const state: TickerState = {
+        ...initialState,
+        maxTickInterval: 1000
+      };
+
+      const maxTickInterval = fromTicker.selectMaxTickInterval.projector(state);
+
+      expect(maxTickInterval).toEqual(1000);
+    });
+  });
+
 })
