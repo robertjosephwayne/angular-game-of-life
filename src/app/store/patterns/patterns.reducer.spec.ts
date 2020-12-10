@@ -1,7 +1,8 @@
 import { INIT } from '@ngrx/store';
 
+import * as PatternsActions from './patterns.actions';
 import { patternsReducer } from './patterns.reducer';
-import { initialState } from './patterns.state';
+import { initialState, PatternsState } from './patterns.state';
 
 describe('Patterns Reducer', () => {
 
