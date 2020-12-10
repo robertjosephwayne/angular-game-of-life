@@ -44,4 +44,15 @@ describe('Ticker Selectors', () => {
       expect(isTicking).toBeTrue();
     });
 
+    it('should return false if there is no active ticker', () => {
+      const testTicker = null;
+
+      const isTicking = fromTicker
+        .isTicking
+        .projector(testTicker);
+
+      expect(isTicking).toBeFalse();
+    });
+  });
+
 })
