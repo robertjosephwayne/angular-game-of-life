@@ -14,17 +14,15 @@ describe('GameConfigComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameConfigComponent]
-    })
-      .compileComponents();
-  });
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+      declarations: [
+        GameConfigComponent
+      ],
       providers: [
-        provideMockStore({ initialState })
+        provideMockStore<AppState>({
+          initialState: mockState()
+        })
       ]
-    });
+    }).compileComponents();
 
     store = TestBed.inject(MockStore);
     dispatchSpy = spyOn(store, "dispatch");
