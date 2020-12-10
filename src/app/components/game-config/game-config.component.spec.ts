@@ -27,6 +27,7 @@ describe('GameConfigComponent', () => {
     });
 
     store = TestBed.inject(MockStore);
+    dispatchSpy = spyOn(store, "dispatch");
     fixture = TestBed.createComponent(GameConfigComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
