@@ -62,7 +62,9 @@ describe('Ticker Selectors', () => {
         maxTickInterval: 1000
       };
 
-      const maxTickInterval = fromTicker.selectMaxTickInterval.projector(state);
+      const maxTickInterval = fromTicker
+        .selectMaxTickInterval
+        .projector(state);
 
       expect(maxTickInterval).toEqual(1000);
     });
@@ -75,7 +77,9 @@ describe('Ticker Selectors', () => {
         tickSpeed: 700
       };
 
-      const tickSpeed = fromTicker.selectTickSpeed.projector(state);
+      const tickSpeed = fromTicker
+        .selectTickSpeed
+        .projector(state);
 
       expect(tickSpeed).toEqual(700);
     });
