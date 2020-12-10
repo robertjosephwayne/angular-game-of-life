@@ -6,9 +6,7 @@ import { gameBoardReducer } from './game-board.reducer';
 import { GameBoardState, initialState } from './game-board.state';
 
 describe('Game Board Reducer', () => {
-
   describe('Game Board Actions', () => {
-
     describe('init action', () => {
       it('should return the initial state', () => {
         const nextState = gameBoardReducer(
