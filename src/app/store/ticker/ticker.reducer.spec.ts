@@ -121,6 +121,24 @@ describe('Ticker Reducer', () => {
 
     describe('setTicker action', () => {
 
+      it('should set the active ticker to the specified ticker', () => {
+        const state: TickerState = {
+          ...initialState,
+          activeTicker: null
+        };
+
+        const newTicker = setInterval(() => {
+          return;
+        });
+
+        const nextState = tickerReducer(
+          state,
+          TickerActions.setTicker({ newTicker })
+        );
+
+        expect(nextState.activeTicker).toEqual(newTicker);
+      });
+
     });
 
     describe('clearTicker action', () => {
