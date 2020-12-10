@@ -36,4 +36,24 @@ describe('GameGridComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should dispatch the toggleCellLife action when a cell is clicked', () => {
+    const testRowIndex = 0;
+    const testColumnIndex = 1;
+    const gameTable = fixture.debugElement.query(By.css('table'));
+    const allRows = gameTable.queryAll(By.css('tr'));
+    const testRow = allRows[testRowIndex];
+    const testRowCells = testRow.queryAll(By.css('td'));
+    const testCell = testRowCells[testColumnIndex];
+
+    testCell.nativeElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      GameBoardActions.toggleCellLife({
+        rowIndex: testRowIndex,
+        columnIndex: testColumnIndex
+      })
+    );
+  });
 });
