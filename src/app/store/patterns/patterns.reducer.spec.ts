@@ -55,6 +55,13 @@ describe('Patterns Reducer', () => {
         expect(nextState.selectedPattern).toBe('Glider');
       });
 
+      it('should not change the selected pattern if the specified pattern name is invalid', () => {
+        const state: PatternsState = {
+          ...initialState,
+          presetPatterns: [
+            'Empty',
+            'Glider',
+            'Tub'
           ],
           selectedPattern: 'Tub'
         };
