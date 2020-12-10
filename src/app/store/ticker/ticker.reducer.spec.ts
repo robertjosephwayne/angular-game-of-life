@@ -75,8 +75,23 @@ describe('Ticker Reducer', () => {
 
     describe('setTickSpeed action', () => {
 
-    });
+      it('should set the tick speed to the specified tick speed', () => {
+        const state: TickerState = {
+          ...initialState,
+          tickSpeed: 500
+        };
 
+        const newTickSpeed = 100;
+
+        const nextState = tickerReducer(
+          state,
+          TickerActions.setTickSpeed({ newTickSpeed })
+        );
+
+        expect(nextState.tickSpeed).toEqual(newTickSpeed);
+      });
+
+    });
     describe('updateActiveTickInterval action', () => {
       it('should return the previous state', () => {
         const nextState = tickerReducer(initialState, TickerActions.updateActiveTickInterval());
