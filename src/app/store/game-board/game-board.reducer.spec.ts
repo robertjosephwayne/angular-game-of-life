@@ -23,10 +23,16 @@ describe('Game Board Reducer', () => {
     });
 
     describe('unknown action', () => {
+
       it('should return the previous state', () => {
-        const nextState = gameBoardReducer(initialState, {} as any);
+        const nextState = gameBoardReducer(
+          initialState,
+          {} as any
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('toggleCellLife action', () => {
