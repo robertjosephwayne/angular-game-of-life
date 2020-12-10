@@ -2,7 +2,7 @@ import { INIT } from '@ngrx/store';
 
 import * as TickerActions from './ticker.actions';
 import { tickerReducer } from './ticker.reducer';
-import { initialState } from './ticker.state';
+import { initialState, TickerState } from './ticker.state';
 
 describe('Ticker Reducer', () => {
 
