@@ -80,3 +80,10 @@ describe('GameButtonsComponent', () => {
     fixture.detectChanges();
     expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.reset());
   });
+
+  it('should dispatch the zoomIn action when the zoom in button is clicked', () => {
+    const zoomInButton = fixture.debugElement.query(By.css('#zoom-in'));
+    zoomInButton.nativeElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.zoomIn());
+  });
