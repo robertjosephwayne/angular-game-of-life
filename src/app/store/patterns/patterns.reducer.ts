@@ -8,6 +8,10 @@ const _patternsReducer = createReducer(
   initialState,
 
   on(PatternsActions.setSelectedPattern, (state, { patternName }) => {
+    if (!state.presetPatterns.includes(patternName)) {
+      patternName = state.selectedPattern;
+    }
+
     return {
       ...state,
       selectedPattern: patternName
