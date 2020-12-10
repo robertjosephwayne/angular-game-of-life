@@ -78,6 +78,20 @@ describe('Patterns Reducer', () => {
 
     describe('resetSelectedPattern action', () => {
 
+      it('should set the selected pattern to the selected pattern from the initial state', () => {
+        const state: PatternsState = {
+          ...initialState,
+          selectedPattern: 'Test Pattern Name'
+        };
+
+        const nextState = patternsReducer(
+          state,
+          PatternsActions.resetSelectedPattern()
+        );
+
+        expect(nextState.selectedPattern).toEqual(initialState.selectedPattern);
+      });
+
     });
 
   });
