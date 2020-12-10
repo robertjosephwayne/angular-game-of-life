@@ -482,6 +482,25 @@ describe('Game Board Reducer', () => {
         expect(nextState.currentGeneration).toBe(newGeneration);
       });
 
+      it('should set the generation count to zero', () => {
+        const newGeneration: LifeGeneration = [
+          [1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0],
+          [1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0],
+          [1, 1, 1, 1, 1],
+        ];
+
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.setCurrentGeneration({ newGeneration })
+        );
+
+        expect(nextState.generationCount).toEqual(0);
+      });
+
+    });
+
     describe('nextGeneration action', () => {
 
     });
