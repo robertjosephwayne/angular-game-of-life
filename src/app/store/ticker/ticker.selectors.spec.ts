@@ -11,4 +11,24 @@ describe('Ticker Selectors', () => {
       expect(fromTicker.selectTicker(appState)).toEqual(initialState);
     });
   });
+
+  describe('selectActiveTicker', () => {
+    it('should return the active ticker', () => {
+      const testTicker = setInterval(() => {
+        return;
+      }, 100000);
+
+      const state: TickerState = {
+        ...initialState,
+        activeTicker: testTicker
+      };
+
+      const activeTicker = fromTicker
+        .selectActiveTicker
+        .projector(state);
+
+      expect(activeTicker).toBe(testTicker);
+    });
+  });
+
 })
