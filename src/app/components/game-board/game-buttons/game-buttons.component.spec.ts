@@ -73,3 +73,10 @@ describe('GameButtonsComponent', () => {
     fixture.detectChanges();
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
+
+  it('should dispatch the reset action when the reset button is clicked', () => {
+    const resetButton = fixture.debugElement.query(By.css('#reset'));
+    resetButton.nativeElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.reset());
+  });
