@@ -503,7 +503,36 @@ describe('Game Board Reducer', () => {
 
     describe('nextGeneration action', () => {
 
-    });
+      it('should set the current generation to the next generation', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          currentGeneration: [
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0],
+          ]
+        };
+
+        const expectedNextGeneration: LifeGeneration = [
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 1, 1, 1, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+        ];
+
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.nextGeneration()
+        );
+
+        const nextGeneration = nextState.currentGeneration;
+        const differentCellCount = countDifferentCells(nextGeneration, expectedNextGeneration);
+
+        expect(differentCellCount).toEqual(0);
+      });
 
     describe('reset action', () => {
       it('should return the previous state', () => {
