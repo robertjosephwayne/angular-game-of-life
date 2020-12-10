@@ -29,6 +29,7 @@ describe('GameButtonsComponent', () => {
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
+    dispatchSpy = spyOn(store, "dispatch");
     fixture = TestBed.createComponent(GameButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
