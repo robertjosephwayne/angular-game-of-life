@@ -3,7 +3,7 @@ import { LifeGeneration } from 'src/app/models/life-generation.model';
 
 import * as GameBoardActions from './game-board.actions';
 import { gameBoardReducer } from './game-board.reducer';
-import { initialState } from './game-board.state';
+import { GameBoardState, initialState } from './game-board.state';
 
 describe('Game Board Reducer', () => {
 
