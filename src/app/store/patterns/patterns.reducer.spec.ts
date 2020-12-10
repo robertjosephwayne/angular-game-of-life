@@ -36,6 +36,37 @@ describe('Patterns Reducer', () => {
 
     describe('setSelectedPattern action', () => {
 
+      it('should set the selected pattern to the specified pattern name if it is valid', () => {
+        const state: PatternsState = {
+          ...initialState,
+          presetPatterns: [
+            'Empty',
+            'Glider',
+            'Tub'
+          ],
+          selectedPattern: 'Tub'
+        };
+
+        const nextState = patternsReducer(
+          state,
+          PatternsActions.setSelectedPattern({ patternName: 'Glider' })
+        );
+
+        expect(nextState.selectedPattern).toBe('Glider');
+      });
+
+          ],
+          selectedPattern: 'Tub'
+        };
+
+        const nextState = patternsReducer(
+          state,
+          PatternsActions.setSelectedPattern({ patternName: 'glider' })
+        );
+
+        expect(nextState.selectedPattern).toBe('Tub');
+      });
+
     });
 
     describe('resetSelectedPattern action', () => {
