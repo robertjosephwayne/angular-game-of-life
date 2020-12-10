@@ -421,6 +421,12 @@ describe('Game Board Reducer', () => {
         expect(nextColumnCount).toEqual(initialColumnCount + 1);
       });
 
+      it('should not change the cells which are within the new grid size', () => {
+
+      });
+
+    });
+
     describe('activateRandomLife action', () => {
 
     });
