@@ -67,7 +67,36 @@ describe('Game Board Reducer', () => {
 
         expect(updatedCellValue).toEqual(1);
       });
-    });
+
+      it('should toggle the selected cell to dead if it was alive', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          currentGeneration: [
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          ]
+        };
+
+        const rowIndex = 0;
+        const columnIndex = 0;
+
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.toggleCellLife({ rowIndex, columnIndex })
+        );
+        const updatedGeneration = nextState.currentGeneration;
+        const updatedCellValue = updatedGeneration[0][0];
+
+        expect(updatedCellValue).toEqual(0);
+      });
 
     describe('zoomIn action', () => {
 
