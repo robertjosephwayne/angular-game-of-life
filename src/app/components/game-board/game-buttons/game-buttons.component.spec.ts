@@ -44,4 +44,10 @@ describe('GameButtonsComponent', () => {
     fixture.detectChanges();
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.manualTick());
   });
-});
+
+  it('should dispatch the startTicking action when the start button is clicked', () => {
+    const startButton = fixture.debugElement.query(By.css('#start'));
+    startButton.nativeElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.startTicking());
+  });
