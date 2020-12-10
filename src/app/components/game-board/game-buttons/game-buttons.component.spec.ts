@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
+import * as GameBoardActions from '../../../store/game-board/game-board.actions';
+import * as TickerActions from '../../../store/ticker/ticker.actions';
 import { GameButtonsComponent } from './game-buttons.component';
 
 describe('GameButtonsComponent', () => {
