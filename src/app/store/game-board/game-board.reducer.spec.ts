@@ -114,6 +114,22 @@ describe('Game Board Reducer', () => {
         expect(differentCellCount).toEqual(1);
       });
 
+      it('should not change the current generation if the row is invalid', () => {
+        const rowIndex = -1;
+        const columnIndex = 0;
+
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.toggleCellLife({ rowIndex, columnIndex })
+        );
+
+        const initialGeneration = initialState.currentGeneration;
+        const nextGeneration = nextState.currentGeneration;
+        const differentCellCount = countDifferentCells(initialGeneration, nextGeneration);
+
+        expect(differentCellCount).toEqual(0);
+      });
+
     describe('zoomIn action', () => {
 
     });
