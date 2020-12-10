@@ -38,4 +38,11 @@ describe('GameButtonsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should dispatch manualTick action when next button is clicked', () => {
+    const nextButton = fixture.debugElement.query(By.css('#next'));
+    nextButton.nativeElement.dispatchEvent(new Event('click'));
+    fixture.detectChanges();
+    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.manualTick());
+  });
 });
