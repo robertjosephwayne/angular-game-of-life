@@ -107,10 +107,16 @@ describe('Ticker Reducer', () => {
     });
 
     describe('stopTicking action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.stopTicking());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.stopTicking()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('setTicker action', () => {
