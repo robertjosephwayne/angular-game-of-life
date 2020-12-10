@@ -68,4 +68,17 @@ describe('Ticker Selectors', () => {
     });
   });
 
+  describe('selectTickSpeed', () => {
+    it('should return the tick speed', () => {
+      const state: TickerState = {
+        ...initialState,
+        tickSpeed: 700
+      };
+
+      const tickSpeed = fromTicker.selectTickSpeed.projector(state);
+
+      expect(tickSpeed).toEqual(700);
+    });
+  });
+
 })
