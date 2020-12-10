@@ -197,10 +197,16 @@ describe('Ticker Reducer', () => {
     });
 
     describe('tick action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.tick());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.tick()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
   });
