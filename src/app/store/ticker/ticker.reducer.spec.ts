@@ -143,6 +143,26 @@ describe('Ticker Reducer', () => {
 
     describe('clearTicker action', () => {
 
+      it('should set the active ticker to null', () => {
+        const activeTicker = setInterval(() => {
+          return;
+        });
+
+        const state: TickerState = {
+          ...initialState,
+          activeTicker
+        };
+
+
+
+        const nextState = tickerReducer(
+          state,
+          TickerActions.clearTicker()
+        );
+
+        expect(nextState.activeTicker).toBeNull();
+      });
+
     });
 
     describe('autoTick action', () => {
