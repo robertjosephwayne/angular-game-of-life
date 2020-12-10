@@ -81,4 +81,16 @@ describe('Ticker Selectors', () => {
     });
   });
 
+  describe('selectTickInterval', () => {
+    it('should return the tick interval based on the current tick speed', () => {
+      const maxTickInterval = 1000;
+      const tickSpeed = 700;
+
+      const tickInterval = fromTicker
+        .selectTickInterval
+        .projector(maxTickInterval, tickSpeed);
+
+      expect(tickInterval).toEqual(300);
+    });
+  });
 })
