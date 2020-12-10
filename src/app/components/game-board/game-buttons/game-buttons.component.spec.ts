@@ -14,7 +14,7 @@ describe('GameButtonsComponent', () => {
   let fixture: ComponentFixture<GameButtonsComponent>;
   let store: MockStore<AppState>;
   // let factory:
-    gameConfig: {
+  let dispatchSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
