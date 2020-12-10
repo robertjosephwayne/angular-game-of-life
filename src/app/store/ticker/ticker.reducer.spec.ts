@@ -166,10 +166,16 @@ describe('Ticker Reducer', () => {
     });
 
     describe('autoTick action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.autoTick());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.autoTick()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('resetTickSpeed action', () => {
