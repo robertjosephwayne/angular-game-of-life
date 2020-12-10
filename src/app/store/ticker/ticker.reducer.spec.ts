@@ -9,17 +9,29 @@ describe('Ticker Reducer', () => {
   describe('Ticker Actions', () => {
 
     describe('init action', () => {
+
       it('should return the initial state', () => {
-        const nextState = tickerReducer(undefined, { type: INIT });
+        const nextState = tickerReducer(
+          undefined,
+          { type: INIT }
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('unknown action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, {} as any);
+        const nextState = tickerReducer(
+          initialState,
+          {} as any
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('startTicking action', () => {
