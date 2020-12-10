@@ -92,11 +92,18 @@ describe('Ticker Reducer', () => {
       });
 
     });
+
     describe('updateActiveTickInterval action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.updateActiveTickInterval());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.updateActiveTickInterval()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('stopTicking action', () => {
