@@ -447,6 +447,20 @@ describe('Game Board Reducer', () => {
 
     describe('disableRandomLife action', () => {
 
+      it('should disable random life', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          randomLifeActive: true
+        };
+
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.disableRandomLife()
+        );
+
+        expect(nextState.randomLifeActive).toBeFalse();
+      });
+
     });
 
     describe('setCurrentGeneration action', () => {
