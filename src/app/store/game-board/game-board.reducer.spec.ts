@@ -1,4 +1,5 @@
 import { INIT } from '@ngrx/store';
+import { LifeGeneration } from 'src/app/models/life-generation.model';
 
 import * as GameBoardActions from './game-board.actions';
 import { gameBoardReducer } from './game-board.reducer';
