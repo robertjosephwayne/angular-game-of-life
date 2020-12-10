@@ -61,10 +61,16 @@ describe('Ticker Reducer', () => {
     });
 
     describe('pause action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.pause());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.pause()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('setTickSpeed action', () => {
