@@ -183,6 +183,39 @@ describe('Game Board Reducer', () => {
         expect(nextRowCount).toBe(initialRowCount);
       });
 
+      it('should not change the current generation column count if grid size is already at the minimum size', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          currentGeneration: [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          ],
+          minGridSize: 10,
+          maxGridSize: 25
+        };
+
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.zoomIn()
+        );
+
+        const initialGeneration = state.currentGeneration;
+        const initialColumnCount = initialGeneration.length;
+
+        const nextGeneration = nextState.currentGeneration;
+        const nextColumnCount = nextGeneration[0].length;
+
+        expect(nextColumnCount).toEqual(initialColumnCount);
+      });
+
     describe('zoomOut action', () => {
 
     });
