@@ -10,10 +10,16 @@ describe('Game Board Reducer', () => {
   describe('Game Board Actions', () => {
 
     describe('init action', () => {
+
       it('should return the initial state', () => {
-        const nextState = gameBoardReducer(undefined, { type: INIT });
+        const nextState = gameBoardReducer(
+          undefined,
+          { type: INIT }
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('unknown action', () => {
