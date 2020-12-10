@@ -98,6 +98,22 @@ describe('Game Board Reducer', () => {
         expect(updatedCellValue).toEqual(0);
       });
 
+      it('should only change a single cell', () => {
+        const rowIndex = 0;
+        const columnIndex = 0;
+
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.toggleCellLife({ rowIndex, columnIndex })
+        );
+
+        const initialGeneration = initialState.currentGeneration;
+        const nextGeneration = nextState.currentGeneration;
+        const differentCellCount = countDifferentCells(initialGeneration, nextGeneration);
+
+        expect(differentCellCount).toEqual(1);
+      });
+
     describe('zoomIn action', () => {
 
     });
