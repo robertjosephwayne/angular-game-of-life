@@ -323,6 +323,39 @@ describe('Game Board Reducer', () => {
         expect(nextRowCount).toEqual(initialRowCount);
       });
 
+      it('should not change the current column count if grid size is already at the maximum size', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          currentGeneration: [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          ],
+          minGridSize: 5,
+          maxGridSize: 10
+        };
+
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.zoomOut()
+        );
+
+        const initialGeneration = state.currentGeneration;
+        const initialColumnCount = initialGeneration[0].length;
+
+        const nextGeneration = nextState.currentGeneration;
+        const nextColumnCount = nextGeneration[0].length;
+
+        expect(nextColumnCount).toEqual(initialColumnCount);
+      });
+
     describe('activateRandomLife action', () => {
 
     });
