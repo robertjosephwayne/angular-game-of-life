@@ -31,4 +31,17 @@ describe('Ticker Selectors', () => {
     });
   });
 
+  describe('isTicking', () => {
+    it('should return true if there is an active ticker', () => {
+      const testTicker = setInterval(() => {
+        return;
+      }, 100000);
+
+      const isTicking = fromTicker
+        .isTicking
+        .projector(testTicker);
+
+      expect(isTicking).toBeTrue();
+    });
+
 })
