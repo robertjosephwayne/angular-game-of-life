@@ -35,10 +35,16 @@ describe('Ticker Reducer', () => {
     });
 
     describe('startTicking action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.startTicking());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.startTicking()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('manualTick action', () => {
