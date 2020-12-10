@@ -48,10 +48,16 @@ describe('Ticker Reducer', () => {
     });
 
     describe('manualTick action', () => {
+
       it('should return the previous state', () => {
-        const nextState = tickerReducer(initialState, TickerActions.manualTick());
+        const nextState = tickerReducer(
+          initialState,
+          TickerActions.manualTick()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
     describe('pause action', () => {
