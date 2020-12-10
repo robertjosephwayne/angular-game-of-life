@@ -13,7 +13,6 @@ describe('GameButtonsComponent', () => {
   let component: GameButtonsComponent;
   let fixture: ComponentFixture<GameButtonsComponent>;
   let store: MockStore<AppState>;
-  // let factory:
   let dispatchSpy: jasmine.Spy;
 
   beforeEach(async () => {
