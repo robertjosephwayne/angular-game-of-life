@@ -546,11 +546,18 @@ describe('Game Board Reducer', () => {
     });
 
     describe('reset action', () => {
-      it('should return the previous state', () => {
-        const nextState = gameBoardReducer(initialState, GameBoardActions.reset());
+
+      it('should return the initial state', () => {
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.reset()
+        );
+
         expect(nextState).toBe(initialState);
       });
+
     });
 
   });
+
 });
