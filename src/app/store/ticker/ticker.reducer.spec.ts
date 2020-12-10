@@ -180,6 +180,20 @@ describe('Ticker Reducer', () => {
 
     describe('resetTickSpeed action', () => {
 
+      it('should set the tick speed to the tick speed from the initial state', () => {
+        const state: TickerState = {
+          ...initialState,
+          tickSpeed: 25
+        };
+
+        const nextState = tickerReducer(
+          state,
+          TickerActions.resetTickSpeed()
+        );
+
+        expect(nextState.tickSpeed).toEqual(initialState.tickSpeed);
+      });
+
     });
 
     describe('tick action', () => {
