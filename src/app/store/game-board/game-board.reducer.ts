@@ -140,15 +140,23 @@ function countLiveNeighbors(currentGeneration: LifeGeneration, cellRow: number, 
 }
 
 function toggleCellLife(generation: LifeGeneration, rowIndex: number, columnIndex: number): LifeGeneration {
+  const lastRowIndex = generation.length - 1;
+  const lastColumnIndex = generation[0].length - 1;
+
+  if (rowIndex < 0 || rowIndex > lastRowIndex) return generation;
+  if (columnIndex < 0 || columnIndex > lastColumnIndex) return generation;
+
   let updatedGeneration = [];
   generation.forEach(row => {
     updatedGeneration.push(row.slice());
   });
+
   if (updatedGeneration[rowIndex][columnIndex]) {
     updatedGeneration[rowIndex][columnIndex] = 0;
   } else {
     updatedGeneration[rowIndex][columnIndex] = 1;
   }
+
   return updatedGeneration;
 }
 
