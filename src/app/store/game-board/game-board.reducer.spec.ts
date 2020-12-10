@@ -561,3 +561,19 @@ describe('Game Board Reducer', () => {
   });
 
 });
+
+function countDifferentCells(firstGeneration: LifeGeneration, secondGeneration: LifeGeneration): number {
+  const rowCount = firstGeneration.length;
+  const columnCount = firstGeneration[0].length;
+
+  let differentCellCount = 0;
+  for (let i = 0; i < rowCount; i++) {
+    for (let j = 0; j < columnCount; j++) {
+      if (firstGeneration[i][j] !== secondGeneration[i][j]) {
+        differentCellCount++;
+      }
+    }
+  }
+
+  return differentCellCount;
+}
