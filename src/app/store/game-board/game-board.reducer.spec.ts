@@ -534,6 +534,17 @@ describe('Game Board Reducer', () => {
         expect(differentCellCount).toEqual(0);
       });
 
+      it('should increment the generation count', () => {
+        const nextState = gameBoardReducer(
+          initialState,
+          GameBoardActions.nextGeneration()
+        );
+
+        expect(nextState.generationCount).toEqual(initialState.generationCount + 1);
+      });
+
+    });
+
     describe('reset action', () => {
       it('should return the previous state', () => {
         const nextState = gameBoardReducer(initialState, GameBoardActions.reset());
