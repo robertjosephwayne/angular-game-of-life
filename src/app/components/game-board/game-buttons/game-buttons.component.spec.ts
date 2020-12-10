@@ -12,7 +12,7 @@ import { GameButtonsComponent } from './game-buttons.component';
 describe('GameButtonsComponent', () => {
   let component: GameButtonsComponent;
   let fixture: ComponentFixture<GameButtonsComponent>;
-  let store: MockStore;
+  let store: MockStore<AppState>;
   // let factory:
     gameConfig: {
 
