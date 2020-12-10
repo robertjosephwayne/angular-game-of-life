@@ -4,14 +4,14 @@ import { AppState } from '../app.state';
 
 export const selectTicker = (state: AppState) => state.ticker;
 
-export const isTicking = createSelector(
-  selectTicker,
-  ticker => !!ticker.activeTicker
-);
-
 export const selectActiveTicker = createSelector(
   selectTicker,
   ticker => ticker.activeTicker
+);
+
+export const isTicking = createSelector(
+  selectActiveTicker,
+  activeTicker => !!activeTicker
 );
 
 export const selectMaxTickInterval = createSelector(
