@@ -18,11 +18,15 @@ describe('GameButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameButtonsComponent]
-    })
-      .compileComponents();
-  });
-
+      declarations: [
+        GameButtonsComponent
+      ],
+      providers: [
+        provideMockStore<AppState>({
+          initialState: mockState()
+        })
+      ]
+    }).compileComponents();
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(GameButtonsComponent);
