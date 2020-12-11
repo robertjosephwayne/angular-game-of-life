@@ -241,6 +241,18 @@ describe('GameButtonsComponent', () => {
       expect(await zoomOutButton.isDisabled()).toBeFalse();
     });
 
+    it('should call the zoomOut function when it is clicked', async () => {
+      component.canZoomOut$ = of(true);
+      fixture.detectChanges();
+
+      const zoomOutSpy = spyOn(component, 'zoomOut');
+      const zoomOutButton = await loader.getHarness(MatButtonHarness.with({ selector: '#zoom-out' }));
+      await zoomOutButton.click();
+
+      expect(zoomOutSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
