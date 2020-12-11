@@ -17,6 +17,7 @@ import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as TickerActions from '../../store/ticker/ticker.actions';
 
 import { GameConfigComponent } from './game-config.component';
+import { of } from 'rxjs';
 
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
