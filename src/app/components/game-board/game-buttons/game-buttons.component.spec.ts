@@ -49,34 +49,44 @@ describe('GameButtonsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch the manualTick action when next button is clicked', () => {
-    const nextButton = fixture.debugElement.query(By.css('#next'));
-    nextButton.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.manualTick());
+  describe('Next Button', () => {
+    it('should not be disabled when canGenerateNextGeneration is true and isTicking is false', async () => {
+      component.canGenerateNextGeneration$ = of(true);
+      component.isTicking$ = of(false);
+      fixture.detectChanges();
+      const nextButton = await loader.getHarness(MatButtonHarness.with({ selector: '#next' }));
+      expect(await nextButton.isDisabled()).toBeFalse();
+    });
+
+    it('should be disabled when canGenerateNextGeneration is false and isTicking is false', async () => {
+      component.canGenerateNextGeneration$ = of(false);
+      component.isTicking$ = of(true);
+      fixture.detectChanges();
+      const nextButton = await loader.getHarness(MatButtonHarness.with({ selector: '#next' }));
+      expect(await nextButton.isDisabled()).toBeTrue();
+    });
+
+    it('should be disabled when isTicking is true', async () => {
+      component.canGenerateNextGeneration$ = of(true);
+      component.isTicking$ = of(true);
+      fixture.detectChanges();
+      const nextButton = await loader.getHarness(MatButtonHarness.with({ selector: '#next' }));
+      expect(await nextButton.isDisabled()).toBeTrue();
+    });
+
+    it('should call the tick function when it is clicked', async () => {
+      component.canGenerateNextGeneration$ = of(true);
+      component.isTicking$ = of(false);
+      fixture.detectChanges();
+
+      const tickSpy = spyOn(component, 'tick');
+      const nextButton = await loader.getHarness(MatButtonHarness.with({ selector: '#next' }));
+      await nextButton.click();
+
+      expect(tickSpy).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it('should dispatch the startTicking action when the start button is clicked', () => {
-    const startButton = fixture.debugElement.query(By.css('#start'));
-    startButton.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.startTicking());
-  });
-
-  it('should dispatch the pause action when the stop button is clicked', () => {
-    const testActiveTicker = setInterval(() => {
-      return;
-    }, 10000);
-
-    store.setState(
-      mockState({
-        ticker: {
-          maxTickInterval: 1000,
-          tickSpeed: 500,
-          activeTicker: testActiveTicker
-        }
-      })
-    );
     fixture.detectChanges();
 
     const stopButton = fixture.debugElement.query(By.css('#stop'));
