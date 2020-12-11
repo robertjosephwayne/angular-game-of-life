@@ -4,9 +4,7 @@
     mat-fab
     color="primary"
     (click)="tick()"
-    [disabled]="
-      !(canGenerateNextGeneration$ | async) || (isTicking$ | async)
-    "
+    [disabled]="!(canGenerateNextGeneration$ | async) || (isTicking$ | async)"
   >
     <mat-icon>skip_next</mat-icon>
   </button>
