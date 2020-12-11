@@ -163,6 +163,13 @@ describe('GameButtonsComponent', () => {
       expect(await resetButton).toBeDefined();
     });
 
+    it('should be disabled if canReset is false', async () => {
+      component.canReset$ = of(false);
+      fixture.detectChanges();
+      const resetButton = await loader.getHarness(MatButtonHarness.with({ selector: '#reset' }));
+      expect(await resetButton.isDisabled()).toBeTrue();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
