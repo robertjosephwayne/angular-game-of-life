@@ -31,8 +31,10 @@ describe('PatternsComponent', () => {
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
+    dispatchSpy = spyOn(store, "dispatch");
     fixture = TestBed.createComponent(PatternsComponent);
     component = fixture.componentInstance;
+    loader = TestbedHarnessEnvironment.loader(fixture);
     fixture.detectChanges();
   });
 
