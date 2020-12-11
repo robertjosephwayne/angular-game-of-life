@@ -145,6 +145,18 @@ describe('GameButtonsComponent', () => {
       expect(await stopButtons.length).toEqual(1);
     });
 
+    it('should call the stopTicking function when it is clicked', async () => {
+      component.isTicking$ = of(true);
+      fixture.detectChanges();
+
+      const stopTickingSpy = spyOn(component, 'stopTicking');
+      const stopButton = await loader.getHarness(MatButtonHarness.with({ selector: '#stop' }));
+      await stopButton.click();
+
+      expect(stopTickingSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
