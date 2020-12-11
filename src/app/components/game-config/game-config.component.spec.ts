@@ -4,7 +4,10 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
 
 import { MatSliderModule } from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderHarness } from '@angular/material/slider/testing';
+import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
+
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { AppState, mockState } from 'src/app/store/app.state';
