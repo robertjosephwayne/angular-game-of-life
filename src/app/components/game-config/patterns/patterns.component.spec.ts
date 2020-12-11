@@ -1,5 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { By } from '@angular/platform-browser';
+import { MatSelectHarness } from '@angular/material/select/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
+
+import { AppState, mockState } from 'src/app/store/app.state';
+
+import * as PatternsActions from '../../../store/patterns/patterns.actions';
 
 import { PatternsComponent } from './patterns.component';
 
