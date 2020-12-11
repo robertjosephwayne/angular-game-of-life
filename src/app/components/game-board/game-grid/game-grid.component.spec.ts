@@ -56,4 +56,7 @@ describe('GameGridComponent', () => {
       })
     );
   });
-});
+
+  describe('setGameBoardData function', () => {
+
+  });
