@@ -6,13 +6,7 @@ import { GameStatsComponent } from './game-stats.component';
 describe('GameStatsComponent', () => {
   let component: GameStatsComponent;
   let fixture: ComponentFixture<GameStatsComponent>;
-  let store: MockStore;
-  const initialState = {
-    gameStats: {
-      generationCount: 0,
-      liveCells: 0
-    }
-  };
+  let store: MockStore<AppState>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
