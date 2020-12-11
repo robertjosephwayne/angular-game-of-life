@@ -85,4 +85,11 @@ describe('GameConfigComponent', () => {
     await checkboxHarness.uncheck();
     expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.disableRandomLife());
   });
-});
+
+  describe('setGameBoardData function', () => {
+
+  });
+
+  describe('setTickerData function', () => {
+
+  });
