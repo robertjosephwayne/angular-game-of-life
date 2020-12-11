@@ -23,8 +23,8 @@ export class TickerEffects {
   setTickSpeed$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.setTickSpeed),
     withLatestFrom(this.store.select(fromTicker.isTicking)),
-    map(([action, isTickerActive]) => {
-      if (isTickerActive) {
+    map(([action, isTicking]) => {
+      if (isTicking) {
         return TickerActions.updateActiveTickInterval();
       } else {
         return { type: 'Empty Action' };
