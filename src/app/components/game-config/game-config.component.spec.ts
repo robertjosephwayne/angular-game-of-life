@@ -95,3 +95,18 @@ describe('GameConfigComponent', () => {
       expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.setTickSpeed({ newTickSpeed }));
     });
   });
+
+  describe('handleRandomLifeToggle function', () => {
+    it('should dispatch the activateRandomLife action when random life is enabled', async () => {
+      const randomLifeEnabled = true;
+      component.handleRandomLifeToggle(randomLifeEnabled);
+      expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.activateRandomLife());
+    });
+
+    it('should dispatch the disableRandomLife action when random life is disabled', async () => {
+      const randomLifeEnabled = false;
+      component.handleRandomLifeToggle(randomLifeEnabled);
+      expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.disableRandomLife());
+    });
+  });
+});
