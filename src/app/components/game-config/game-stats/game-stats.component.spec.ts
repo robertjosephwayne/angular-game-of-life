@@ -37,4 +37,8 @@ describe('GameStatsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('setGameBoardData function', () => {
+
+  });
 });
