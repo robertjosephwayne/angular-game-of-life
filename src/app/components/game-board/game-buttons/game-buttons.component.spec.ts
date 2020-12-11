@@ -234,6 +234,13 @@ describe('GameButtonsComponent', () => {
       expect(await zoomOutButton.isDisabled()).toBeTrue();
     });
 
+    it('should not be disabled if canZoomOut is true', async () => {
+      component.canZoomOut$ = of(true);
+      fixture.detectChanges();
+      const zoomOutButton = await loader.getHarness(MatButtonHarness.with({ selector: '#zoom-out' }));
+      expect(await zoomOutButton.isDisabled()).toBeFalse();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
