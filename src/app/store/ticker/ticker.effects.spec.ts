@@ -82,6 +82,9 @@ describe('Ticker Effects', () => {
     it('should dispatch the stopTicking action when a setCurrentGeneration action is dispatched', () => {
 
     });
+
+    it('should dispatch the stopTicking action when a pause action is dispatched', () => {
+
     });
   });
 
