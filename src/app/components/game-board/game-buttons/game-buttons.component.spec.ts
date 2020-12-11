@@ -253,7 +253,7 @@ describe('GameButtonsComponent', () => {
     });
   });
 
-  describe('setGameBoard function', () => {
+  describe('setGameBoardData function', () => {
 
   });
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
