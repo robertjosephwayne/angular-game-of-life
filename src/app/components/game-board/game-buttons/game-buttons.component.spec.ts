@@ -87,11 +87,21 @@ describe('GameButtonsComponent', () => {
     });
   });
 
-    fixture.detectChanges();
+  describe('Start Button', () => {
+    it('should not be rendered if isTicking is true', async () => {
+      component.isTicking$ = of(true);
+      fixture.detectChanges();
+      const startButtons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: '#start' }));
+      expect(await startButtons.length).toEqual(0);
+    });
 
-    const stopButton = fixture.debugElement.query(By.css('#stop'));
-    stopButton.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
+    it('should be rendered if isTicking is false', async () => {
+      component.isTicking$ = of(false);
+      fixture.detectChanges();
+      const startButtons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: '#start' }));
+      expect(await startButtons.length).toEqual(1);
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
