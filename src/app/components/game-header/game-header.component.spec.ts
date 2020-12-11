@@ -8,12 +8,9 @@ describe('GameHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameHeaderComponent ]
-    })
-    .compileComponents();
-  });
+      declarations: [GameHeaderComponent]
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(GameHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
