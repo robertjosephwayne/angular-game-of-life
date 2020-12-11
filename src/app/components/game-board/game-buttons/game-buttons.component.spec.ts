@@ -177,6 +177,18 @@ describe('GameButtonsComponent', () => {
       expect(await resetButton.isDisabled()).toBeFalse();
     });
 
+    it('should call the reset function when it is clicked', async () => {
+      component.canReset$ = of(true);
+      fixture.detectChanges();
+
+      const resetSpy = spyOn(component, 'reset');
+      const resetButton = await loader.getHarness(MatButtonHarness.with({ selector: '#reset' }));
+      await resetButton.click();
+
+      expect(resetSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
