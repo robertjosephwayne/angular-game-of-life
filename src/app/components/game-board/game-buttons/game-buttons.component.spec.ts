@@ -256,6 +256,11 @@ describe('GameButtonsComponent', () => {
   describe('setGameBoardData function', () => {
 
   });
+
+  describe('setTickerData function', () => {
+
+  });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
