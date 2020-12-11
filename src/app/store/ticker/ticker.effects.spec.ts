@@ -30,13 +30,14 @@ describe('Ticker Effects', () => {
   });
 
   describe('resetTickSpeed$', () => {
-    it('should dispatch the resetTickSpeed action', () => {
+    it('should dispatch the resetTickSpeed action', (done) => {
       actions$ = of(GameBoardActions.reset());
       effects.resetTickSpeed$.subscribe((actions) => {
         expect(actions).toEqual(
           TickerActions.resetTickSpeed()
         );
       });
+      done();
     });
   });
 
@@ -89,13 +90,14 @@ describe('Ticker Effects', () => {
   });
 
   describe('clearTickInterval$', () => {
-    it('should dispatch the clearTicker action', () => {
+    it('should dispatch the clearTicker action', (done) => {
       actions$ = of(TickerActions.stopTicking());
       effects.clearTickInterval$.subscribe((actions) => {
         expect(actions).toEqual(
           TickerActions.clearTicker()
         );
       });
+      done();
     });
 
     it('should clear the interval of the active ticker', () => {
@@ -104,13 +106,14 @@ describe('Ticker Effects', () => {
   });
 
   describe('manualTick$', () => {
-    it('should dispatch the tick action', () => {
+    it('should dispatch the tick action', (done) => {
       actions$ = of(TickerActions.manualTick());
       effects.manualTick$.subscribe((actions) => {
         expect(actions).toEqual(
           TickerActions.tick()
         );
       });
+      done();
     });
   });
 });
