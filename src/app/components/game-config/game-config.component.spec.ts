@@ -52,4 +52,9 @@ describe('GameConfigComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+
+  it('should dispatch the setTickSpeed action when the tick speed changes', async () => {
+    const sliderHarness = await loader.getHarness(MatSliderHarness);
+    await sliderHarness.setValue(0);
+    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.setTickSpeed({ newTickSpeed: 0 }));
+  });
