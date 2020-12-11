@@ -64,3 +64,25 @@ describe('GameConfigComponent', () => {
     await checkboxHarness.check();
     expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.activateRandomLife());
   });
+
+  it('should dispatch the disableRandomLife action when the random life box is unchecked', async () => {
+    store.setState(
+      mockState({
+        gameBoard: {
+          currentGeneration: [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+          ],
+          randomLifeActive: true,
+          generationCount: 0,
+          minGridSize: 3,
+          maxGridSize: 25
+        }
+      })
+    );
+    const checkboxHarness = await loader.getHarness(MatCheckboxHarness);
+    await checkboxHarness.uncheck();
+    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.disableRandomLife());
+  });
+});
