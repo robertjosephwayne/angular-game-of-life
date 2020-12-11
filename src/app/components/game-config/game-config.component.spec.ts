@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
+
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSliderHarness } from '@angular/material/slider/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { AppState, mockState } from 'src/app/store/app.state';
