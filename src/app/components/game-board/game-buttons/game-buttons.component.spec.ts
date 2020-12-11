@@ -209,6 +209,18 @@ describe('GameButtonsComponent', () => {
       expect(await zoomInButton.isDisabled()).toBeFalse();
     });
 
+    it('should call the zoomIn function when it is clicked', async () => {
+      component.canZoomIn$ = of(true);
+      fixture.detectChanges();
+
+      const zoomInSpy = spyOn(component, 'zoomIn');
+      const zoomInButton = await loader.getHarness(MatButtonHarness.with({ selector: '#zoom-in' }));
+      await zoomInButton.click();
+
+      expect(zoomInSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
