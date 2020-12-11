@@ -109,6 +109,14 @@ describe('GameButtonsComponent', () => {
       expect(await startButton.isDisabled()).toBeTrue();
     });
 
+    it('should not be disabled if canGenerateNextGeneration is true', async () => {
+      component.isTicking$ = of(false);
+      component.canGenerateNextGeneration$ = of(true);
+      fixture.detectChanges();
+      const startButton = await loader.getHarness(MatButtonHarness.with({ selector: '#start' }));
+      expect(await startButton.isDisabled()).toBeFalse();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
