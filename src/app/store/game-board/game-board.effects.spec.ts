@@ -8,7 +8,6 @@ import * as GameBoardActions from '../game-board/game-board.actions';
 import * as TickerActions from '../ticker/ticker.actions';
 
 import { GameBoardEffects } from './game-board.effects';
-import { toArray } from 'rxjs/operators';
 
 describe('Game Board Effects', () => {
   let actions$: Observable<Action>;
