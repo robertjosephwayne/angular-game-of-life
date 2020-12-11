@@ -11,6 +11,10 @@ import { MatCheckboxHarness } from '@angular/material/checkbox/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { AppState, mockState } from 'src/app/store/app.state';
+import { GameBoardState } from '../../store/game-board/game-board.state';
+
+import * as GameBoardActions from '../../store/game-board/game-board.actions';
+import * as TickerActions from '../../store/ticker/ticker.actions';
 
 import { GameConfigComponent } from './game-config.component';
 
