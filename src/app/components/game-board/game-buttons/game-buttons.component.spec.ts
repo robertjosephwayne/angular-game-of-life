@@ -157,6 +157,12 @@ describe('GameButtonsComponent', () => {
     });
   });
 
+  describe('Reset Button', () => {
+    it('should create', async () => {
+      const resetButton = await loader.getHarness(MatButtonHarness.with({ selector: '#reset' }));
+      expect(await resetButton).toBeDefined();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
