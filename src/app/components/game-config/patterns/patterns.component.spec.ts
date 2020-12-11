@@ -20,17 +20,15 @@ describe('PatternsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PatternsComponent]
-    })
-      .compileComponents();
-  });
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+      declarations: [
+        PatternsComponent,
+      ],
       providers: [
-        provideMockStore({ initialState })
+        provideMockStore<AppState>({
+          initialState: mockState()
+        })
       ]
-    });
+    }).compileComponents();
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(PatternsComponent);
