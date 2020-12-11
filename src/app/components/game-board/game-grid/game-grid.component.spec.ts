@@ -60,3 +60,13 @@ describe('GameGridComponent', () => {
   describe('setGameBoardData function', () => {
 
   });
+
+  describe('handleCellClick function', () => {
+    it('should dispatch the toggleCellLife action with the correct row and column indexes', () => {
+      const rowIndex = 1;
+      const columnIndex = 2;
+      component.handleCellClick(rowIndex, columnIndex);
+      expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.toggleCellLife({ rowIndex, columnIndex }));
+    });
+  });
+});
