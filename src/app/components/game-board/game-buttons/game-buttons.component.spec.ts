@@ -261,6 +261,12 @@ describe('GameButtonsComponent', () => {
 
   });
 
+  describe('tick function', () => {
+    it('should dispatch the manualTick action', () => {
+      component.tick();
+      expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.manualTick());
+    });
+  });
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
