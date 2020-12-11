@@ -289,11 +289,11 @@ describe('GameButtonsComponent', () => {
     });
   });
 
-  it('should dispatch the zoomIn action when the zoom in button is clicked', () => {
-    const zoomInButton = fixture.debugElement.query(By.css('#zoom-in'));
-    zoomInButton.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.zoomIn());
+  describe('zoomIn function', () => {
+    it('should dispatch the zoomIn action', () => {
+      component.zoomIn();
+      expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.zoomIn());
+    });
   });
 
   it('should dispatch the zoomOut action when the zoom out button is clicked', () => {
