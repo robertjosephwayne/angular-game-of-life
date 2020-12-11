@@ -95,3 +95,11 @@ describe('GameConfigComponent', () => {
   describe('setTickerData function', () => {
 
   });
+
+  describe('handleSpeedChange function', () => {
+    it('should dispatch the setTickSpeed action with the correct tick speed', () => {
+      const newTickSpeed = 50;
+      component.handleSpeedChange(newTickSpeed);
+      expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.setTickSpeed({ newTickSpeed }));
+    });
+  });
