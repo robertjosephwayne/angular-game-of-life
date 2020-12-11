@@ -130,6 +130,14 @@ describe('GameButtonsComponent', () => {
     });
   });
 
+  describe('Stop Button', () => {
+    it('should not be rendered if isTicking is false', async () => {
+      component.isTicking$ = of(false);
+      fixture.detectChanges();
+      const stopButtons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: '#stop' }));
+      expect(await stopButtons.length).toEqual(0);
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
