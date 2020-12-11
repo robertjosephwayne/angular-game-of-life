@@ -221,6 +221,12 @@ describe('GameButtonsComponent', () => {
     });
   });
 
+  describe('Zoom Out Button', () => {
+    it('should create', async () => {
+      const zoomOutButton = await loader.getHarness(MatButtonHarness.with({ selector: '#zoom-out' }));
+      expect(await zoomOutButton).toBeDefined();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
