@@ -282,11 +282,11 @@ describe('GameButtonsComponent', () => {
     });
   });
 
-  it('should dispatch the reset action when the reset button is clicked', () => {
-    const resetButton = fixture.debugElement.query(By.css('#reset'));
-    resetButton.nativeElement.dispatchEvent(new Event('click'));
-    fixture.detectChanges();
-    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.reset());
+  describe('reset function', () => {
+    it('should dispatch the reset action', () => {
+      component.reset();
+      expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.reset());
+    });
   });
 
   it('should dispatch the zoomIn action when the zoom in button is clicked', () => {
