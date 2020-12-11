@@ -37,7 +37,8 @@ describe('GameGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch the toggleCellLife action when a cell is clicked', () => {
+  it('should call the handleCellClick function with the correct row and column when a cell is clicked', () => {
+    const handleCellClickSpy = spyOn(component, 'handleCellClick');
     const testRowIndex = 0;
     const testColumnIndex = 1;
     const gameTable = fixture.debugElement.query(By.css('table'));
@@ -49,12 +50,7 @@ describe('GameGridComponent', () => {
     testCell.nativeElement.dispatchEvent(new Event('click'));
     fixture.detectChanges();
 
-    expect(dispatchSpy).toHaveBeenCalledWith(
-      GameBoardActions.toggleCellLife({
-        rowIndex: testRowIndex,
-        columnIndex: testColumnIndex
-      })
-    );
+    expect(handleCellClickSpy).toHaveBeenCalledWith(testRowIndex, testColumnIndex);
   });
 
   describe('setGameBoardData function', () => {
