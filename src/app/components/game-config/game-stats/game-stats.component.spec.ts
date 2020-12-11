@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { AppState, mockState } from 'src/app/store/app.state';
 
 import { GameStatsComponent } from './game-stats.component';
 
@@ -10,17 +11,15 @@ describe('GameStatsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameStatsComponent]
-    })
-      .compileComponents();
-  });
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+      declarations: [
+        GameStatsComponent,
+      ],
       providers: [
-        provideMockStore({ initialState })
+        provideMockStore<AppState>({
+          initialState: mockState()
+        })
       ]
-    });
+    }).compileComponents();
 
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(GameStatsComponent);
