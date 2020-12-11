@@ -53,4 +53,10 @@ describe('PatternsComponent', () => {
     const options = patternsElement.querySelectorAll('mat-option');
     expect(options.length).toEqual(9);
   });
-});
+  describe('handlePatternSelect function', () => {
+    it('should dispatch the setSelectedPattern action with the correct argument', async () => {
+      const patternName = 'Test Pattern Name';
+      component.handlePatternSelect(patternName);
+      expect(dispatchSpy).toHaveBeenCalledWith(PatternsActions.setSelectedPattern({ patternName }));
+    });
+  });
