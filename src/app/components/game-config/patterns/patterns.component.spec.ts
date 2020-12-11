@@ -14,23 +14,9 @@ import { PatternsComponent } from './patterns.component';
 describe('PatternsComponent', () => {
   let component: PatternsComponent;
   let fixture: ComponentFixture<PatternsComponent>;
-  let store: MockStore;
-  const initialState = {
-    patterns: {
-      presetPatterns: [
-        'Empty',
-        'Glider',
-        'Small Exploder',
-        'Exploder',
-        'Ten Cell Row',
-        'Lightweight Spaceship',
-        'Block',
-        'Tub',
-        'Boat'
-      ],
-      selectedPattern: 'Empty'
-    }
-  }
+  let store: MockStore<AppState>;
+  let dispatchSpy: jasmine.Spy;
+  let loader: HarnessLoader;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
