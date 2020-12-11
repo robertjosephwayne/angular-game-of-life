@@ -117,6 +117,19 @@ describe('GameButtonsComponent', () => {
       expect(await startButton.isDisabled()).toBeFalse();
     });
 
+    it('should call the startTicking function when it is clicked', async () => {
+      component.canGenerateNextGeneration$ = of(true);
+      component.isTicking$ = of(false);
+      fixture.detectChanges();
+
+      const startTickingSpy = spyOn(component, 'startTicking');
+      const startButton = await loader.getHarness(MatButtonHarness.with({ selector: '#start' }));
+      await startButton.click();
+
+      expect(startTickingSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
