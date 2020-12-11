@@ -62,31 +62,22 @@ describe('GameConfigComponent', () => {
     expect(handleSpeedChangeSpy).toHaveBeenCalledWith(newTickSpeed);
   });
 
-  it('should dispatch the activateRandomLife action when the random life box is checked', async () => {
+  it('should call the handleRandomLifeToggle function with the correct argument when checked', async () => {
+    component.randomLifeActive$ = of(false);
+    fixture.detectChanges();
+    const handleRandomLifeToggleSpy = spyOn(component, 'handleRandomLifeToggle');
     const checkboxHarness = await loader.getHarness(MatCheckboxHarness);
     await checkboxHarness.check();
-    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.activateRandomLife());
+    expect(handleRandomLifeToggleSpy).toHaveBeenCalledWith(true);
   });
 
-  it('should dispatch the disableRandomLife action when the random life box is unchecked', async () => {
-    store.setState(
-      mockState({
-        gameBoard: {
-          currentGeneration: [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]
-          ],
-          randomLifeActive: true,
-          generationCount: 0,
-          minGridSize: 3,
-          maxGridSize: 25
-        }
-      })
-    );
+  it('should call the handleRandomLifeToggle function with the correct argument when unchecked', async () => {
+    component.randomLifeActive$ = of(true);
+    fixture.detectChanges();
+    const handleRandomLifeToggleSpy = spyOn(component, 'handleRandomLifeToggle');
     const checkboxHarness = await loader.getHarness(MatCheckboxHarness);
     await checkboxHarness.uncheck();
-    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.disableRandomLife());
+    expect(handleRandomLifeToggleSpy).toHaveBeenCalledWith(false);
   });
 
   describe('setGameBoardData function', () => {
