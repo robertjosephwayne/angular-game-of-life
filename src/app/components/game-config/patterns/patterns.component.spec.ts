@@ -30,6 +30,11 @@ describe('PatternsComponent', () => {
       declarations: [
         PatternsComponent,
       ],
+      imports: [
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+      ],
       providers: [
         provideMockStore<AppState>({
           initialState: mockState()
@@ -49,17 +54,42 @@ describe('PatternsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the label', () => {
-    const patternsElement: HTMLElement = fixture.nativeElement;
-    const patternsLabel = patternsElement.querySelector('mat-label');
-    expect(patternsLabel.textContent).toEqual('Preset Patterns');
+  it('should display the label', async () => {
+    const formFieldHarness = await loader.getHarness(MatFormFieldHarness);
+    const patternLabel = await formFieldHarness.getLabel();
+    expect(patternLabel).toEqual('Preset Patterns');
   });
 
-  it('should include an option for each preset pattern', () => {
-    const patternsElement: HTMLElement = fixture.nativeElement;
-    const options = patternsElement.querySelectorAll('mat-option');
-    expect(options.length).toEqual(9);
+  it('should include an option for each preset pattern', async () => {
+    component.presetPatterns$ = of([
+      'Preset Pattern 1',
+      'Preset Pattern 2',
+      'Preset Pattern 3',
+    ]);
+    fixture.detectChanges();
+
+    const selectHarness = await loader.getHarness(MatSelectHarness);
+    await selectHarness.open();
+    const options = await selectHarness.getOptions();
+
+    expect(options.length).toEqual(3);
   });
+
+  it('should call the handlePatternSelect function when a pattern is selected', async () => {
+    const handlePatternSelectSpy = spyOn(component, 'handlePatternSelect');
+    const patternName = 'Glider';
+
+    const selectHarness = await loader.getHarness(MatSelectHarness);
+    await selectHarness.open();
+    await selectHarness.clickOptions({ text: patternName });
+
+    expect(handlePatternSelectSpy).toHaveBeenCalledWith(patternName);
+  });
+
+  describe('setPatternsData function', () => {
+
+  });
+
   describe('handlePatternSelect function', () => {
     it('should dispatch the setSelectedPattern action with the correct argument', async () => {
       const patternName = 'Test Pattern Name';
@@ -67,3 +97,4 @@ describe('PatternsComponent', () => {
       expect(dispatchSpy).toHaveBeenCalledWith(PatternsActions.setSelectedPattern({ patternName }));
     });
   });
+});
