@@ -202,6 +202,13 @@ describe('GameButtonsComponent', () => {
       expect(await zoomInButton.isDisabled()).toBeTrue();
     });
 
+    it('should not be disabled if canZoomIn is true', async () => {
+      component.canZoomIn$ = of(true);
+      fixture.detectChanges();
+      const zoomInButton = await loader.getHarness(MatButtonHarness.with({ selector: '#zoom-in' }));
+      expect(await zoomInButton.isDisabled()).toBeFalse();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
