@@ -58,3 +58,9 @@ describe('GameConfigComponent', () => {
     await sliderHarness.setValue(0);
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.setTickSpeed({ newTickSpeed: 0 }));
   });
+
+  it('should dispatch the activateRandomLife action when the random life box is checked', async () => {
+    const checkboxHarness = await loader.getHarness(MatCheckboxHarness);
+    await checkboxHarness.check();
+    expect(dispatchSpy).toHaveBeenCalledWith(GameBoardActions.activateRandomLife());
+  });
