@@ -189,6 +189,12 @@ describe('GameButtonsComponent', () => {
     });
   });
 
+  describe('Zoom In Button', () => {
+    it('should create', async () => {
+      const zoomInButton = await loader.getHarness(MatButtonHarness.with({ selector: '#zoom-in' }));
+      expect(await zoomInButton).toBeDefined();
+    });
+
     expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
   });
 
