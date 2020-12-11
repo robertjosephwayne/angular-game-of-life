@@ -19,6 +19,7 @@ describe('GameButtonsComponent', () => {
   let fixture: ComponentFixture<GameButtonsComponent>;
   let store: MockStore<AppState>;
   let dispatchSpy: jasmine.Spy;
+  let loader: HarnessLoader;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,6 +40,7 @@ describe('GameButtonsComponent', () => {
     dispatchSpy = spyOn(store, "dispatch");
     fixture = TestBed.createComponent(GameButtonsComponent);
     component = fixture.componentInstance;
+    loader = TestbedHarnessEnvironment.loader(fixture);
     fixture.detectChanges();
   });
 
