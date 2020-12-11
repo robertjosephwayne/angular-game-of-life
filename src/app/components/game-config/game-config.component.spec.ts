@@ -29,6 +29,10 @@ describe('GameConfigComponent', () => {
       declarations: [
         GameConfigComponent
       ],
+      imports: [
+        MatCheckboxModule,
+        MatSliderModule
+      ],
       providers: [
         provideMockStore<AppState>({
           initialState: mockState()
