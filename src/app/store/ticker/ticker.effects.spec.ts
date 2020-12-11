@@ -79,8 +79,9 @@ describe('Ticker Effects', () => {
   });
 
   describe('stopTicking$', () => {
-    it('should dispatch the stopTicking action', () => {
+    it('should dispatch the stopTicking action when a setCurrentGeneration action is dispatched', () => {
 
+    });
     });
   });
 
