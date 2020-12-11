@@ -11,12 +11,14 @@ import * as TickerActions from '../ticker/ticker.actions';
 import { PatternsEffects } from './patterns.effects';
 
 import { PatternsService } from '../../services/patterns.service';
-import { provideMockStore } from '@ngrx/store/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppState, mockState } from '../app.state';
+import { initialState } from '../game-board/game-board.state';
 
 describe('Patterns Effects', () => {
   let actions$: Observable<Action>;
   let effects: PatternsEffects;
+  let store: MockStore<AppState>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,22 +30,29 @@ describe('Patterns Effects', () => {
         })
       ]
     });
+
+    store = TestBed.inject(MockStore);
     effects = TestBed.inject(PatternsEffects);
   });
 
   describe('resetSelectedPattern$', () => {
-    it('should dispatch the resetSelectedPattern action', () => {
+    it('should dispatch the resetSelectedPattern action', (done) => {
       actions$ = of(GameBoardActions.reset());
       effects.resetSelectedPattern$.subscribe((actions) => {
         expect(actions).toEqual(
           PatternsActions.resetSelectedPattern()
         );
       });
+      done();
     });
   });
 
   describe('updateCurrentGeneration$', () => {
-    it('should dispatch the setCurrentGeneration action', () => {
+    it('should dispatch the setCurrentGeneration action when a setSelectedPattern action is dispatched', () => {
+
+    });
+
+    it('should dispatch the setCurrentGeneration action when a resetSelectedPattern action is dispatched', () => {
 
     });
   });
