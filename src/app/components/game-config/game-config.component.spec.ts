@@ -53,10 +53,12 @@ describe('GameConfigComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch the setTickSpeed action when the tick speed changes', async () => {
+  it('should call the newTickSpeed function with the correct tick speed when the tick speed changes', async () => {
+    const handleSpeedChangeSpy = spyOn(component, 'handleSpeedChange');
     const sliderHarness = await loader.getHarness(MatSliderHarness);
-    await sliderHarness.setValue(0);
-    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.setTickSpeed({ newTickSpeed: 0 }));
+    const newTickSpeed = 102;
+    await sliderHarness.setValue(newTickSpeed);
+    expect(handleSpeedChangeSpy).toHaveBeenCalledWith(newTickSpeed);
   });
 
   it('should dispatch the activateRandomLife action when the random life box is checked', async () => {
