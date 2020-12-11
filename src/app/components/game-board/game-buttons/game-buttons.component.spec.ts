@@ -274,7 +274,12 @@ describe('GameButtonsComponent', () => {
       expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.startTicking());
     });
   });
-    expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
+
+  describe('stopTicking function', () => {
+    it('should dispatch the pause action', () => {
+      component.stopTicking();
+      expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.pause());
+    });
   });
 
   it('should dispatch the reset action when the reset button is clicked', () => {
