@@ -95,11 +95,21 @@ describe('Ticker Effects', () => {
 
   describe('stopTicking$', () => {
     it('should dispatch the stopTicking action when the setCurrentGeneration action is dispatched', () => {
-
+      actions$ = of(GameBoardActions.setCurrentGeneration);
+      effects.stopTicking$.subscribe((actions) => {
+        expect(actions).toEqual(
+          TickerActions.stopTicking()
+        );
+      });
     });
 
     it('should dispatch the stopTicking action when the pause action is dispatched', () => {
-
+      actions$ = of(TickerActions.pause);
+      effects.stopTicking$.subscribe((actions) => {
+        expect(actions).toEqual(
+          TickerActions.stopTicking()
+        );
+      });
     });
   });
 
