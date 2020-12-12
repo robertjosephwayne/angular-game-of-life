@@ -36,14 +36,13 @@ describe('Patterns Effects', () => {
   });
 
   describe('resetSelectedPattern$', () => {
-    it('should dispatch the resetSelectedPattern action', (done) => {
+    it('should dispatch the resetSelectedPattern action', () => {
       actions$ = of(GameBoardActions.reset());
       effects.resetSelectedPattern$.subscribe((actions) => {
         expect(actions).toEqual(
           PatternsActions.resetSelectedPattern()
         );
       });
-      done();
     });
   });
 
