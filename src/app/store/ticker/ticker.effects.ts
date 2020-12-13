@@ -68,6 +68,8 @@ export class TickerEffects {
       GameBoardActions.setCurrentGeneration,
       TickerActions.pause
     ),
+  pause$ = createEffect(() => this.actions$.pipe(
+    ofType(TickerActions.pause),
     map(() => TickerActions.stopTicking())
   ));
 
