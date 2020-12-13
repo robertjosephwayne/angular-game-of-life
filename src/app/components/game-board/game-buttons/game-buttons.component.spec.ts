@@ -313,7 +313,14 @@ describe('GameButtonsComponent', () => {
   });
 
   describe('setTickerData function', () => {
-
+    it('should correctly set the isTicking property', async () => {
+      const testSelector = fromTicker.isTicking;
+      const testSelectorResult = true;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.isTicking$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+      });
+    });
   });
 
   describe('tick function', () => {
