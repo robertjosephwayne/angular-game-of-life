@@ -271,7 +271,45 @@ describe('GameButtonsComponent', () => {
   });
 
   describe('setGameBoardData function', () => {
+    it('should correctly set the canGenerateNextGeneration$ property', async (done) => {
+      const testSelector = fromGameBoard.canGenerateNextGeneration;
+      const testSelectorResult = true;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.canGenerateNextGeneration$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done()
+      });
+    });
 
+    it('should correctly set the canZoomIn$ property', async (done) => {
+      const testSelector = fromGameBoard.canGenerateNextGeneration;
+      const testSelectorResult = true;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.canGenerateNextGeneration$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
+
+    it('should correctly set the canZoomOut$ property', async (done) => {
+      const testSelector = fromGameBoard.canZoomIn;
+      const testSelectorResult = true;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.canZoomIn$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
+
+    it('should correctly set the canReset$ property', async (done) => {
+      const testSelector = fromGameBoard.canReset;
+      const testSelectorResult = true;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.canReset$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
   });
 
   describe('setTickerData function', () => {
