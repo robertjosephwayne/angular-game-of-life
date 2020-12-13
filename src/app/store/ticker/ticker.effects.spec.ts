@@ -157,15 +157,16 @@ describe('Ticker Effects', () => {
       });
     });
 
+  describe('pause$', () => {
     it('should dispatch the stopTicking action when the pause action is dispatched', () => {
       actions$ = of(TickerActions.pause);
-      effects.stopTicking$.subscribe((actions) => {
+      effects.pause$.subscribe((actions) => {
         expect(actions).toEqual(
           TickerActions.stopTicking()
         );
       });
     });
-  });
+  })
 
   describe('clearTickInterval$', () => {
     it('should call clearAutoTicker from the ticker service when the stopTicking action is dispatched', () => {
