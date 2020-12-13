@@ -112,7 +112,10 @@ describe('Ticker Effects', () => {
         }
       }));
 
-    it('should create a new ticker using the current tick interval when the startTicking action is dispatched', () => {
+      actions$ = of(TickerActions.updateActiveTickInterval());
+      effects.updateActiveTickInterval$.subscribe();
+      expect(replaceActiveAutoTickerSpy).toHaveBeenCalledWith(activeTicker, tickInterval);
+    });
 
     it('should call createAutoTicker from the ticker service when the startTicking action is dispatched if no active ticker exists', () => {
       const createAutoTickerSpy = spyOn(tickerService, 'createAutoTicker');
