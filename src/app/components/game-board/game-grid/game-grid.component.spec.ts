@@ -55,6 +55,14 @@ describe('GameGridComponent', () => {
     expect(handleCellClickSpy).toHaveBeenCalledWith(testRowIndex, testColumnIndex);
   });
 
+  describe('ngOnInit', () => {
+    it('should initialize data from the game board state', () => {
+      const setGameBoardDataSpy = spyOn(component, 'setGameBoardData');
+      component.ngOnInit();
+      expect(setGameBoardDataSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('setGameBoardData function', () => {
 
   });
