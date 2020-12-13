@@ -63,11 +63,11 @@ export class TickerEffects {
     })
   ));
 
-  stopTicking$ = createEffect(() => this.actions$.pipe(
-    ofType(
-      GameBoardActions.setCurrentGeneration,
-      TickerActions.pause
-    ),
+  setCurrentGeneration$ = createEffect(() => this.actions$.pipe(
+    ofType(GameBoardActions.setCurrentGeneration),
+    map(() => TickerActions.stopTicking())
+  ));
+
   pause$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.pause),
     map(() => TickerActions.stopTicking())
