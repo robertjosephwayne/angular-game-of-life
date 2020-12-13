@@ -256,6 +256,20 @@ describe('GameButtonsComponent', () => {
     });
   });
 
+  describe('ngOnInit', () => {
+    it('should initialize data from the game board state', () => {
+      const setGameBoardDataSpy = spyOn(component, 'setGameBoardData');
+      component.ngOnInit();
+      expect(setGameBoardDataSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should initialize data from the ticker state', () => {
+      const setTickerDataSpy = spyOn(component, 'setTickerData');
+      component.ngOnInit();
+      expect(setTickerDataSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('setGameBoardData function', () => {
 
   });
