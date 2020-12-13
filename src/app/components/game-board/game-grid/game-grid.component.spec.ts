@@ -4,6 +4,8 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { AppState, mockState } from 'src/app/store/app.state';
 
+import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
+
 import * as GameBoardActions from '../../../store/game-board/game-board.actions';
 
 import { GameGridComponent } from './game-grid.component';
