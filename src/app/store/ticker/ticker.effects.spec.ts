@@ -11,16 +11,19 @@ import * as TickerActions from '../ticker/ticker.actions';
 import { TickerEffects } from './ticker.effects';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppState, mockState } from '../app.state';
+import { TickerService } from 'src/app/services/ticker.service';
 
 describe('Ticker Effects', () => {
   let actions$: Observable<Action>;
   let effects: TickerEffects;
   let store: MockStore<AppState>;
+  let tickerService: TickerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         TickerEffects,
+        TickerService,
         provideMockActions(() => actions$),
         provideMockStore<AppState>({
           initialState: mockState()
@@ -28,6 +31,7 @@ describe('Ticker Effects', () => {
       ]
     });
 
+    tickerService = TestBed.inject(TickerService);
     store = TestBed.inject(MockStore);
     effects = TestBed.inject(TickerEffects);
   });
