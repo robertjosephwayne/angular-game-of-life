@@ -49,10 +49,12 @@ describe('Ticker Service', () => {
       jasmine.clock().uninstall();
     });
 
-    it('should dispatch the createAutoTickerSuccess action', () => {
-      spyOn<any>(service, 'getNewTicker').and.returnValue(5);
-      service.createAutoTicker(500);
-      expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.createAutoTickerSuccess({ newTicker: 5 }));
+    it('should dispatch the clearAutoTickerSuccess action', () => {
+      const activeTicker = setInterval(() => {
+        return;
+      }, 1000);
+      service.clearAutoTicker(activeTicker);
+      expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.clearAutoTickerSuccess());
     });
   });
 
