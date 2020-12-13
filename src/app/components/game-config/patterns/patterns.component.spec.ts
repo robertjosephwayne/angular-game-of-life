@@ -97,7 +97,28 @@ describe('PatternsComponent', () => {
   });
 
   describe('setPatternsData function', () => {
+    it('should correctly set the presetPatterns$ property', async (done) => {
+      const testSelector = fromPatterns.selectPresetPatterns;
+      const testSelectorResult = [
+        'Test Pattern 1',
+        'Test Pattern 2'
+      ];
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.presetPatterns$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
 
+    it('should correctly set the selectedPattern$ property', async (done) => {
+      const testSelector = fromPatterns.selectedPattern;
+      const testSelectorResult = 'Glider';
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.selectedPattern$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
   });
 
   describe('handlePatternSelect function', () => {
