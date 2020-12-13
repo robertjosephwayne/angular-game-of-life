@@ -35,10 +35,18 @@ export class TickerEffects {
   ));
 
   startTicking$ = createEffect(() => this.actions$.pipe(
-    ofType(
-      TickerActions.startTicking,
-      TickerActions.updateActiveTickInterval
-    ),
+    ofType(TickerActions.startTicking),
+    withLatestFrom(this.store.select(fromTicker.selectTickInterval)),
+    withLatestFrom(this.store.select(fromTicker.selectActiveTicker)),
+    map(([[action, tickInterval], activeTicker]) => {
+      if (activeTicker) {
+        this.tickerService.replaceActiveAutoTicker(activeTicker, tickInterval)
+      } else {
+        this.tickerService.createAutoTicker(tickInterval);
+      }
+    }),
+  ), { dispatch: false });
+
   updateActiveTickInterval$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.updateActiveTickInterval),
     withLatestFrom(this.store.select(fromTicker.selectActiveTicker)),
