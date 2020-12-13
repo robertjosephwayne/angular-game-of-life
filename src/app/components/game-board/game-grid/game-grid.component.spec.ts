@@ -64,7 +64,15 @@ describe('GameGridComponent', () => {
   });
 
   describe('setGameBoardData function', () => {
-
+    it('should correctly set the currentGeneration$ property', async (done) => {
+      const testSelector = fromGameBoard.selectCurrentGeneration;
+      const testSelectorResult = [[0, 0], [0, 0]];
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.currentGeneration$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
   });
 
   describe('handleCellClick function', () => {
