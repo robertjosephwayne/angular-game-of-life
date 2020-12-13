@@ -135,7 +135,26 @@ describe('Ticker Effects', () => {
 
   describe('autoTick$', () => {
     it('should dispatch the stopTicking action when the autoTick action is dispatched if there are no live cells and random life is not active', () => {
+      store.setState(mockState({
+        gameBoard: {
+          currentGeneration: [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+          ],
+          randomLifeActive: false,
+          generationCount: 0,
+          minGridSize: 3,
+          maxGridSize: 10
+        }
+      }));
 
+      actions$ = of(TickerActions.autoTick());
+      effects.autoTick$.subscribe((actions) => {
+        expect(actions).toEqual(
+          TickerActions.stopTicking()
+        );
+      });
     });
 
     it('should dispatch the tick action when the autoTick action is dispatched if there are no live cells and random life is active', () => {
