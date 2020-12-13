@@ -5,7 +5,6 @@ import { provideMockActions } from "@ngrx/effects/testing";
 import { Observable, of } from 'rxjs';
 
 import * as GameBoardActions from '../game-board/game-board.actions';
-import * as PatternsActions from '../patterns/patterns.actions';
 import * as TickerActions from '../ticker/ticker.actions';
 
 import { TickerEffects } from './ticker.effects';
