@@ -49,7 +49,39 @@ describe('Patterns Effects', () => {
 
   describe('updateCurrentGeneration$', () => {
     it('should dispatch the setCurrentGeneration action when a setSelectedPattern action is dispatched', () => {
+      const selectedPatternSelector = store.overrideSelector(fromPatterns.selectedPattern, '');
+      store.setState(mockState({
+        gameBoard: {
+          currentGeneration: [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+          ],
+          generationCount: 0,
+          minGridSize: 5,
+          maxGridSize: 25,
+          randomLifeActive: false
+        }
+      }));
 
+      const patternName = 'Glider';
+      selectedPatternSelector.setResult(patternName);
+      const expectedGeneration: LifeGeneration = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0],
+        [0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      actions$ = of(PatternsActions.setSelectedPattern({ patternName }));
+      effects.updateCurrentGeneration$.subscribe((actions) => {
+        expect(actions).toEqual(
+          GameBoardActions.setCurrentGeneration({ newGeneration: expectedGeneration })
+        );
+      });
     });
 
     it('should dispatch the setCurrentGeneration action when a resetSelectedPattern action is dispatched', () => {
