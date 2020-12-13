@@ -42,6 +42,24 @@ describe('GameStatsComponent', () => {
   });
 
   describe('setGameBoardData function', () => {
+    it('should correctly set the generationCount$ property', async (done) => {
+      const testSelector = fromGameBoard.selectGenerationCount;
+      const testSelectorResult = 5;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.generationCount$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
 
+    it('should correctly set the liveCellCount$ property', async (done) => {
+      const testSelector = fromGameBoard.selectLiveCellCount;
+      const testSelectorResult = 6;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.liveCellCount$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
   });
 });
