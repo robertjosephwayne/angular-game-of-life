@@ -48,8 +48,29 @@ describe('Ticker Effects', () => {
 
   describe('setTickSpeed$', () => {
     it('should dispatch the updateActiveTickInterval action when the setTickSpeed action is dispatched if an active ticker exists', () => {
+      const maxTickInterval = 1000;
+      const currentTickSpeed = 400;
+      const newTickSpeed = 600;
+      const activeTicker = setInterval(() => {
+        return;
+      }, 1000);
 
+      store.setState(mockState({
+        ticker: {
+          maxTickInterval,
+          tickSpeed: currentTickSpeed,
+          activeTicker
+        }
+      }));
+
+      actions$ = of(TickerActions.setTickSpeed({ newTickSpeed }));
+      effects.setTickSpeed$.subscribe((actions) => {
+        expect(actions).toEqual(
+          TickerActions.updateActiveTickInterval()
+        );
+      });
     });
+  });
 
     it('should dispatch an empty action when the setTickSpeed action is dispatched if no active ticker exists', () => {
 
