@@ -57,7 +57,7 @@ describe('GameConfigComponent', () => {
   it('should call the newTickSpeed function with the correct tick speed when the tick speed changes', async () => {
     const handleSpeedChangeSpy = spyOn(component, 'handleSpeedChange');
     const sliderHarness = await loader.getHarness(MatSliderHarness);
-    const newTickSpeed = 102;
+    const newTickSpeed = 98;
     await sliderHarness.setValue(newTickSpeed);
     expect(handleSpeedChangeSpy).toHaveBeenCalledWith(newTickSpeed);
   });
