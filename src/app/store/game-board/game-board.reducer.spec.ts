@@ -292,6 +292,17 @@ describe('Game Board Reducer', () => {
           maxGridSize: 25
         };
 
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.zoomIn()
+        );
+
+
+        const initialGeneration = state.currentGeneration;
+        const nextGeneration = nextState.currentGeneration;
+        const differentCellCount = countDifferentCells(nextGeneration, initialGeneration);
+
+        expect(differentCellCount).toEqual(0);
       });
     });
 
@@ -428,7 +439,35 @@ describe('Game Board Reducer', () => {
       });
 
       it('should not change the cells which are within the new grid size', () => {
+        const state: GameBoardState = {
+          ...initialState,
+          currentGeneration: [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          ],
+          minGridSize: 5,
+          maxGridSize: 25
+        };
 
+        const nextState = gameBoardReducer(
+          state,
+          GameBoardActions.zoomOut()
+        );
+
+
+        const initialGeneration = state.currentGeneration;
+        const nextGeneration = nextState.currentGeneration;
+        const differentCellCount = countDifferentCells(initialGeneration, nextGeneration);
+
+        expect(differentCellCount).toEqual(0);
       });
     });
 
