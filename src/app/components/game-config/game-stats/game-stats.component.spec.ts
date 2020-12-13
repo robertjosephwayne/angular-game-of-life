@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AppState, mockState } from 'src/app/store/app.state';
 
+import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
+
 import { GameStatsComponent } from './game-stats.component';
 
 describe('GameStatsComponent', () => {
