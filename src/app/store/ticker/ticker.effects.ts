@@ -75,10 +75,9 @@ export class TickerEffects {
     ofType(TickerActions.stopTicking),
     withLatestFrom(this.store.select(fromTicker.selectActiveTicker)),
     map(([action, activeTicker]) => {
-      clearInterval(activeTicker);
-      return TickerActions.clearTicker();
-    })
-  ));
+      this.tickerService.clearAutoTicker(activeTicker);
+    }),
+  ), { dispatch: false });
 
   manualTick$ = createEffect(() => this.actions$.pipe(
     ofType(TickerActions.manualTick),
