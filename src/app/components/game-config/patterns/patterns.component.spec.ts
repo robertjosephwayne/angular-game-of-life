@@ -13,6 +13,8 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { AppState, mockState } from 'src/app/store/app.state';
 
+import * as fromPatterns from '../../../store/patterns/patterns.selectors';
+
 import * as PatternsActions from '../../../store/patterns/patterns.actions';
 
 import { PatternsComponent } from './patterns.component';
