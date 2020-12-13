@@ -25,8 +25,8 @@ export const stopTicking = createAction(
   '[Ticker | Ticker Effect] Stop Ticking'
 );
 
-export const setTicker = createAction(
-  '[Ticker | Ticker Effect] Set Ticker',
+export const createAutoTickerSuccess = createAction(
+  '[Ticker | Ticker Service] Create Auto Ticker Success',
   props<{ newTicker: any }>()
 );
 

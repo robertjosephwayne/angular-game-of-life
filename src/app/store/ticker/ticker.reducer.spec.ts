@@ -101,7 +101,7 @@ describe('Ticker Reducer', () => {
       });
     });
 
-    describe('setTicker action', () => {
+    describe('createAutoTickerSuccess action', () => {
       it('should set the active ticker to the specified ticker', () => {
         const state: TickerState = {
           ...initialState,
@@ -114,7 +114,7 @@ describe('Ticker Reducer', () => {
 
         const nextState = tickerReducer(
           state,
-          TickerActions.setTicker({ newTicker })
+          TickerActions.createAutoTickerSuccess({ newTicker })
         );
 
         expect(nextState.activeTicker).toEqual(newTicker);

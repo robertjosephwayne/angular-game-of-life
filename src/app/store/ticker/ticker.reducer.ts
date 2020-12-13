@@ -14,7 +14,7 @@ const _tickerReducer = createReducer(
     };
   }),
 
-  on(TickerActions.setTicker, (state, { newTicker }) => {
+  on(TickerActions.createAutoTickerSuccess, (state, { newTicker }) => {
     return {
       ...state,
       activeTicker: newTicker
