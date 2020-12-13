@@ -110,7 +110,25 @@ describe('GameConfigComponent', () => {
   });
 
   describe('setTickerData function', () => {
+    it('should correctly set the maxTickInterval$ property', async (done) => {
+      const testSelector = fromTicker.selectMaxTickInterval;
+      const testSelectorResult = 2000;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.maxTickInterval$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
 
+    it('should correctly set the tickSpeed$ property', async (done) => {
+      const testSelector = fromTicker.selectTickSpeed;
+      const testSelectorResult = 25;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.tickSpeed$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
   });
 
   describe('handleSpeedChange function', () => {
