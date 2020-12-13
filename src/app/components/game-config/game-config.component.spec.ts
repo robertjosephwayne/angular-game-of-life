@@ -13,6 +13,9 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AppState, mockState } from 'src/app/store/app.state';
 import { GameBoardState } from '../../store/game-board/game-board.state';
 
+import * as fromGameBoard from '../../store/game-board/game-board.selectors';
+import * as fromTicker from '../../store/ticker/ticker.selectors';
+
 import * as GameBoardActions from '../../store/game-board/game-board.actions';
 import * as TickerActions from '../../store/ticker/ticker.actions';
 
