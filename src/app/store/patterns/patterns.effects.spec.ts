@@ -6,14 +6,15 @@ import { Observable, of } from 'rxjs';
 
 import * as GameBoardActions from '../game-board/game-board.actions';
 import * as PatternsActions from '../patterns/patterns.actions';
-import * as TickerActions from '../ticker/ticker.actions';
 
 import { PatternsEffects } from './patterns.effects';
 
-import { PatternsService } from '../../services/patterns.service';
+import * as fromPatterns from '../patterns/patterns.selectors';
+
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppState, mockState } from '../app.state';
-import { initialState } from '../game-board/game-board.state';
+
+import { LifeGeneration } from 'src/app/models/life-generation.model';
 
 describe('Patterns Effects', () => {
   let actions$: Observable<Action>;
