@@ -168,17 +168,13 @@ describe('Ticker Effects', () => {
   });
 
   describe('clearTickInterval$', () => {
-    it('should dispatch the clearTicker action when the stopTicking action is dispatched', () => {
+    it('should call clearAutoTicker from the ticker service when the stopTicking action is dispatched', () => {
+      const clearAutoTickerSpy = spyOn(tickerService, 'clearAutoTicker');
+
       actions$ = of(TickerActions.stopTicking());
-      effects.clearTickInterval$.subscribe((actions) => {
-        expect(actions).toEqual(
-          TickerActions.clearTicker()
-        );
-      });
-    });
+      effects.clearTickInterval$.subscribe();
 
-    it('should clear the interval of the active ticker when the stopTicking action is dispatched', () => {
-
+      expect(clearAutoTickerSpy).toHaveBeenCalled();
     });
   });
 
@@ -192,4 +188,5 @@ describe('Ticker Effects', () => {
       });
     });
   });
+
 });
