@@ -13,6 +13,9 @@ import { AppState, mockState } from 'src/app/store/app.state';
 import * as GameBoardActions from '../../../store/game-board/game-board.actions';
 import * as TickerActions from '../../../store/ticker/ticker.actions';
 
+import * as fromGameBoard from '../../../store/game-board/game-board.selectors';
+import * as fromTicker from '../../../store/ticker/ticker.selectors';
+
 import { GameButtonsComponent } from './game-buttons.component';
 
 describe('GameButtonsComponent', () => {
