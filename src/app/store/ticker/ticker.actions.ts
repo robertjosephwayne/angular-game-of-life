@@ -30,8 +30,8 @@ export const createAutoTickerSuccess = createAction(
   props<{ newTicker: any }>()
 );
 
-export const clearTicker = createAction(
-  '[Ticker | Ticker Effect] Clear Ticker',
+export const clearAutoTickerSuccess = createAction(
+  '[Ticker | Ticker Service] Clear Auto Ticker Success',
 );
 
 export const autoTick = createAction(

@@ -121,7 +121,7 @@ describe('Ticker Reducer', () => {
       });
     });
 
-    describe('clearTicker action', () => {
+    describe('clearAutoTickerSuccess action', () => {
       it('should set the active ticker to null', () => {
         const activeTicker = setInterval(() => {
           return;
@@ -134,7 +134,7 @@ describe('Ticker Reducer', () => {
 
         const nextState = tickerReducer(
           state,
-          TickerActions.clearTicker()
+          TickerActions.clearAutoTickerSuccess()
         );
 
         expect(nextState.activeTicker).toBeNull();
