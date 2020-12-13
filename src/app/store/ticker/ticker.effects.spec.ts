@@ -89,7 +89,7 @@ describe('Ticker Effects', () => {
     actions$ = of(TickerActions.setTickSpeed({ newTickSpeed }));
     effects.setTickSpeed$.subscribe((actions) => {
       expect(actions).toEqual(
-        { type: 'Empty Action ' }
+        { type: 'Empty Action' }
       );
     });
   });
