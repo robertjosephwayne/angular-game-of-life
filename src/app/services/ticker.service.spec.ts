@@ -26,7 +26,11 @@ describe('Ticker Service', () => {
   });
 
   describe('createAutoTicker', () => {
-
+    it('should dispatch the createAutoTickerSuccess action', () => {
+      spyOn<any>(service, 'getNewTicker').and.returnValue(5);
+      service.createAutoTicker(500);
+      expect(dispatchSpy).toHaveBeenCalledWith(TickerActions.createAutoTickerSuccess({ newTicker: 5 }));
+    });
   });
 
   describe('clearAutoTicker', () => {
