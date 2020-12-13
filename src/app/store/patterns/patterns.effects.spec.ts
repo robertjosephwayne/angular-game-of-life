@@ -85,7 +85,37 @@ describe('Patterns Effects', () => {
     });
 
     it('should dispatch the setCurrentGeneration action when a resetSelectedPattern action is dispatched', () => {
+      store.setState(mockState({
+        gameBoard: {
+          currentGeneration: [
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0],
+          ],
+          generationCount: 0,
+          minGridSize: 5,
+          maxGridSize: 25,
+          randomLifeActive: false
+        }
+      }));
 
+      const patternName = 'Empty';
+      const expectedGeneration = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+
+      actions$ = of(PatternsActions.resetSelectedPattern());
+      effects.updateCurrentGeneration$.subscribe((actions) => {
+        expect(actions).toEqual(
+          GameBoardActions.setCurrentGeneration({ newGeneration: expectedGeneration })
+        );
+      });
     });
   });
 });
