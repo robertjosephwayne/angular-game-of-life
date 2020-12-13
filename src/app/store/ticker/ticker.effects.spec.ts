@@ -124,12 +124,27 @@ describe('Ticker Effects', () => {
 
     });
 
-    it('should create a new ticker using the current tick interval when the updateActiveTickInterval action is dispatched', () => {
+  describe('updateActiveTickInterval$', () => {
+    it('should call replaceActiveAutoTicker from the ticker service when the updateActiveTickInterval action is dispatched', () => {
+      const replaceActiveAutoTickerSpy = spyOn(tickerService, 'replaceActiveAutoTicker');
+      const maxTickInterval = 1000;
+      const tickSpeed = 400;
+      const tickInterval = maxTickInterval - tickSpeed;
+      const activeTicker = setInterval(() => {
+        return;
+      }, 1000);
 
-    });
+      store.setState(mockState({
+        ticker: {
+          maxTickInterval,
+          tickSpeed,
+          activeTicker
+        }
+      }));
 
-    it('should dispatch the setTicker action when the updateActiveTickInterval action is dispatched', () => {
-
+      actions$ = of(TickerActions.updateActiveTickInterval());
+      effects.updateActiveTickInterval$.subscribe();
+      expect(replaceActiveAutoTickerSpy).toHaveBeenCalledWith(activeTicker, tickInterval);
     });
   });
 
