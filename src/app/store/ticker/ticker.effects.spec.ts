@@ -72,8 +72,25 @@ describe('Ticker Effects', () => {
     });
   });
 
-    it('should dispatch an empty action when the setTickSpeed action is dispatched if no active ticker exists', () => {
+  it('should dispatch an empty action when the setTickSpeed action is dispatched if no active ticker exists', () => {
+    const maxTickInterval = 1000;
+    const currentTickSpeed = 400;
+    const newTickSpeed = 600;
+    const activeTicker = null;
 
+    store.setState(mockState({
+      ticker: {
+        maxTickInterval,
+        tickSpeed: currentTickSpeed,
+        activeTicker
+      }
+    }));
+
+    actions$ = of(TickerActions.setTickSpeed({ newTickSpeed }));
+    effects.setTickSpeed$.subscribe((actions) => {
+      expect(actions).toEqual(
+        { type: 'Empty Action ' }
+      );
     });
   });
 
