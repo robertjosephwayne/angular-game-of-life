@@ -95,9 +95,22 @@ describe('Ticker Effects', () => {
   });
 
   describe('startTicking$', () => {
-    it('should clear the interval of the active ticker when the startTicking action is dispatched', () => {
+    it('should call replaceActiveAutoTicker from the ticker service when the startTicking action is dispatched if an active ticker exists', () => {
+      const replaceActiveAutoTickerSpy = spyOn(tickerService, 'replaceActiveAutoTicker');
+      const maxTickInterval = 1000;
+      const tickSpeed = 400;
+      const tickInterval = maxTickInterval - tickSpeed;
+      const activeTicker = setInterval(() => {
+        return;
+      }, 1000);
 
-    });
+      store.setState(mockState({
+        ticker: {
+          maxTickInterval,
+          tickSpeed,
+          activeTicker
+        }
+      }));
 
     it('should create a new ticker using the current tick interval when the startTicking action is dispatched', () => {
 
