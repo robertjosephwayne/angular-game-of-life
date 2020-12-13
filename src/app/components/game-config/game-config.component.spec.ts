@@ -97,6 +97,18 @@ describe('GameConfigComponent', () => {
     });
   });
 
+  describe('setGameBoardData function', () => {
+    it('should correctly set the randomLifeActive$ property', async (done) => {
+      const testSelector = fromGameBoard.isRandomLifeActive;
+      const testSelectorResult = true;
+      store.overrideSelector(testSelector, testSelectorResult);
+      component.randomLifeActive$.subscribe(result => {
+        expect(result).toEqual(testSelectorResult);
+        done();
+      });
+    });
+  });
+
   describe('setTickerData function', () => {
 
   });
