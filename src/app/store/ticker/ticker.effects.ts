@@ -12,6 +12,8 @@ import * as TickerActions from './ticker.actions';
 import * as fromGameBoard from '../../store/game-board/game-board.selectors';
 import * as fromTicker from '../../store/ticker/ticker.selectors';
 
+import { TickerService } from 'src/app/services/ticker.service';
+
 @Injectable()
 export class TickerEffects {
 
@@ -85,6 +87,7 @@ export class TickerEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private tickerService: TickerService
   ) { }
 }
