@@ -88,6 +88,14 @@ describe('PatternsComponent', () => {
     expect(handlePatternSelectSpy).toHaveBeenCalledWith(patternName);
   });
 
+  describe('ngOnInit', () => {
+    it('should initialize data from the patterns state', () => {
+      const setPatternsDataSpy = spyOn(component, 'setPatternsData');
+      component.ngOnInit();
+      expect(setPatternsDataSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('setPatternsData function', () => {
 
   });
