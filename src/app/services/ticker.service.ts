@@ -20,7 +20,7 @@ export class TickerService {
   }
 
   private getNewTicker(tickInterval): any {
-    setInterval(() => {
+    return setInterval(() => {
       this.store.dispatch(TickerActions.autoTick());
     }, tickInterval);
   }
